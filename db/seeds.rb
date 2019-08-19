@@ -5,3 +5,31 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Genre.create(:name => "Action")
+Genre.create(:name => "Animated")
+Genre.create(:name => "Comedy")
+Genre.create(:name => "Drama")
+Genre.create(:name => "Horror")
+Genre.create(:name => "Psychological Thriller")
+Genre.create(:name => "Romantic Comedy")
+
+10.times do
+  User.create(:username => Faker::Name.unique.name, :email => Faker::Internet.unique.email, :password => "password")
+end
+
+20.times do
+  Movie.create(:title => Faker::Book.unique.title, :summary => Faker::Lorem.paragraph(sentence_count: 4, supplemental: false, random_sentences_to_add: 2), :year => Faker::Number.between(from: 1950, to: 2019), :genre_id => rand(1...Genre.count))
+end
+
+40.times do
+  Actor.create(:first_name => Faker::FunnyName.two_word_name, :last_name => "")
+end
+
+40.times do
+  Review.create(:content => Faker::Lorem.paragraph(sentence_count: 6, supplemental: false, random_sentences_to_add: 4), :rating => rand(1...5), :movie_id => rand(1...Movie.count), :user_id => rand(1...User.count))
+end
+
+50.times do
+  MovieActor.create(:movie_id => rand(1...Movie.count), :actor_id => rand(1...Actor.count))
+end
