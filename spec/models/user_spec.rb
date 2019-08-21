@@ -42,7 +42,7 @@ RSpec.describe User, :type => :model do
     )
   }
 
-  it "is valid with a username, email, password" do
+  it "is valid with a username, email, and password" do
     expect(user).to be_valid
   end
 
@@ -74,6 +74,7 @@ RSpec.describe User, :type => :model do
   end
 
   it "has many movies through reviews" do
+    # is this the right way to write this test???
     user.movies << [easy_a, superstar]
     expect(user.movies.first).to eq(easy_a)
     expect(user.movies.last).to eq(superstar)

@@ -1,75 +1,100 @@
-# require 'rails_helper'
-#
-# RSpec.describe Actor, :type => :model do
-#   let(:emma_stone) {
-#     Actor.create(
-#       :first_name => "Emma",
-#       :last_name => "Stone",
-#     )
-#   }
-#
-#   let(:penn_badgley) {
-#     Actor.create(
-#       :first_name => "Penn",
-#       :last_name => "Badgley",
-#     )
-#   }
-#
-#   let(:molly_shannon) {
-#     Actor.create(
-#       :first_name => "Molly",
-#       :last_name => "Shannon",
-#     )
-#   }
-#
-#   let(:will_ferrell) {
-#     Actor.create(
-#       :first_name => "Will",
-#       :last_name => "Ferrell",
-#     )
-#   }
-#
-#   let(:comedy) {
-#     Genre.create(
-#       :name => "Comedy"
-#     )
-#   }
-#
-#   let(:easy_a) {
-#     Movie.create(
-#       :title => "Easy A",
-#       :summary => "After a little white lie about losing her virginity gets out, a clean cut high school girl sees her life paralleling Hester Prynne's in 'The Scarlet Letter,' which she is currently studying in school - until she decides to use the rumor mill to advance her social and financial standing.",
-#       :year => 2010,
-#       :genre_id => comedy.id
-#     )
-#   }
-#
-#   let(:superstar) {
-#     Movie.create(
-#       :title => "Superstar",
-#       :summary => "Orphan Mary Katherine Gallagher, an ugly duckling at St. Monica High School, has a dream: to be kissed soulfully. She decides she can realize this dream if she becomes a superstar, so her prayers, her fantasies, and her conversations with her only friend focus on achieving super-stardom. Her big chance is a school talent contest; her main competition is Evian, the school beauty, who is dancing with Sky, the object of Mary Katherine's kiss dream. Mary Katherine gets some talent-show help from her fellow special education students, her grandma, and Jesus, and inspiration from secrets in her past. Watching are Sky, Evian, and a silent classmate.",
-#       :year => 1999,
-#       :genre_id => comedy.id
-#     )
-#   }
-# 
-# let(:never_been_kissed) {
-#   Movie.create(
-#     :title => "Never Been Kissed",
-#     :summary => "Chicago Sun Times copy editor Josie Gellar (25), who was desperate to graduate from perfectionist copy editor to reporter, gets her chance when the goody owner orders the editor to cover the high-school scene by undercover. Josie, who was a frustrated, ridiculed nerd, gets a popular make-over from her drop-out, naturally funny brother Rob Geller. Both siblings find love and joys of youth again. But in Josie's case, it's sensitive bachelor teacher Sam Coulson, who enjoys sophisticated conversation. As the publication deadline approaches, the price of blowing their cover seems ever more daunting, yet inevitable unless she sacrifices her career.",
-#     :year => 1999,
-#     :genre_id => romcom.id
-#   )
-# }
+require 'rails_helper'
 
-  #
-  # it "has many movie_actors" do
-  #   emma_easy_a = MovieActor.create(:movie_id => easy_a.id, :actor_id => emma_stone.id)
-  #   penn_easy_a = MovieActor.create(:movie_id => easy_a.id, :actor_id => penn_badgley.id)
-  #   molly_superstar = MovieActor.create(:movie_id => superstar.id, :actor_id => molly_shannon.id)
-  #   will_superstar = MovieActor.create(:movie_id => superstar.id, :actor_id => will_ferrell.id)
-  #   expect(user.reviews.first).to eq(first_review)
-  #   expect(user.reviews.last).to eq(second_review)
-  # end
-#
-# end
+# tests are passing that shouldn't be
+
+RSpec.describe Movie, :type => :model do
+
+  let(:user) {
+    User.create(
+      :username => "Mindy",
+      :email => "mindy@gmail.com",
+      :password => "password",
+    )
+  }
+
+  let(:admin) {
+    User.create(
+      :username => "Walt",
+      :email => "walt@gmail.com",
+      :password => "password",
+      :admin => true
+    )
+  }
+
+  let(:emma_stone) {
+    Actor.create(
+      :first_name => "Emma",
+      :last_name => "Stone",
+    )
+  }
+
+  let(:penn_badgley) {
+    Actor.create(
+      :first_name => "Penn",
+      :last_name => "Badgley",
+    )
+  }
+
+  let(:comedy) {
+    Genre.create(
+      :name => "Comedy"
+    )
+  }
+
+  let(:easy_a) {
+    Movie.create(
+      :title => "Easy A",
+      :summary => "After a little white lie about losing her virginity gets out, a clean cut high school girl sees her life paralleling Hester Prynne's in 'The Scarlet Letter,' which she is currently studying in school - until she decides to use the rumor mill to advance her social and financial standing.",
+      :year => 2010,
+      :genre_id => comedy.id
+    )
+  }
+
+  it "is valid with a title, summary, and year" do
+    expect(easy_a).to be_valid
+  end
+
+  # test is passing without validation
+  it "is not valid without a title" do
+    expect(Movie.new(:summary=> "Movie summary", :year => 2000)).not_to be_valid
+  end
+
+  # test is passing without validation
+  it "is not valid without a summary" do
+    expect(Movie.new(:title => "Movie Title", :year => 2000)).not_to be_valid
+  end
+
+  # test is passing without validation
+  it "is not valid without a year" do
+    expect(Movie.new(:title => "Movie Title", :summary => "Movie summary")).not_to be_valid
+  end
+
+  it "has many movie_actors" do
+    emma_easy_a = MovieActor.create(:movie_id => easy_a.id, :actor_id => emma_stone.id)
+    penn_easy_a = MovieActor.create(:movie_id => easy_a.id, :actor_id => penn_badgley.id)
+    expect(easy_a.movie_actors.first).to eq(emma_easy_a)
+    expect(easy_a.movie_actors.last).to eq(penn_easy_a)
+  end
+
+  it "has many actors through movie_actors" do
+    # is this the right way to write this test???
+    easy_a.actors << [emma_stone, penn_badgley]
+    expect(easy_a.actors.first).to eq(emma_stone)
+    expect(easy_a.actors.last).to eq(penn_badgley)
+  end
+
+  it "has many reviews" do
+    first_review = Review.create(:user_id => user.id, :movie_id => easy_a.id, :content => "Easy A is a great movie. Emma Stone steals the show.", :rating => 4)
+    second_review = Review.create(:user_id => admin.id, :movie_id => easy_a.id, :content => "Easy A is the best movie of all time. I will always love Amanda Bynes.", :rating => 5)
+    expect(easy_a.reviews.first).to eq(first_review)
+    expect(easy_a.reviews.last).to eq(second_review)
+  end
+
+  it "has many users through reviews" do
+    # is this the right way to write this test???
+    easy_a.users << [user, admin]
+    expect(easy_a.users.first).to eq(user)
+    expect(easy_a.users.last).to eq(admin)
+  end
+
+end

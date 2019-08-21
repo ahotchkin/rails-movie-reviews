@@ -1,8 +1,5 @@
 require 'rails_helper'
-#
 
-# => actor needs: and many movies through movie_actors
-#
 RSpec.describe Actor, :type => :model do
   let(:emma_stone) {
     Actor.create(
@@ -41,15 +38,6 @@ RSpec.describe Actor, :type => :model do
     )
   }
 
-  let(:superstar) {
-    Movie.create(
-      :title => "Superstar",
-      :summary => "Orphan Mary Katherine Gallagher, an ugly duckling at St. Monica High School, has a dream: to be kissed soulfully. She decides she can realize this dream if she becomes a superstar, so her prayers, her fantasies, and her conversations with her only friend focus on achieving super-stardom. Her big chance is a school talent contest; her main competition is Evian, the school beauty, who is dancing with Sky, the object of Mary Katherine's kiss dream. Mary Katherine gets some talent-show help from her fellow special education students, her grandma, and Jesus, and inspiration from secrets in her past. Watching are Sky, Evian, and a silent classmate.",
-      :year => 1999,
-      :genre_id => comedy.id
-    )
-  }
-
   it "is valid with a first name and last name" do
     expect(emma_stone).to be_valid
   end
@@ -70,6 +58,7 @@ RSpec.describe Actor, :type => :model do
   end
 
   it "has many movies through movie_actors" do
+    # is this the right way to write this test???
     emma_stone.movies << [easy_a, la_la_land]
     expect(emma_stone.movies.first).to eq(easy_a)
     expect(emma_stone.movies.last).to eq(la_la_land)
