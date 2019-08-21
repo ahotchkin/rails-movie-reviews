@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe User, :type => :model do
+RSpec.describe Genre, :type => :model do
   let(:comedy) {
     Genre.create(
       :name => "Comedy"

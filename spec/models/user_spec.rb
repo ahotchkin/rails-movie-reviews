@@ -9,7 +9,6 @@ RSpec.describe User, :type => :model do
     )
   }
 
-
   let(:admin) {
     User.create(
       :username => "Walt",
@@ -48,15 +47,15 @@ RSpec.describe User, :type => :model do
   end
 
   it "is not valid without a username" do
-    expect(User.new(email: "user@gmail.com", password: "password")).not_to be_valid
+    expect(User.new(:email => "user@gmail.com", :password => "password")).not_to be_valid
   end
 
   it "is not valid without an email" do
-    expect(User.new(username: "Name", password: "password")).not_to be_valid
+    expect(User.new(:username => "Name", :password => "password")).not_to be_valid
   end
 
   it "is not valid without a password" do
-    expect(User.new(username: "Name", email: "user@gmail.com")).not_to be_valid
+    expect(User.new(:username => "Name", :email => "user@gmail.com")).not_to be_valid
   end
 
   it "is valid with an admin boolean" do
