@@ -29,6 +29,7 @@ RSpec.describe User, :type => :model do
   #     :title => "Easy A",
   #     :summary => "After a little white lie about losing her virginity gets out, a clean cut high school girl sees her life paralleling Hester Prynne's in 'The Scarlet Letter,' which she is currently studying in school - until she decides to use the rumor mill to advance her social and financial standing.",
   #     :year => 2010,
+  #     :user_id => admin.id,
   #     :genre_id => comedy.id
   #   )
   # }
@@ -38,6 +39,7 @@ RSpec.describe User, :type => :model do
   #     :title => "Superstar",
   #     :summary => "Orphan Mary Katherine Gallagher, an ugly duckling at St. Monica High School, has a dream: to be kissed soulfully. She decides she can realize this dream if she becomes a superstar, so her prayers, her fantasies, and her conversations with her only friend focus on achieving super-stardom. Her big chance is a school talent contest; her main competition is Evian, the school beauty, who is dancing with Sky, the object of Mary Katherine's kiss dream. Mary Katherine gets some talent-show help from her fellow special education students, her grandma, and Jesus, and inspiration from secrets in her past. Watching are Sky, Evian, and a silent classmate.",
   #     :year => 1999,
+  #     :user_id => admin.id,
   #     :genre_id => comedy.id
   #   )
   # }
@@ -88,6 +90,12 @@ RSpec.describe User, :type => :model do
     expect(user.admin).to eq(false)
   end
 
+  # it "has many movies" do
+  #   expect(admin.movies).to include(easy_a)
+  #   expect(admin.movies).to include(superstar)
+  # end
+  it { should have_many(:movies) }
+
   # it "has many reviews" do
   #   expect(user.reviews).to include(easy_a_review)
   #   expect(user.reviews).to include(superstar_review)
@@ -111,6 +119,6 @@ RSpec.describe User, :type => :model do
   #   expect(user.movies).to include(easy_a)
   #   expect(user.movies).to include(superstar)
   # end
-  it { should have_many(:movies).through(:reviews) }
+  it { should have_many(:reviewed_movies).through(:reviews).source(:movie) }
 
 end
