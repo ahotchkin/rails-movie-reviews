@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+
+  get "/signup" => "users#new"
+
+  # so if a user signs up incorrectly the url re-renders as /signup
+  post "/signup" => "users#create"
+  
   resources :reviews
   resources :movie_actors
   resources :genres
