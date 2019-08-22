@@ -15,7 +15,7 @@ Genre.create(:name => "Psychological Thriller")
 Genre.create(:name => "Romantic Comedy")
 
 10.times do
-  User.create(:username => Faker::Name.unique.name, :email => Faker::Internet.unique.email, :password => "password")
+  User.create(:username => Faker::Name.unique.name, :email => Faker::Internet.unique.email, :password => "password", :admin => Faker::Boolean.boolean)
 end
 
 20.times do

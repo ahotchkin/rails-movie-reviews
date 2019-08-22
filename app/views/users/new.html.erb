@@ -10,5 +10,8 @@
   <%= f.label "Password:" %>
   <%= f.password_field :password %>
   <br><br>
+  <%= f.label "Check box if you're a site administrator:" %>
+  <%= f.check_box :admin %>
+  <br><br>
   <%= f.submit "Sign Up" %>
 <% end %>
