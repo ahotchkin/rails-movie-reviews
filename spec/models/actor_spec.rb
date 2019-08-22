@@ -43,7 +43,7 @@ RSpec.describe Actor, :type => :model do
   end
 
   it "is not valid without a first name" do
-    expect(Actor.new(:last_name => "last")).not_to be_valid
+    expect(Actor.new(:last_name => "last")).to_not be_valid
   end
 
   it "is valid without a last name" do

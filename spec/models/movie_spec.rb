@@ -54,20 +54,18 @@ RSpec.describe Movie, :type => :model do
     expect(easy_a).to be_valid
   end
 
-  # test is passing without validation
   it "is not valid without a title" do
-    expect(Movie.new(:summary=> "Movie summary", :year => 2000)).not_to be_valid
+    expect(Movie.new(:summary => "Movie summary", :year => 2000, :genre_id => comedy.id)).to_not be_valid
   end
 
-  # test is passing without validation
   it "is not valid without a summary" do
-    expect(Movie.new(:title => "Movie Title", :year => 2000)).not_to be_valid
+    expect(Movie.new(:title => "Movie Title", :year => 2000, :genre_id => comedy.id)).to_not be_valid
   end
 
-  # test is passing without validation
   it "is not valid without a year" do
-    expect(Movie.new(:title => "Movie Title", :summary => "Movie summary")).not_to be_valid
+    expect(Movie.new(:title => "Movie Title", :summary => "Movie summary", :genre_id => comedy.id)).to_not be_valid
   end
+
 
   it "has many movie_actors" do
     emma_easy_a = MovieActor.create(:movie_id => easy_a.id, :actor_id => emma_stone.id)

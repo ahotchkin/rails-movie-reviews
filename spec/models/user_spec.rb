@@ -42,20 +42,38 @@ RSpec.describe User, :type => :model do
     )
   }
 
+  let(:easy_a_review) {
+    Review.create(
+      :user_id => user.id,
+      :movie_id => easy_a.id,
+      :content => "Easy A is a great movie. Emma Stone steals the show.",
+      :rating => 4
+    )
+  }
+
+  let(:superstar_review) {
+    Review.create(
+      :user_id => user.id,
+      :movie_id => superstar.id,
+      :content => "Superstar is hilarious at every turn.",
+      :rating => 4
+    )
+  }
+
   it "is valid with a username, email, and password" do
     expect(user).to be_valid
   end
 
   it "is not valid without a username" do
-    expect(User.new(:email => "user@gmail.com", :password => "password")).not_to be_valid
+    expect(User.new(:email => "user@gmail.com", :password => "password")).to_not be_valid
   end
 
   it "is not valid without an email" do
-    expect(User.new(:username => "Name", :password => "password")).not_to be_valid
+    expect(User.new(:username => "Name", :password => "password")).to_not be_valid
   end
 
   it "is not valid without a password" do
-    expect(User.new(:username => "Name", :email => "user@gmail.com")).not_to be_valid
+    expect(User.new(:username => "Name", :email => "user@gmail.com")).to_not be_valid
   end
 
   it "is valid with an admin boolean" do
@@ -67,15 +85,13 @@ RSpec.describe User, :type => :model do
   end
 
   it "has many reviews" do
-    first_review = Review.create(:user_id => user.id, :movie_id => easy_a.id, :content => "Easy A is a great movie. Emma Stone steals the show.", :rating => 4)
-    second_review = Review.create(:user_id => user.id, :movie_id => superstar.id, :content => "Superstar is hilarious at every turn.", :rating => 4)
-    expect(user.reviews.first).to eq(first_review)
-    expect(user.reviews.last).to eq(second_review)
+    expect(user.reviews.first).to eq(easy_a_review)
+    expect(user.reviews.last).to eq(superstar_review)
   end
 
   it "has many movies through reviews" do
     # is this the right way to write this test???
-    user.movies << [easy_a, superstar]
+    # user.movies << [easy_a, superstar]
     expect(user.movies.first).to eq(easy_a)
     expect(user.movies.last).to eq(superstar)
   end

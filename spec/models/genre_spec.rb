@@ -12,7 +12,7 @@ RSpec.describe Genre, :type => :model do
   end
 
   it "is not valid without a name" do
-    expect(Genre.new).not_to be_valid
+    expect(Genre.new).to_not be_valid
   end
 
   it "has many movies" do
