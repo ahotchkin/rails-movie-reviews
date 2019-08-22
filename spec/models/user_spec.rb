@@ -64,17 +64,21 @@ RSpec.describe User, :type => :model do
     expect(user).to be_valid
   end
 
-  it "is not valid without a username" do
-    expect(User.new(:email => "user@gmail.com", :password => "password")).to_not be_valid
-  end
+  # it "is not valid without a username" do
+  #   expect(User.new(:email => "user@gmail.com", :password => "password")).to_not be_valid
+  # end
+  it { should validate_presence_of(:username) }
 
-  it "is not valid without an email" do
-    expect(User.new(:username => "Name", :password => "password")).to_not be_valid
-  end
+  # it "is not valid without an email" do
+  #   expect(User.new(:username => "Name", :password => "password")).to_not be_valid
+  # end
+  it { should validate_presence_of(:email) }
 
-  it "is not valid without a password" do
-    expect(User.new(:username => "Name", :email => "user@gmail.com")).to_not be_valid
-  end
+  # it "is not valid without a password" do
+  #   expect(User.new(:username => "Name", :email => "user@gmail.com")).to_not be_valid
+  # end
+  it { should validate_presence_of(:password) }
+
 
   it "is valid with an admin boolean" do
     expect(admin).to be_valid
@@ -84,7 +88,29 @@ RSpec.describe User, :type => :model do
     expect(user.admin).to eq(false)
   end
 
+  # it "has many reviews" do
+  #   expect(user.reviews).to include(easy_a_review)
+  #   expect(user.reviews).to include(superstar_review)
+  # end
   it { should have_many(:reviews) }
+
+  # it "has many movies through reviews" do
+  #   easy_a_review = Review.create(
+  #     :user_id => user.id,
+  #     :movie_id => easy_a.id,
+  #     :content => "Easy A is a great movie. Emma Stone steals the show.",
+  #     :rating => 4
+  #   )
+  #
+  #   superstar_review = Review.create(
+  #     :user_id => user.id,
+  #     :movie_id => superstar.id,
+  #     :content => "Superstar is hilarious at every turn.",
+  #     :rating => 4
+  #   )
+  #   expect(user.movies).to include(easy_a)
+  #   expect(user.movies).to include(superstar)
+  # end
   it { should have_many(:movies).through(:reviews) }
 
 end

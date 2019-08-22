@@ -42,30 +42,29 @@ RSpec.describe Actor, :type => :model do
     expect(emma_stone).to be_valid
   end
 
-  it "is not valid without a first name" do
-    expect(Actor.new(:last_name => "last")).to_not be_valid
-  end
+  # it "is not valid without a first name" do
+  #   expect(Actor.new(:last_name => "last")).to_not be_valid
+  # end
+  it { should validate_presence_of(:first_name) }
 
-  it "is valid without a last name" do
-    expect(Actor.new(:first_name => "Cher")).to be_valid
-  end
-
-  it { should have_many(:movie_actors) }
+  # it "is valid without a last name" do
+  #   expect(Actor.new(:first_name => "Cher")).to be_valid
+  # end
 
   # it "has many movie_actors" do
   #   emma_easy_a = MovieActor.create(:movie_id => easy_a.id, :actor_id => emma_stone.id)
   #   emma_la_la_land = MovieActor.create(:movie_id => la_la_land.id, :actor_id => emma_stone.id)
-  #   expect(emma_stone.movie_actors.first).to eq(emma_easy_a)
-  #   expect(emma_stone.movie_actors.last).to eq(emma_la_la_land)
+  #   expect(emma_stone.movie_actors).to include(emma_easy_a)
+  #   expect(emma_stone.movie_actors).to include(emma_la_la_land)
   # end
-
-  it { should have_many(:movies).through(:movie_actors) }
+  it { should have_many(:movie_actors) }
 
   # it "has many movies through movie_actors" do
-  #   # is this the right way to write this test???
-  #   emma_stone.movies << [easy_a, la_la_land]
-  #   expect(emma_stone.movies.first).to eq(easy_a)
-  #   expect(emma_stone.movies.last).to eq(la_la_land)
+  #   MovieActor.create(:movie_id => easy_a.id, :actor_id => emma_stone.id)
+  #   MovieActor.create(:movie_id => la_la_land.id, :actor_id => emma_stone.id)
+  #   expect(emma_stone.movies).to include(easy_a)
+  #   expect(emma_stone.movies).to include(la_la_land)
   # end
+  it { should have_many(:movies).through(:movie_actors) }
 
 end

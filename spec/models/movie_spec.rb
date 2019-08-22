@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Movie, :type => :model do
-
   # let(:user) {
   #   User.create(
   #     :username => "Mindy",
@@ -32,7 +31,7 @@ RSpec.describe Movie, :type => :model do
   #     :last_name => "Badgley",
   #   )
   # }
-
+  #
   let(:comedy) {
     Genre.create(
       :name => "Comedy"
@@ -48,56 +47,82 @@ RSpec.describe Movie, :type => :model do
     )
   }
 
+  # let(:first_review) {
+  #   Review.create(
+  #     :user_id => admin.id,
+  #     :movie_id => easy_a.id,
+  #     :content => "Easy A is a great movie. Emma Stone steals the show.",
+  #     :rating => 4
+  #   )
+  # }
+  #
+  # let(:second_review) {
+  #   Review.create(
+  #     :user_id => user.id,
+  #     :movie_id => easy_a.id,
+  #     :content => "Easy A is the best movie of all time. I will always love Amanda Bynes.",
+  #     :rating => 5
+  #   )
+  # }
+
   it "is valid with a title, summary, and year" do
     expect(easy_a).to be_valid
   end
 
-  it "is not valid without a title" do
-    expect(Movie.new(:summary => "Movie summary", :year => 2000, :genre_id => comedy.id)).to_not be_valid
-  end
+  # it "is not valid without a title" do
+  #   expect(Movie.new(:summary => "Movie summary", :year => 2000, :genre_id => comedy.id)).to_not be_valid
+  # end
+  it { should validate_presence_of(:title) }
 
-  it "is not valid without a summary" do
-    expect(Movie.new(:title => "Movie Title", :year => 2000, :genre_id => comedy.id)).to_not be_valid
-  end
+  # it "is not valid without a summary" do
+  #   expect(Movie.new(:title => "Movie Title", :year => 2000, :genre_id => comedy.id)).to_not be_valid
+  # end
+  it { should validate_presence_of(:summary) }
 
-  it "is not valid without a year" do
-    expect(Movie.new(:title => "Movie Title", :summary => "Movie summary", :genre_id => comedy.id)).to_not be_valid
-  end
-
-  it { should have_many(:movie_actors) }
+  # it "is not valid without a year" do
+  #   expect(Movie.new(:title => "Movie Title", :summary => "Movie summary", :genre_id => comedy.id)).to_not be_valid
+  # end
+  it { should validate_presence_of(:year) }
 
   # it "has many movie_actors" do
   #   emma_easy_a = MovieActor.create(:movie_id => easy_a.id, :actor_id => emma_stone.id)
   #   penn_easy_a = MovieActor.create(:movie_id => easy_a.id, :actor_id => penn_badgley.id)
-  #   expect(easy_a.movie_actors.first).to eq(emma_easy_a)
-  #   expect(easy_a.movie_actors.last).to eq(penn_easy_a)
+  #   expect(easy_a.movie_actors).to include(emma_easy_a)
+  #   expect(easy_a.movie_actors).to include(penn_easy_a)
   # end
-
-  it { should have_many(:actors).through(:movie_actors) }
+  it { should have_many(:movie_actors) }
 
   # it "has many actors through movie_actors" do
-  #   # is this the right way to write this test???
-  #   easy_a.actors << [emma_stone, penn_badgley]
-  #   expect(easy_a.actors.first).to eq(emma_stone)
-  #   expect(easy_a.actors.last).to eq(penn_badgley)
+  #   MovieActor.create(:movie_id => easy_a.id, :actor_id => emma_stone.id)
+  #   MovieActor.create(:movie_id => easy_a.id, :actor_id => penn_badgley.id)
+  #   expect(easy_a.actors).to include(emma_stone)
+  #   expect(easy_a.actors).to include(penn_badgley)
   # end
-
-  it { should have_many(:reviews) }
+  it { should have_many(:actors).through(:movie_actors) }
 
   # it "has many reviews" do
-  #   first_review = Review.create(:user_id => user.id, :movie_id => easy_a.id, :content => "Easy A is a great movie. Emma Stone steals the show.", :rating => 4)
-  #   second_review = Review.create(:user_id => admin.id, :movie_id => easy_a.id, :content => "Easy A is the best movie of all time. I will always love Amanda Bynes.", :rating => 5)
-  #   expect(easy_a.reviews.first).to eq(first_review)
-  #   expect(easy_a.reviews.last).to eq(second_review)
+  #   expect(easy_a.reviews).to include(first_review)
+  #   expect(easy_a.reviews).to include(second_review)
   # end
-
-  it { should have_many(:users).through(:reviews) }
+  it { should have_many(:reviews) }
 
   # it "has many users through reviews" do
-  #   # is this the right way to write this test???
-  #   easy_a.users << [user, admin]
-  #   expect(easy_a.users.first).to eq(user)
-  #   expect(easy_a.users.last).to eq(admin)
+  #   first_review = Review.create(
+  #     :user_id => admin.id,
+  #     :movie_id => easy_a.id,
+  #     :content => "Easy A is a great movie. Emma Stone steals the show.",
+  #     :rating => 4
+  #   )
+  #
+  #   second_review = Review.create(
+  #     :user_id => user.id,
+  #     :movie_id => easy_a.id,
+  #     :content => "Easy A is the best movie of all time. I will always love Amanda Bynes.",
+  #     :rating => 5
+  #   )
+  #   expect(easy_a.users).to include(user)
+  #   expect(easy_a.users).to include(admin)
   # end
+  it { should have_many(:users).through(:reviews) }
 
 end

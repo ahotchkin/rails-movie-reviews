@@ -11,11 +11,10 @@ RSpec.describe Genre, :type => :model do
     expect(comedy).to be_valid
   end
 
-  it "is not valid without a name" do
-    expect(Genre.new).to_not be_valid
-  end
-
-  it { should have_many(:movies) }
+  # it "is not valid without a name" do
+  #   expect(Genre.new).to_not be_valid
+  # end
+  it { should validate_presence_of(:name) }
 
   # it "has many movies" do
   #   easy_a = Movie.create(
@@ -33,5 +32,6 @@ RSpec.describe Genre, :type => :model do
   #   expect(comedy.movies.first).to eq(easy_a)
   #   expect(comedy.movies.last).to eq(superstar)
   # end
+  it { should have_many(:movies) }
 
 end
