@@ -1,5 +1,6 @@
 class Movie < ApplicationRecord
   belongs_to :genre
+  belongs_to :user
   has_many :movie_actors
   has_many :actors, through: :movie_actors
   has_many :reviews

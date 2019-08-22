@@ -38,10 +38,12 @@ ActiveRecord::Schema.define(version: 2019_08_19_200355) do
     t.string "title"
     t.text "summary"
     t.integer "year"
+    t.integer "user_id"
     t.integer "genre_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["genre_id"], name: "index_movies_on_genre_id"
+    t.index ["user_id"], name: "index_movies_on_user_id"
   end
 
   create_table "reviews", force: :cascade do |t|
