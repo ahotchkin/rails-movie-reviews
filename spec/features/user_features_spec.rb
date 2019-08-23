@@ -1,40 +1,40 @@
-# require_relative "../rails_helper.rb"
-# describe 'Feature Test: User Signup', :type => :feature do
-#
-#   it 'successfully signs up as non-admin' do
-#     visit '/users/new'
-#     expect(current_path).to eq('/users/new')
-#     # user_signup method is defined in login_helper.rb
-#     user_signup
-#     expect(current_path).to eq('/users/1')
-#     expect(page).to have_content("Amy Poehler")
-#     expect(page).to have_content("Mood")
-#     expect(page).to have_content("happy")
-#     expect(page).to have_content("15")
-#     expect(page).to have_content("58")
-#   end
-#
-#   it "on sign up, successfully adds a session hash" do
-#     visit '/users/new'
-#     # user_signup method is defined in login_helper.rb
-#     user_signup
-#     expect(page.get_rack_session_key('user_id')).to_not be_nil
-#   end
-#
-#   it 'successfully logs in as non-admin' do
-#
-#     # user_login method is defined in login_helper.rb
-#     create_standard_user
-#     visit '/signin'
-#     expect(current_path).to eq('/signin')
-#     user_login
-#     expect(current_path).to eq('/users/1')
-#     expect(page).to have_content("Mindy")
-#     expect(page).to have_content("Mood")
-#     expect(page).to have_content("happy")
-#     expect(page).to have_content("10")
-#     expect(page).to have_content("50")
-#   end
+require_relative "../rails_helper.rb"
+
+RSpec.configure do |c|
+  c.include LoginHelper
+end
+
+describe 'Feature Test: User Signup', :type => :feature do
+
+  it "successfully signs up as non-admin" do
+    visit "/signup"
+    expect(current_path).to eq("/signup")
+    # user_signup method is defined in login_helper.rb
+    user_signup
+    expect(current_path).to eq('/users/1')
+    expect(page).to have_content("Amy Poehler")
+    # what else do I want on the show page???
+  end
+
+  # it "on sign up, successfully adds a session hash" do
+  #   visit "/signup"
+  #   # user_signup method is defined in login_helper.rb
+  #   user_signup
+  #   expect(page.get_rack_session_key("user_id")).to_not be_nil
+  # end
+
+  # *****TEST NOT WORKING RIGHT *****
+  it 'successfully logs in as non-admin' do
+    # user_login method is defined in login_helper.rb
+    create_standard_user
+    visit "/login"
+    expect(current_path).to eq("/login")
+    user_login
+    expect(current_path).to eq("/users/1")
+    expect(page).to have_content("Mindy")
+    # what else do I want on the show page???
+
+  end
 #
 #   it "on log in, successfully adds a session hash" do
 #     create_standard_user
@@ -382,4 +382,4 @@
 #     expect(current_path).to eq("/attractions/1")
 #     expect(page).to have_content("Nitro")
 #   end
-# end
+end
