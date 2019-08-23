@@ -23,7 +23,6 @@ describe 'Feature Test: User Signup', :type => :feature do
   #   expect(page.get_rack_session_key("user_id")).to_not be_nil
   # end
 
-  # *****TEST NOT WORKING RIGHT *****
   it 'successfully logs in as non-admin' do
     # user_login method is defined in login_helper.rb
     create_standard_user

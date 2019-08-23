@@ -1,3 +1,17 @@
 <h1>Hello, <%= @user.username %></h1>
 
+<h2>Here are the latest movie reviews:</h2>
+
+<%# Show 10 most recent reviews with a link to view all %>
+<ul>
+  <% @reviews.each do |review| %>
+    <li>Reviewer: <%= review.user.username %></li>
+    <ul>
+      <li>Movie: <%= review.movie.title %></li>
+      <li>Review: <%= review.content %></li>
+    </ul>
+    <br><br>
+  <% end %>
+</ul>
+
 <%= link_to "Logout", logout_path, :method => "delete" %>
