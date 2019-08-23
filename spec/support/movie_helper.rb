@@ -1,5 +1,6 @@
 module MovieHelper
 
+
   # def movie_info
   #   fill_in("user[username]", :with => "Amy Poehler")
   #   fill_in("user[email]", :with => "amy@gmail.com")
