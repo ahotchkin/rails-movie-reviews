@@ -1,17 +1,24 @@
 <h1>Hello, <%= @user.username %></h1>
 
+<% if @user.admin %>
+  <h3>ADMIN</h3>
+  <br><br>
+<% end %>
+
 <h2>Here are the latest movie reviews:</h2>
 
-<%# Show 10 most recent reviews with a link to view all %>
 <ul>
   <% @reviews.each do |review| %>
+    <%# change to link to see all reviews by a user %>
     <li>Reviewer: <%= review.user.username %></li>
-    <ul>
-      <li>Movie: <%= review.movie.title %></li>
-      <li>Review: <%= review.content %></li>
-    </ul>
+    <!-- change to link to see movie show page -->
+    <li>Movie: <%= review.movie.title %></li>
+    <li>Review: <%= review.content %></li>
+    <li>Rating: <%= review.rating %></li>
     <br><br>
   <% end %>
 </ul>
+
+<%= link_to "All Reviews", reviews_path %>
 
 <%= link_to "Logout", logout_path, :method => "delete" %>

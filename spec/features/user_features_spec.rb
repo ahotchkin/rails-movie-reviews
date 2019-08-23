@@ -13,7 +13,7 @@ describe 'Feature Test: User Signup', :type => :feature do
     user_signup
     expect(current_path).to eq('/users/1')
     expect(page).to have_content("Amy Poehler")
-    # what else do I want on the show page???
+    # review content - once review & movie forms are completed
   end
 
   # it "on sign up, successfully adds a session hash" do
@@ -31,7 +31,7 @@ describe 'Feature Test: User Signup', :type => :feature do
     user_login
     expect(current_path).to eq("/users/1")
     expect(page).to have_content("Mindy")
-    # what else do I want on the show page???
+    # review content - once review & movie forms are completed
 
   end
 #
