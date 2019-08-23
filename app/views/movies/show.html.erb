@@ -1,0 +1,14 @@
+<h1><%= @movie.title %></h1>
+<%# links to all actors in the movie %>
+
+Starring:
+<ul>
+  <% @movie.actors.each do |actor| %>
+    <li><%= actor.first_name %> <%= actor.last_name %></li>
+  <% end %>
+</ul>
+
+Synopsis:
+<p><%= @movie.summary %></p>
+
+<%= link_to "Write a Review for #{@movie.title}", new_review_path %>
