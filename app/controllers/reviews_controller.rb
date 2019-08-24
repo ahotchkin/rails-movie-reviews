@@ -8,4 +8,13 @@ class ReviewsController < ApplicationController
     @review = Review.new
   end
 
+  def create
+    raise params.inspect
+  end
+
+  def edit
+    # a user can only edit a review that belongs to them
+  end
+
+
 end

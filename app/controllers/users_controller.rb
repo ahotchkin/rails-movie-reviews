@@ -16,16 +16,12 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by_id(params[:id])
     @reviews = Review.all.order({ created_at: :desc }).first(10)
-    redirect_to root_path if !@user
-
-    # current_user is not working here
-    # if current_user
-    #   render :show
-    # else
-    #   redirect_to root_path
-    # end
+    if current_user
+      render :show
+    else
+      redirect_to root_path
+    end
   end
 
 
