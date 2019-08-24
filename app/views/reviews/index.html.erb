@@ -1,13 +1,20 @@
 <% if params[:movie_id] %>
   <h1><%= @movie.title %> Reviews</h1>
+
+  <% @reviews.each do |review| %>
+    <li>Reviewer: <%= review.user.username %></li>
+    <li>Review: <%= review.content %></li>
+    <li>Rating: <%= review.rating %></li>
+    <br><br>
+  <% end %>
 <% else %>
   <h1>Movie Reviews</h1>
-<% end %>
 
-<% @reviews.each do |review| %>
-  <li>Reviewer: <%= review.user.username %></li>
-  <li>Movie: <%= review.movie.title %></li>
-  <li>Review: <%= review.content %></li>
-  <li>Rating: <%= review.rating %></li>
-  <br><br>
+  <% @reviews.each do |review| %>
+    <li>Reviewer: <%= review.user.username %></li>
+    <li>Movie: <%= review.movie.title %></li>
+    <li>Review: <%= review.content %></li>
+    <li>Rating: <%= review.rating %></li>
+    <br><br>
+  <% end %>
 <% end %>
