@@ -31,6 +31,12 @@ class ReviewsController < ApplicationController
 
   def edit
     # a user can only edit a review that belongs to them
+    @review = Review.find_by_id(params[:id])
+    if current_user.id == @review.user.id
+      render :edit
+    else
+      redirect_to review_path(@review)
+    end
   end
 
   def show
