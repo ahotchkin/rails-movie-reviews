@@ -16,12 +16,8 @@ class UsersController < ApplicationController
   end
 
   def show
+    redirect_if_not_logged_in
     @reviews = Review.all.order({ created_at: :desc }).first(10)
-    if current_user
-      render :show
-    else
-      redirect_to root_path
-    end
   end
 
 
