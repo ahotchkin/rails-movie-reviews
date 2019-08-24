@@ -1,4 +1,8 @@
-<h1>Movie Reviews</h1>
+<% if params[:movie_id] %>
+  <h1><%= @movie.title %> Reviews</h1>
+<% else %>
+  <h1>Movie Reviews</h1>
+<% end %>
 
 <% @reviews.each do |review| %>
   <li>Reviewer: <%= review.user.username %></li>

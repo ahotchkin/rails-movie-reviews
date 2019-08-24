@@ -4,7 +4,7 @@
 <%# <%= form_for @review, url: "/movies/:movie_id/reviews" do |f| %>
 <%# drop down list that already has the correct movie selected %>
 <%= form_for @review do |f| %>
-  <%= collection_select :movie, :title, Movie.all, :id, :title, {:include_blank => "Please select a movie to review"} %><br><br>
+  <%= collection_select :movie, :id, Movie.all, :id, :title, {:include_blank => "Please select a movie to review"} %><br><br>
   <%= f.label "Rating (1-5):" %>
   <%= f.number_field :rating %>
   <br><br>
