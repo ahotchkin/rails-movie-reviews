@@ -9,6 +9,7 @@ class ReviewsController < ApplicationController
   end
 
   def create
+    review = Review.new(review_params)
     raise params.inspect
   end
 
@@ -16,5 +17,9 @@ class ReviewsController < ApplicationController
     # a user can only edit a review that belongs to them
   end
 
+  private
+    def review_params
+      params.require(:review).permit(:content, :rating)
+    end
 
 end
