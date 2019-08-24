@@ -48,6 +48,7 @@ RSpec.describe User, :type => :model do
   #   Review.create(
   #     :user_id => user.id,
   #     :movie_id => easy_a.id,
+  #     :title => "Great Movie!",
   #     :content => "Easy A is a great movie. Emma Stone steals the show.",
   #     :rating => 4
   #   )
@@ -57,6 +58,7 @@ RSpec.describe User, :type => :model do
   #   Review.create(
   #     :user_id => user.id,
   #     :movie_id => superstar.id,
+  #     :title => "Laugh Out Loud Funny!",
   #     :content => "Superstar is hilarious at every turn.",
   #     :rating => 4
   #   )
@@ -106,6 +108,7 @@ RSpec.describe User, :type => :model do
   #   easy_a_review = Review.create(
   #     :user_id => user.id,
   #     :movie_id => easy_a.id,
+  #     :title => "Great Movie!",
   #     :content => "Easy A is a great movie. Emma Stone steals the show.",
   #     :rating => 4
   #   )
@@ -113,6 +116,7 @@ RSpec.describe User, :type => :model do
   #   superstar_review = Review.create(
   #     :user_id => user.id,
   #     :movie_id => superstar.id,
+  #     :title => "Laugh Out Loud Funny!",
   #     :content => "Superstar is hilarious at every turn.",
   #     :rating => 4
   #   )

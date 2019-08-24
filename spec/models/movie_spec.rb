@@ -52,6 +52,7 @@ RSpec.describe Movie, :type => :model do
   #   Review.create(
   #     :user_id => admin.id,
   #     :movie_id => easy_a.id,
+  #     :title => "Great Movie!",
   #     :content => "Easy A is a great movie. Emma Stone steals the show.",
   #     :rating => 4
   #   )
@@ -61,6 +62,7 @@ RSpec.describe Movie, :type => :model do
   #   Review.create(
   #     :user_id => user.id,
   #     :movie_id => easy_a.id,
+  #     :title => "Best Movie Ever!!!",
   #     :content => "Easy A is the best movie of all time. I will always love Amanda Bynes.",
   #     :rating => 5
   #   )
@@ -111,6 +113,7 @@ RSpec.describe Movie, :type => :model do
   #   first_review = Review.create(
   #     :user_id => admin.id,
   #     :movie_id => easy_a.id,
+  #     :title => "Great Movie!",
   #     :content => "Easy A is a great movie. Emma Stone steals the show.",
   #     :rating => 4
   #   )
@@ -118,6 +121,7 @@ RSpec.describe Movie, :type => :model do
   #   second_review = Review.create(
   #     :user_id => user.id,
   #     :movie_id => easy_a.id,
+  #     :title => "Best Movie Ever!!!",
   #     :content => "Easy A is the best movie of all time. I will always love Amanda Bynes.",
   #     :rating => 5
   #   )

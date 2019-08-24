@@ -33,6 +33,9 @@ class ReviewsController < ApplicationController
     # a user can only edit a review that belongs to them
   end
 
+  def show
+  end
+
   private
     def review_params
       params.require(:review).permit(:content, :rating, :movie_id)

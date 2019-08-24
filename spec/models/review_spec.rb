@@ -38,22 +38,28 @@ RSpec.describe Review, :type => :model do
     Review.create(
       :user_id => user.id,
       :movie_id => easy_a.id,
+      :title => "Great Movie!",
       :content => "Easy A is a great movie. Emma Stone steals the show.",
       :rating => 4
     )
   }
 
-  it "is valid with content and a rating" do
+  it "is valid with a title, content, and rating" do
     expect(easy_a_review).to be_valid
   end
 
+  # it "is not valid without a title" do
+  #   expect(Review.new(:user_id => user.id, :movie_id => easy_a.id, :content => "Easy A is a great movie. Emma Stone steals the show.", :rating => 4)).to_not be_valid
+  # end
+  it { should validate_presence_of(:title) }
+
   # it "is not valid without content" do
-  #   expect(Review.new(:user_id => user.id, :movie_id => easy_a.id, :rating => 4)).to_not be_valid
+  #   expect(Review.new(:user_id => user.id, :movie_id => easy_a.id, :title => "Great Movie!", :rating => 4)).to_not be_valid
   # end
   it { should validate_presence_of(:content) }
 
   # it "is not valid without a rating" do
-  #   expect(Review.new(:user_id => user.id, :movie_id => easy_a.id, :content => "Easy A is a great movie. Emma Stone steals the show.")).to_not be_valid
+  #   expect(Review.new(:user_id => user.id, :movie_id => easy_a.id, :title => "Great Movie!", :content => "Easy A is a great movie. Emma Stone steals the show.")).to_not be_valid
   # end
   it { should validate_presence_of(:rating) }
 

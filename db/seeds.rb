@@ -26,8 +26,8 @@ end
   Actor.create(:first_name => Faker::FunnyName.two_word_name, :last_name => "")
 end
 
-40.times do
-  Review.create(:content => Faker::Lorem.paragraph(sentence_count: 6, supplemental: false, random_sentences_to_add: 4), :rating => rand(1...5), :movie_id => rand(1...Movie.count), :user_id => rand(1...User.count))
+60.times do
+  Review.create(:user_id => rand(1...User.count), :movie_id => rand(1...Movie.count), :title => Faker::Movies::HarryPotter.quote, :content => Faker::Lorem.paragraph(sentence_count: 10, supplemental: false, random_sentences_to_add: 4), :rating => rand(1...5))
 end
 
 50.times do
