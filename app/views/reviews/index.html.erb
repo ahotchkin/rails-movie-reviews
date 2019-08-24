@@ -2,10 +2,11 @@
   <h1><%= @movie.title %> Reviews</h1>
 
   <% @reviews.each do |review| %>
-    <%= review.title %>
+    <%= link_to review.title, review_path(review) %>
     <br>
     Written by: <%= review.user.username %>
     <br>
+    <%# add a restriction on how much of review is shown here? %>
     Review: <%= review.content %>
     <br>
     Rating: <%= review.rating %>
@@ -15,12 +16,14 @@
   <h1>Movie Reviews</h1>
 
   <% @reviews.each do |review| %>
-    <%= review.title %>
+    <%= link_to review.title, review_path(review) %>
     <br>
     Written by: <%= review.user.username %>
     <br>
+    <%# link to movie show page %>
     Movie: <%= review.movie.title %>
     <br>
+    <%# add a restriction on how much of review is shown here? %>
     Review: <%= review.content %>
     <br>
     Rating: <%= review.rating %>

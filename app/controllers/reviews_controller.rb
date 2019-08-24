@@ -34,11 +34,12 @@ class ReviewsController < ApplicationController
   end
 
   def show
+    @review = Review.find_by_id(params[:id])
   end
 
   private
     def review_params
-      params.require(:review).permit(:content, :rating, :movie_id)
+      params.require(:review).permit(:title, :content, :rating, :movie_id)
     end
 
 end

@@ -9,13 +9,15 @@
 
 <% @reviews.each do |review| %>
   <%# link to review show page %>
-  <%= review.title %>
+  <%= link_to review.title, review_path(review) %>
   <br>
   <%# change to link to see all reviews by a user %>
   Written by: <%= review.user.username %>
   <br>
+  <%# link to movie show page %>
   Movie: <%= review.movie.title %>
   <br>
+  <%# add a restriction on how much of review is shown here? %>
   Review: <%= review.content %>
   <br>
   Rating: <%= review.rating %>

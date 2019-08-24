@@ -1,0 +1,16 @@
+<h1><%= @review.title %></h1>
+<br>
+Written by: <%= @review.user.username %>
+<br>
+<%# link to movie show page %>
+Movie: <%= @review.movie.title %>
+<br>
+Review: <%= @review.content %>
+<br>
+Rating: <%= @review.rating %>
+<br><br><br>
+
+<% if current_user.id == @review.user.id %>
+  <%= link_to "Edit Review", edit_review_path(@review) %> |
+  <%= link_to "Delete Review", review_path(@review), :method => "delete" %>
+<% end %>
