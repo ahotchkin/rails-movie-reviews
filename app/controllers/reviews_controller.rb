@@ -54,8 +54,12 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
-    review = Review.find_by_id(params[:id])
-    review.delete
+    @review = Review.find_by_id(params[:id])
+    if current_user.id == @review.user.id
+      @review.delete
+    else
+      flash[:message] = "You do not have the authority to delete this review. Shame on you."
+    end
     redirect_to reviews_path
   end
 
