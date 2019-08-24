@@ -13,18 +13,13 @@ Rails.application.routes.draw do
   delete "/logout" => "sessions#destroy"
 
   resources :reviews, only: [:index, :show]
-  resources :movie_actors
+  # resources :movie_actors
   resources :genres
   resources :actors
   resources :users
   resources :movies, only: [:show] do
-    resources :reviews, only: [:new, :edit]
+    resources :reviews, only: [:new]
   end
-
   resources :movies
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
-
-resources :brands, only: [:index, :show] do
-   resources :products, only: [:index, :show]
- end
