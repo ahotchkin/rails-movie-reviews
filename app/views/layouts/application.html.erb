@@ -12,6 +12,7 @@
   <body>
     <div>
       <% if logged_in? %>
+        <%= link_to "Write a Review", new_review_path %> | 
         <%= link_to "All Reviews", reviews_path %> |
         <%= link_to "Movies", movies_path %> |
         <%= link_to "Logout", logout_path, :method => "delete" %>

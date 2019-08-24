@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   # logout
   delete "/logout" => "sessions#destroy"
 
-  resources :reviews, only: [:index, :show]
+  resources :reviews
   # resources :movie_actors
   resources :genres
   resources :actors
