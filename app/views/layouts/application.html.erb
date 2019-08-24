@@ -12,6 +12,8 @@
   <body>
     <div>
       <% if logged_in? %>
+        <%= link_to "Home", user_path(current_user) %> |
+        <%# drop down for "Reviews" with options to write a review or go to all reviews? %>
         <%= link_to "Write a Review", new_review_path %> |
         <%= link_to "All Reviews", reviews_path %> |
         <%= link_to "Movies", movies_path %> |

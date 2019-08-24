@@ -7,14 +7,17 @@
 
 <h2>Here are the latest movie reviews:</h2>
 
-<ul>
-  <% @reviews.each do |review| %>
-    <%# change to link to see all reviews by a user %>
-    <li>Reviewer: <%= review.user.username %></li>
-    <!-- change to link to see movie show page -->
-    <li>Movie: <%= review.movie.title %></li>
-    <li>Review: <%= review.content %></li>
-    <li>Rating: <%= review.rating %></li>
-    <br><br>
-  <% end %>
-</ul>
+<% @reviews.each do |review| %>
+  <%# link to review show page %>
+  <%= review.title %>
+  <br>
+  <%# change to link to see all reviews by a user %>
+  Written by: <%= review.user.username %>
+  <br>
+  Movie: <%= review.movie.title %>
+  <br>
+  Review: <%= review.content %>
+  <br>
+  Rating: <%= review.rating %>
+  <br><br><br>
+<% end %>
