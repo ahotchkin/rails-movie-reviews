@@ -29,6 +29,10 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def show
+    @review = Review.find_by_id(params[:id])
+  end
+
   def edit
     # a user can only edit a review that belongs to them
     @review = Review.find_by_id(params[:id])
@@ -39,13 +43,32 @@ class ReviewsController < ApplicationController
     end
   end
 
-  def show
+  def update
     @review = Review.find_by_id(params[:id])
+    if @review.update(review_params)
+      redirect_to review_path(@review)
+      flash[:message] = "Review sucessfully updated."
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    review = Review.find_by_id(params[:id])
+    review.delete
+    redirect_to reviews_path
   end
 
   private
     def review_params
       params.require(:review).permit(:title, :content, :rating, :movie_id)
+    end
+
+    def current_review
+      # @review = Review.find_by(id: params[:id])
+      # if !@review
+      #   redirect_to reviewss_path
+      # end
     end
 
 end
