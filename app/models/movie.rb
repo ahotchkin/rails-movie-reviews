@@ -5,5 +5,5 @@ class Movie < ApplicationRecord
   has_many :actors, through: :movie_actors
   has_many :reviews
   has_many :users, through: :reviews
-  validates_presence_of :title, :summary, :year
+  validates_presence_of :title, :synopsis, :year
 end

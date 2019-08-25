@@ -23,7 +23,7 @@ RSpec.describe Actor, :type => :model do
   # let(:easy_a) {
   #   Movie.create(
   #     :title => "Easy A",
-  #     :summary => "After a little white lie about losing her virginity gets out, a clean cut high school girl sees her life paralleling Hester Prynne's in 'The Scarlet Letter,' which she is currently studying in school - until she decides to use the rumor mill to advance her social and financial standing.",
+  #     :synopsis => "After a little white lie about losing her virginity gets out, a clean cut high school girl sees her life paralleling Hester Prynne's in 'The Scarlet Letter,' which she is currently studying in school - until she decides to use the rumor mill to advance her social and financial standing.",
   #     :year => 2010,
   #     :genre_id => comedy.id
   #   )
@@ -32,7 +32,7 @@ RSpec.describe Actor, :type => :model do
   # let(:la_la_land) {
   #   Movie.create(
   #     :title => "La La Land",
-  #     :summary => "Aspiring actress serves lattes to movie stars in between auditions and jazz musician Sebastian scrapes by playing cocktail-party gigs in dingy bars. But as success mounts, they are faced with decisions that fray the fragile fabric of their love affair, and the dreams they worked so hard to maintain in each other threaten to rip them apart.",
+  #     :synopsis => "Aspiring actress serves lattes to movie stars in between auditions and jazz musician Sebastian scrapes by playing cocktail-party gigs in dingy bars. But as success mounts, they are faced with decisions that fray the fragile fabric of their love affair, and the dreams they worked so hard to maintain in each other threaten to rip them apart.",
   #     :year => 2016,
   #     :genre_id => musical.id
   #   )

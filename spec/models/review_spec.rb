@@ -27,7 +27,7 @@ RSpec.describe Review, :type => :model do
   let(:easy_a) {
     Movie.create(
       :title => "Easy A",
-      :summary => "After a little white lie about losing her virginity gets out, a clean cut high school girl sees her life paralleling Hester Prynne's in 'The Scarlet Letter,' which she is currently studying in school - until she decides to use the rumor mill to advance her social and financial standing.",
+      :synopsis => "After a little white lie about losing her virginity gets out, a clean cut high school girl sees her life paralleling Hester Prynne's in 'The Scarlet Letter,' which she is currently studying in school - until she decides to use the rumor mill to advance her social and financial standing.",
       :year => 2010,
       :user_id => admin.id,
       :genre_id => comedy.id

@@ -41,7 +41,7 @@ RSpec.describe Movie, :type => :model do
   let(:easy_a) {
     Movie.create(
       :title => "Easy A",
-      :summary => "After a little white lie about losing her virginity gets out, a clean cut high school girl sees her life paralleling Hester Prynne's in 'The Scarlet Letter,' which she is currently studying in school - until she decides to use the rumor mill to advance her social and financial standing.",
+      :synopsis => "After a little white lie about losing her virginity gets out, a clean cut high school girl sees her life paralleling Hester Prynne's in 'The Scarlet Letter,' which she is currently studying in school - until she decides to use the rumor mill to advance her social and financial standing.",
       :year => 2010,
       :user_id => admin.id,
       :genre_id => comedy.id
@@ -68,22 +68,22 @@ RSpec.describe Movie, :type => :model do
   #   )
   # }
 
-  it "is valid with a title, summary, and year" do
+  it "is valid with a title, synopsis, and year" do
     expect(easy_a).to be_valid
   end
 
   # it "is not valid without a title" do
-  #   expect(Movie.new(:summary => "Movie summary", :year => 2000, :genre_id => comedy.id)).to_not be_valid
+  #   expect(Movie.new(:synopsis => "Movie synopsis", :year => 2000, :genre_id => comedy.id)).to_not be_valid
   # end
   it { should validate_presence_of(:title) }
 
-  # it "is not valid without a summary" do
+  # it "is not valid without a synopsis" do
   #   expect(Movie.new(:title => "Movie Title", :year => 2000, :genre_id => comedy.id)).to_not be_valid
   # end
-  it { should validate_presence_of(:summary) }
+  it { should validate_presence_of(:synopsis) }
 
   # it "is not valid without a year" do
-  #   expect(Movie.new(:title => "Movie Title", :summary => "Movie summary", :genre_id => comedy.id)).to_not be_valid
+  #   expect(Movie.new(:title => "Movie Title", :synopsis => "Movie synopsis", :genre_id => comedy.id)).to_not be_valid
   # end
   it { should validate_presence_of(:year) }
 
