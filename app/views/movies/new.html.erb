@@ -1,0 +1,16 @@
+<h1>Add a Movie to the Database</h1>
+
+<%# title, summary, year, actors => first_name last_name %>
+<%= form_for @movie do |f| %>
+  <%= f.label "Title:" %>
+  <%= f.text_field :title %>
+  <br><br>
+  <%= f.label "Synopsis:" %>
+  <%= f.text_area :summary %>
+  <br><br>
+  <%= f.label "Year:" %>
+  <%= f.number_field :year %>
+  <%# <%= f.select_year(start_year: 1900, end_year: Date.today, :field_name => :year) %>
+  <br><br>
+  <%= f.submit "Add Movie" %>
+<% end %>

@@ -23,4 +23,8 @@ class ApplicationController < ActionController::Base
       current_user.admin
     end
 
+    def redirect_if_not_admin
+      redirect_to user_path(current_user) if !admin?
+    end
+
 end

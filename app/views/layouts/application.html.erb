@@ -17,6 +17,9 @@
         <%= link_to "Write a Review", new_review_path %> |
         <%= link_to "All Reviews", reviews_path %> |
         <%= link_to "Movies", movies_path %> |
+        <% if current_user.admin? %>
+          <%= link_to "Add Movie", new_movie_path %>
+        <% end %>
         <%= link_to "Logout", logout_path, :method => "delete" %>
       <% else %>
         <%= link_to "Sign Up", signup_path %> |
