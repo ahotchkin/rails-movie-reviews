@@ -13,8 +13,9 @@
   <%= f.label "Select an existing genre:" %>
   <%= collection_select :movie, :genre_id, @genres, :id, :name, {:include_blank => "Please select a genre"} %>
   <br><br>
-  <%= f.label "Or create a new genre:" %>
-    <%# <%= f.fields_for :genre do |g| %> %>
+  <%# Causing errors but creating genres.... %>
+  <%# <%= f.label "Or create a new genre:" %> %>
+    <%# <%= f.fields_for :genre do |g| %> %> %>
     <%# <%= g.text_field :name %> %>
   <%# <% end %> %>
   <br><br>
