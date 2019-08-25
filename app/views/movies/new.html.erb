@@ -10,8 +10,26 @@
   <%= f.label "Year:" %>
   <%= f.select :year, (Date.today.year-100)..(Date.today.year), :selected => Time.current.year %>
   <br><br>
-  <%= f.label "Starring:" %>
+  <%= f.label "Select an existing genre:" %>
+  <%= collection_select :movie, :genre_id, Genre.all, :id, :name, {:include_blank => "Please select a genre"} %><br><br>
+  <%# or add a new genre %>
+  <%= f.label "Or create a new genre:" %>
+  <%= f.text_field :genre %>
+  <%# <%= f.label "Starring:" %>
   <%# Nested form to select or add up to 5 actors per movie %>
-  <br><br>
+
+  <!-- <label for="ship_name_1">Ship Name</label>
+  <input type="text" id="ship_name_1" name="pirate[ships][][name]">
+  <label for="ship_type_1">Ship Type</label>
+  <input type="text" id="ship_type_1" name="pirate[ships][][type]">
+  <label for="ship_booty_1">Ship Booty</label>
+  <input type="text" id="ship_booty_1" name="pirate[ships][][booty]">
+  <label for="ship_name_2">Ship Name</label>
+  <input type="text" id="ship_name_2" name="pirate[ships][][name]">
+  <label for="ship_type_2">Ship Type</label>
+  <input type="text" id="ship_type_2" name="pirate[ships][][type]">
+  <label for="ship_booty_2">Ship Booty</label>
+  <input type="text" id="ship_booty_2" name="pirate[ships][][booty]">
+  <br><br> -->
   <%= f.submit "Add Movie" %>
 <% end %>

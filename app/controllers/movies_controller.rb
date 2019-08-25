@@ -10,10 +10,19 @@ class MoviesController < ApplicationController
   end
 
   def create
-    redirect_if_not_admin
-    # movie = current_user.movies.build(review_params)
+    # redirect_if_not_admin
+    movie = current_user.movies.build(movie_params)
     # raise params.inspect
-    movie = Movie.new(movie_params)
+    # add code to create a new genre if genre field is filled in  <label>Select an existing genre:</label>
+  <br>
+  <% @genres.each do |genre| %>
+    <input type="checkbox" id="<%= genre.name %>" name="song[genre_ids][]" value="<%= genre.id %>"><%= genre.name %></input>
+    <br>
+  <% end %>
+  <br><br>
+  <label for="genre_name">And/or create a new genre:</label>
+  <input type="text" id="genre_name" name="Genre Name"></input>
+  <br>
     if movie.save
       redirect_to movie_path(movie)
     else
@@ -28,7 +37,7 @@ class MoviesController < ApplicationController
   private
 
     def movie_params
-      params.require(:movie).permit(:title, :synopsis, :year)
+      params.require(:movie).permit(:title, :synopsis, :year, :genre_id)
     end
 
 
