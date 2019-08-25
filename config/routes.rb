@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root "sessions#home"
 
   get "/signup" => "users#new"
-  # so if a user signs up incorrectly the url re-renders as /signup
+  # if a user signs up incorrectly the url re-renders as /signup
   post "/signup" => "users#create"
 
   # login
@@ -14,8 +14,8 @@ Rails.application.routes.draw do
 
   resources :reviews
   # resources :movie_actors
-  resources :genres
-  resources :actors
+  # resources :genres
+  # resources :actors
   resources :users
   resources :movies
   resources :movies, only: [:show] do
