@@ -9,7 +9,7 @@ class MoviesController < ApplicationController
     @movie = Movie.new
     @genres = Genre.all.sort { |a, b| a.name <=> b.name }
     # User has to fill out all 5 actors to create movie. Want to add more fields but allow them to be blank.
-    5.times { @movie.actors.build }
+    8.times { @movie.actors.build }
   end
 
   def create

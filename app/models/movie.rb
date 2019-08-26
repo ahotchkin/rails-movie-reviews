@@ -7,10 +7,13 @@ class Movie < ApplicationRecord
   has_many :users, through: :reviews
   validates_presence_of :title, :synopsis, :year
 
-  accepts_nested_attributes_for :actors
-
-  def actor_attributes=(actor)
-    self.actor = Actor.find_or_create_by(:first_name => actor[:first_name], :last_name => actor[:last_name])
-    self.actor.update(actor)
+  def actors_attributes=(actor_attributes)
+    actor_attributes.values.each do |actor_attribute|
+      if !actor_attribute[:first_name].blank?
+        actor = Actor.find_or_create_by(actor_attribute) if !actor_attribute.blank?
+        self.actors << actor
+      end
+    end
   end
+
 end

@@ -18,6 +18,12 @@
     <%# <%= f.fields_for :genre do |g| %> %> %>
     <%# <%= g.text_field :name %> %>
   <%# <% end %> %>
+
+  <%# still need to try this %>
+  <%# <%= f.fields_for :genre, movie.genre.build do |genre_field| %> %>
+    <%# <%= genre_field.text_field :name %> %>
+  <%# <% end %> %>
+
   <br><br>
   <%= f.label "Starring:" %>
   <br>
