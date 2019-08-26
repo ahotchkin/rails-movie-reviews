@@ -7,10 +7,10 @@ class Movie < ApplicationRecord
   has_many :users, through: :reviews
   validates_presence_of :title, :synopsis, :year
 
-  def actors_attributes=(actors_full_names)
-    actors_full_names.values.each do |actor_full_name|
-      if !actor_full_name[:first_name].blank?
-        actor = Actor.find_or_create_by(actor_full_name)
+  def actors_attributes=(actors_attributes)
+    actors_attributes.values.each do |actor_attributes|
+      if !actor_attributes[:first_name].blank?
+        actor = Actor.find_or_create_by(actor_attributes)
         self.actors << actor
       end
     end
