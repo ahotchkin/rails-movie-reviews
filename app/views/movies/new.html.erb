@@ -11,18 +11,21 @@
   <%= f.select :year, (Date.today.year-100)..(Date.today.year), :selected => Time.current.year %>
   <br><br>
   <%= f.label "Select an existing genre:" %>
-  <%= collection_select :movie, :genre_id, @genres, :id, :name, {:include_blank => "Please select a genre"} %>
+  <%= collection_select :movie, :genre_id, @genres, :id, :name, {:include_blank => "Genres"} %>
   <br><br>
   <%# Causing errors but creating genres.... %>
-  <%# <%= f.label "Or create a new genre:" %> %>
-    <%# <%= f.fields_for :genre do |g| %> %> %>
-    <%# <%= g.text_field :name %> %>
-  <%# <% end %> %>
+  <%= f.label "Or create a new genre:" %>
+  <%= f.fields_for :genre do |g| %> %>
+    <%= g.text_field :name, :id => :genre_id %>
+  <% end %>
 
   <%# still need to try this %>
-  <%# <%= f.fields_for :genre, movie.genre.build do |genre_field| %> %>
+  <%# <%= f.fields_for :genre, @movie.genre.build do |genre_field| %> %>
     <%# <%= genre_field.text_field :name %> %>
   <%# <% end %> %>
+
+    <%# <%= f.text_field :new_genre_name %> %>
+
 
   <br><br>
   <%= f.label "Starring:" %>

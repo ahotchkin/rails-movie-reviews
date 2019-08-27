@@ -5,7 +5,6 @@ class CreateMovies < ActiveRecord::Migration[5.2]
       t.text :synopsis
       t.string :year
       t.belongs_to :user, foreign_key: true
-      t.belongs_to :genre, foreign_key: true
 
       t.timestamps
     end

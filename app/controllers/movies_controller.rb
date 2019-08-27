@@ -15,7 +15,7 @@ class MoviesController < ApplicationController
   def create
     # redirect_if_not_admin
     movie = current_user.movies.build(movie_params)
-    # raise params.inspect
+    raise params.inspect
 
     # add code to create a new genre if genre field is filled in
     if movie.save
@@ -32,7 +32,7 @@ class MoviesController < ApplicationController
   private
 
     def movie_params
-      params.require(:movie).permit(:title, :synopsis, :year, :genre_id, :actors_attributes => [:first_name, :last_name])
+      params.require(:movie).permit(:title, :synopsis, :year, :genre_id, :genre_attributes => [:name], :actors_attributes => [:first_name, :last_name])
     end
 
 
