@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   resources :reviews
   # resources :movie_actors
   resources :genres, only: [:show]
-  # resources :actors
+  resources :actors, only: [:show]
   resources :users
   resources :movies
   resources :movies, only: [:show] do
