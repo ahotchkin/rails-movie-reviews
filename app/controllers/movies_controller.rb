@@ -7,7 +7,6 @@ class MoviesController < ApplicationController
   def new
     redirect_if_not_admin
     @movie = Movie.new
-    # @genres = Genre.all.sort { |a, b| a.name <=> b.name }
     3.times { @movie.genres.build }
     8.times { @movie.actors.build }
   end
@@ -15,9 +14,6 @@ class MoviesController < ApplicationController
   def create
     # redirect_if_not_admin
     movie = current_user.movies.build(movie_params)
-    # raise params.inspect
-
-    # add code to create a new genre if genre field is filled in
     if movie.save
       redirect_to movie_path(movie)
     else
