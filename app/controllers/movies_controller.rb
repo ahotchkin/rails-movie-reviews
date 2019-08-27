@@ -7,15 +7,15 @@ class MoviesController < ApplicationController
   def new
     redirect_if_not_admin
     @movie = Movie.new
-    @genres = Genre.all.sort { |a, b| a.name <=> b.name }
-    # User has to fill out all 5 actors to create movie. Want to add more fields but allow them to be blank.
+    # @genres = Genre.all.sort { |a, b| a.name <=> b.name }
+    3.times { @movie.genres.build }
     8.times { @movie.actors.build }
   end
 
   def create
     # redirect_if_not_admin
     movie = current_user.movies.build(movie_params)
-    raise params.inspect
+    # raise params.inspect
 
     # add code to create a new genre if genre field is filled in
     if movie.save
@@ -32,7 +32,7 @@ class MoviesController < ApplicationController
   private
 
     def movie_params
-      params.require(:movie).permit(:title, :synopsis, :year, :genre_id, :genre_attributes => [:name], :actors_attributes => [:first_name, :last_name])
+      params.require(:movie).permit(:title, :synopsis, :year, :genres_attributes => [:name], :actors_attributes => [:first_name, :last_name])
     end
 
 

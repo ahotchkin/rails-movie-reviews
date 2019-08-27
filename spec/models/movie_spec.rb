@@ -38,13 +38,18 @@ RSpec.describe Movie, :type => :model do
     )
   }
 
+  let(:drama) {
+    Genre.create(
+      :name => "Drama"
+    )
+  }
+
   let(:easy_a) {
     Movie.create(
       :title => "Easy A",
       :synopsis => "After a little white lie about losing her virginity gets out, a clean cut high school girl sees her life paralleling Hester Prynne's in 'The Scarlet Letter,' which she is currently studying in school - until she decides to use the rumor mill to advance her social and financial standing.",
       :year => 2010,
       :user_id => admin.id,
-      :genre_id => comedy.id
     )
   }
 
@@ -73,19 +78,35 @@ RSpec.describe Movie, :type => :model do
   end
 
   # it "is not valid without a title" do
-  #   expect(Movie.new(:synopsis => "Movie synopsis", :year => 2000, :genre_id => comedy.id)).to_not be_valid
+  #   expect(Movie.new(:synopsis => "Movie synopsis", :year => 2000).to_not be_valid
   # end
   it { should validate_presence_of(:title) }
 
   # it "is not valid without a synopsis" do
-  #   expect(Movie.new(:title => "Movie Title", :year => 2000, :genre_id => comedy.id)).to_not be_valid
+  #   expect(Movie.new(:title => "Movie Title", :year => 2000).to_not be_valid
   # end
   it { should validate_presence_of(:synopsis) }
 
   # it "is not valid without a year" do
-  #   expect(Movie.new(:title => "Movie Title", :synopsis => "Movie synopsis", :genre_id => comedy.id)).to_not be_valid
+  #   expect(Movie.new(:title => "Movie Title", :synopsis => "Movie synopsis").to_not be_valid
   # end
   it { should validate_presence_of(:year) }
+
+  # it "has many movie_genres" do
+  #   comedy_easy_a = MovieGenre.create(:movie_id => easy_a.id, :genre_id => comedy.id)
+  #   drama_easy_a = MovieGenre.create(:movie_id => easy_a.id, :genre_id => drama.id)
+  #   expect(easy_a.movie_genres).to include(comedy_easy_a)
+  #   expect(easy_a.movie_genres).to include(drama_easy_a)
+  # end
+  it { should have_many(:movie_genres) }
+
+  # it "has many genres through movie_genres" do
+  #   MovieGenre.create(:movie_id => easy_a.id, :genre_id => comedy.id)
+  #   MovieGenre.create(:movie_id => easy_a.id, :genre_id => drama.id)
+  #   expect(easy_a.genres).to include(comedy)
+  #   expect(easy_a.genres).to include(drama)
+  # end
+  it { should have_many(:genres).through(:movie_genres) }
 
   # it "has many movie_actors" do
   #   emma_easy_a = MovieActor.create(:movie_id => easy_a.id, :actor_id => emma_stone.id)

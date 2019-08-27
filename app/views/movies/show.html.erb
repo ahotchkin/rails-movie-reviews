@@ -1,6 +1,13 @@
 <h1><%= @movie.title %></h1>
 <%# links to all actors in the movie %>
 
+Genre(s):
+<ul>
+  <% @movie.genres.each do |genre| %>
+    <li><%= genre.name %></li>
+  <% end %>
+</ul>
+
 Starring:
 <ul>
   <% @movie.actors.each do |actor| %>

@@ -17,4 +17,13 @@ class Movie < ApplicationRecord
     end
   end
 
+  def genres_attributes=(genres_attributes)
+    genres_attributes.values.each do |genre_attribute|
+      if !genre_attribute[:name].blank?
+        genre = Genre.find_or_create_by(genre_attribute)
+        self.genres << genre
+      end
+    end
+  end
+
 end

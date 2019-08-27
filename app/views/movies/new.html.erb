@@ -10,13 +10,14 @@
   <%= f.label "Year:" %>
   <%= f.select :year, (Date.today.year-100)..(Date.today.year), :selected => Time.current.year %>
   <br><br>
-  <%= f.label "Select an existing genre:" %>
-  <%= collection_select :movie, :genre_id, @genres, :id, :name, {:include_blank => "Genres"} %>
-  <br><br>
+  <%= f.label "Genre(s):" %>
+  <%# <%= collection_select :movie, :genre_id, @genres, :id, :name, {:include_blank => "Genres"} %>
+  <br>
   <%# Causing errors but creating genres.... %>
-  <%= f.label "Or create a new genre:" %>
-  <%= f.fields_for :genre do |g| %> %>
-    <%= g.text_field :name, :id => :genre_id %>
+  <%# <%= f.label "Or create a new genre:" %>
+  <%= f.fields_for :genres do |genre| %>
+    <%= genre.text_field :name %>
+    <br>
   <% end %>
 
   <%# still need to try this %>
