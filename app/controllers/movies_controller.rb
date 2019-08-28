@@ -32,10 +32,8 @@ class MoviesController < ApplicationController
 
   def update
     @movie = Movie.find_by_id(params[:id])
-    # only update genre and actors if info has changed. don't add duplicates
+    8.times { @movie.actors.build }
     if @movie.update(movie_params)
-      # raise params.inspect
-
       redirect_to movie_path(@movie)
       flash[:message] = "Movie sucessfully updated."
     else

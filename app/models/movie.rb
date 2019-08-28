@@ -9,9 +9,7 @@ class Movie < ApplicationRecord
   validates_presence_of :title, :synopsis, :year
 
   def actors_attributes=(actors_attributes)
-    # binding.pry
     actors_attributes.values.each do |actor_attributes|
-      # should ignore the field if the actor id is already included in self.actor_ids, but instead is adding the actor again
       if !actor_attributes[:first_name].blank?
         actor = Actor.find_or_create_by(actor_attributes)
         if !self.actor_ids.include?(actor.id)

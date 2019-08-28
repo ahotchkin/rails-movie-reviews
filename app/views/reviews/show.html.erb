@@ -13,5 +13,5 @@ Rating: <%= @review.rating %>
 
 <% if current_user.id == @review.user.id %>
   <%= link_to "Edit Review", edit_review_path(@review) %> |
-  <%= link_to "Delete Review", review_path(@review), :method => "delete" %>
+  <%= link_to "Delete Review", review_path(@review), :method => :delete %>
 <% end %>

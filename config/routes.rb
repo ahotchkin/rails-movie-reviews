@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :movie_genres
   root "sessions#home"
 
   get "/signup" => "users#new"
@@ -14,7 +13,8 @@ Rails.application.routes.draw do
   delete "/logout" => "sessions#destroy"
 
   resources :reviews
-  # resources :movie_actors
+  resources :movie_actors, only: [:destroy]
+  # resources :movie_genres, only: [:destroy]
   resources :genres, only: [:show]
   resources :actors, only: [:show]
   resources :users

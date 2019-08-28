@@ -12,6 +12,10 @@
   <%= f.select :year, (Date.today.year-100)..(Date.today.year), :selected => @movie.year %>
   <br><br>
 
+  <%# this code doesn't work in the controller %>
+  <% genre_number = 3 - @movie.genres.size %>
+  <% genre_number.times { @movie.genres.build } %>
+
   <%= f.label "Genre(s):" %>
   <br>
   <%= f.fields_for :genres do |genre| %>
@@ -19,6 +23,10 @@
     <br>
   <% end %>
   <br><br>
+
+  <%# this code doesn't work in the controller %>
+  <% actor_number = 8 - @movie.actors.size %>
+  <% actor_number.times { @movie.actors.build } %>
 
   <%= f.label "Starring:" %>
   <br>
