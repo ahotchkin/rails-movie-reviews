@@ -12,9 +12,11 @@ class Movie < ApplicationRecord
     # binding.pry
     actors_attributes.values.each do |actor_attributes|
       # should ignore the field if the actor id is already included in self.actor_ids, but instead is adding the actor again
-      if !actor_attributes[:first_name].blank? && !self.actor_ids.include?(actor_attributes[:id])
+      if !actor_attributes[:first_name].blank?
         actor = Actor.find_or_create_by(actor_attributes)
-        self.actors << actor
+        if !self.actor_ids.include?(actor.id)
+          self.actors << actor
+        end
       end
     end
   end
@@ -23,7 +25,9 @@ class Movie < ApplicationRecord
     genres_attributes.values.each do |genre_attribute|
       if !genre_attribute[:name].blank?
         genre = Genre.find_or_create_by(genre_attribute)
-        self.genres << genre
+        if !self.genre_ids.include?(genre.id)
+          self.genres << genre
+        end
       end
     end
   end
