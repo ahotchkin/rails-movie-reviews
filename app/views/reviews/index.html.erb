@@ -13,6 +13,7 @@
     Rating: <%= review.rating %>
     <br><br><br>
   <% end %>
+  <%= link_to "Write a Review for #{@movie.title}", new_movie_review_path(@movie) %>
 <% else %>
   <h1>Movie Reviews</h1>
 

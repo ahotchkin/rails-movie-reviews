@@ -1,7 +1,7 @@
 <h1><%= @movie.title %></h1>
-<%# links to all actors in the movie %>
 
 Genre(s):
+
 <ul>
   <% @movie.genres.each do |genre| %>
     <li><%= link_to genre.name, genre_path(genre) %></li>
@@ -21,3 +21,9 @@ Synopsis:
 <%= link_to "Read reviews for #{@movie.title}", movie_reviews_path(@movie) %>
 <br><br>
 <%= link_to "Write a Review for #{@movie.title}", new_movie_review_path(@movie) %>
+
+<br><br>
+
+<% if current_user.admin? %>
+  <%= link_to "Edit Movie", edit_movie_path(@movie) %>
+<% end %>

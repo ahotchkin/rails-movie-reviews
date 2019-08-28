@@ -25,10 +25,29 @@ class MoviesController < ApplicationController
     @movie = Movie.find_by_id(params[:id])
   end
 
+  def edit
+    redirect_if_not_admin
+    @movie = Movie.find_by_id(params[:id])
+  end
+
+  def update
+    @movie = Movie.find_by_id(params[:id])
+    # only update genre and actors if info has changed. don't add duplicates
+    if @movie.update(movie_params)
+      # raise params.inspect
+
+      redirect_to movie_path(@movie)
+      flash[:message] = "Movie sucessfully updated."
+    else
+      render :edit
+    end
+  end
+
+
   private
 
     def movie_params
-      params.require(:movie).permit(:title, :synopsis, :year, :genres_attributes => [:name], :actors_attributes => [:first_name, :last_name])
+      params.require(:movie).permit(:title, :synopsis, :year, :genres_attributes => [:id, :name], :actors_attributes => [:id, :first_name, :last_name])
     end
 
 
