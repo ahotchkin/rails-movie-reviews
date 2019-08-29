@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   # logout
   delete "/logout" => "sessions#destroy"
 
+  # omniauth callback routes
+  get "/auth/:providers/callback" => "sessions#omnilogin"
+
   resources :reviews
   resources :movie_actors, only: [:destroy]
   # resources :movie_genres, only: [:destroy]

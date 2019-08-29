@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_27_190743) do
+ActiveRecord::Schema.define(version: 2019_08_28_215356) do
 
   create_table "actors", force: :cascade do |t|
     t.string "first_name"
@@ -72,6 +72,8 @@ ActiveRecord::Schema.define(version: 2019_08_27_190743) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "admin", default: false, null: false
+    t.string "uid"
+    t.string "provider"
   end
 
 end

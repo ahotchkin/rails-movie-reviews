@@ -22,10 +22,6 @@ end
   Movie.create(:title => Faker::Book.unique.title, :synopsis => Faker::Lorem.paragraph(sentence_count: 4, supplemental: false, random_sentences_to_add: 2), :year => Faker::Number.between(from: 1950, to: 2019), :user_id => rand(1...User.count))
 end
 
-# 20.times do
-#   Movie.create(:title => Faker::Book.unique.title, :synopsis => Faker::Lorem.paragraph(sentence_count: 4, supplemental: false, random_sentences_to_add: 2), :year => Faker::Number.between(from: 1950, to: 2019), :user_id => rand(1...User.count), :genre_id => rand(1...Genre.count))
-# end
-
 40.times do
   Actor.create(:first_name => Faker::FunnyName.two_word_name, :last_name => "")
 end
