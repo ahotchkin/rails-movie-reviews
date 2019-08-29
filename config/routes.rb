@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   # omniauth callback routes
   get "/auth/:providers/callback" => "sessions#omnilogin"
 
+  # find_by_slug actor url
+  # get "/actors/:slug" => "actors#show"
+
   resources :reviews
   resources :movie_actors, only: [:destroy]
   # resources :movie_genres, only: [:destroy]

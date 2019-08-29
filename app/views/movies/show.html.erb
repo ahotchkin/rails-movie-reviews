@@ -10,16 +10,18 @@ Genre(s):
 
 Starring:
 <ul>
-  <% if current_user.admin? %>
-    <% @movie.actors.each do |actor| %>
+  <%# <% if current_user.admin? %> %>
+    <%# <% @movie.actors.each do |actor| %> %>
     <%# movie_actors_path is getting actor_id instead of movie_actor_id - need to fix %>
-      <li><%= link_to actor.full_name, actor_path(actor) %> - <%= link_to "Delete", movie_actors_path(@movie, actor), :method => :delete %></li>
-    <% end %>
-  <% else %>
+      <%# <!-- <li><%= link_to actor.full_name, actor_path(actor) %> -
+        <%# <%= link_to "Delete", movie_actors_path(@movie, actor), :method => :delete %>
+      <!-- </li> --> %> %> -->
+    <%# <% end %> %>
+  <%# <% else %> %>
     <% @movie.actors.each do |actor| %>
       <li><%= link_to actor.full_name, actor_path(actor) %></li>
     <% end %>
-  <% end %>
+  <%# <% end %> %>
 </ul>
 
 Synopsis:
