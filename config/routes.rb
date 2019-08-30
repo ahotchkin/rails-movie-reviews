@@ -19,10 +19,10 @@ Rails.application.routes.draw do
   # get "/actors/:slug" => "actors#show"
 
   resources :reviews
-  resources :movie_actors, only: [:destroy]
+  # resources :movie_actors, only: [:destroy]
   # resources :movie_genres, only: [:destroy]
   resources :genres, only: [:show]
-  resources :actors, only: [:show]
+  resources :actors, only: [:index, :show]
   resources :users
   resources :movies
   resources :movies, only: [:show] do
