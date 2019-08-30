@@ -1,7 +1,12 @@
 class MoviesController < ApplicationController
 
   def index
-    @movies = Movie.all.sort { |a, b| a.title <=> b.title }
+    # update so you can press teh back button after a search and all movies will show up
+    if params[:title]
+      @movies = Movie.find_by_title(params[:title])
+    else
+      @movies = Movie.all.sort { |a, b| a.title <=> b.title }
+    end
   end
 
   def new

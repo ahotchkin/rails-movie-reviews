@@ -8,6 +8,8 @@ class Movie < ApplicationRecord
   has_many :users, through: :reviews
   validates_presence_of :title, :synopsis, :year
 
+  scope :find_by_title, -> (title) { where("title LIKE ?", title) }
+
   def actors_attributes=(actors_attributes)
     actors_attributes.values.each do |actor_attributes|
       if !actor_attributes[:first_name].blank?
