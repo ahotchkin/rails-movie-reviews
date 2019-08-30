@@ -29,28 +29,29 @@ class Actor < ApplicationRecord
       end
     end
   end
-  # module ClassMethods
-    def self.find_by_slug(slug)
-      where { |name| name.slug == slug }
-    end
-  # end
-
-    def self.find_by_name(first_name, last_name)
-      where(:first_name => first_name).where(:last_name => last_name)
-    end
-
-    # def self.find_by_first_name(first_name)
-    #   where(:first_name => first_name)
-    # end
-    #
-    # def self.find_by_search(name)
-    #   where(:first_name.include?(name))
-    # end
-
-  # module InstanceMethods
-    def slug
-      self.full_name.gsub(/\s/, "-").gsub(/[^0-9A-Za-z\-]/, '').downcase
-    end
-  # end
+  
+  # # module ClassMethods
+  #   def self.find_by_slug(slug)
+  #     where { |name| name.slug == slug }
+  #   end
+  # # end
+  #
+  #   def self.find_by_name(first_name, last_name)
+  #     where(:first_name => first_name).where(:last_name => last_name)
+  #   end
+  #
+  #   # def self.find_by_first_name(first_name)
+  #   #   where(:first_name => first_name)
+  #   # end
+  #   #
+  #   # def self.find_by_search(name)
+  #   #   where(:first_name.include?(name))
+  #   # end
+  #
+  # # module InstanceMethods
+  #   def slug
+  #     self.full_name.gsub(/\s/, "-").gsub(/[^0-9A-Za-z\-]/, '').downcase
+  #   end
+  # # end
 
 end
