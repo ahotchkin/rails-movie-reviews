@@ -10,7 +10,6 @@ class MoviesController < ApplicationController
   end
 
   def new
-
     redirect_if_not_admin
     @movie = Movie.new
     3.times { @movie.genres.build }
@@ -29,6 +28,7 @@ class MoviesController < ApplicationController
 
   def show
     @movie = Movie.find_by_id(params[:id])
+    # @movie_actor_id =
   end
 
   def edit
