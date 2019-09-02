@@ -1,8 +1,7 @@
 class GenresController < ApplicationController
 
   def index
-    # add method to alphabetize
-    @genres = Genre.all
+    @genres = Genre.alpha
   end
 
   def show

@@ -5,7 +5,7 @@ class MoviesController < ApplicationController
     if params[:title]
       @movies = Movie.find_by_title(params[:title])
     else
-      @movies = Movie.all.sort { |a, b| a.title <=> b.title }
+      @movies = Movie.alpha
     end
   end
 
