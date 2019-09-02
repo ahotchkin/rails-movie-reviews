@@ -36,6 +36,7 @@
   <br><br>
 
   <%# this code doesn't work in the controller %>
+  <%# actor is showing as invalid even when first name is filled in %>
   <% actor_number = 8 - @movie.actors.size %>
   <% actor_number.times { @movie.actors.build } %>
 
