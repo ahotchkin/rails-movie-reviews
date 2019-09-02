@@ -1,5 +1,17 @@
 <h1>Edit Review for <%= @review.movie.title %></h1>
 
+<% if @review.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
+
+    <ul>
+    <% @review.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <%= form_for @review do |f| %>
   <%= f.hidden_field :movie_id %>
   <%= f.label "Rating (1-5):" %>

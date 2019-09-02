@@ -1,9 +1,8 @@
 class ReviewsController < ApplicationController
 
   def index
+    # add a feature to filter by your own reviews??
     if params[:movie_id] && @movie = Movie.find_by_id(params[:movie_id])
-      # nested route
-      # error page if movie id doesn't exist. add logic to account for this scenario.
       @reviews = @movie.reviews.order({ created_at: :desc })
     else
       # flash[:message] = "That movie does not exist in the database" if params[:movie_id] => needs a redirect to disappear, use @error instead?
@@ -22,9 +21,9 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    review = current_user.reviews.build(review_params)
-    if review.save
-      redirect_to movie_reviews_path(review.movie)
+    @review = current_user.reviews.build(review_params)
+    if @review.save
+      redirect_to movie_reviews_path(@review.movie)
     else
       render :new
     end
@@ -35,7 +34,6 @@ class ReviewsController < ApplicationController
   end
 
   def edit
-    # a user can only edit a review that belongs to them
     @review = Review.find_by_id(params[:id])
     if current_user.id == @review.user.id
       render :edit

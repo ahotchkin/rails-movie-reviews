@@ -4,9 +4,21 @@
   <h1>New Review</h1>
 <% end %>
 
+<% if @review.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
+
+    <ul>
+    <% @review.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <%= form_for [@review.movie, @review] do |f| %>
   <% if !@review.movie %>
-    <%= f.label :movie %>
+    <%= f.label "Movie:" %>
     <%= collection_select :review, :movie_id, Movie.all, :id, :title, {:include_blank => "Please select a movie to review"} %><br><br>
   <% else %>
     <%= f.hidden_field :movie_id %>

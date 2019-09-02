@@ -1,7 +1,7 @@
 class MoviesController < ApplicationController
 
   def index
-    # update so you can press teh back button after a search and all movies will show up
+    # update so you can press the back button after a search and all movies will show up
     if params[:title]
       @movies = Movie.find_by_title(params[:title])
     else
@@ -10,6 +10,7 @@ class MoviesController < ApplicationController
   end
 
   def new
+
     redirect_if_not_admin
     @movie = Movie.new
     3.times { @movie.genres.build }
@@ -17,10 +18,10 @@ class MoviesController < ApplicationController
   end
 
   def create
-    # redirect_if_not_admin
-    movie = current_user.movies.build(movie_params)
-    if movie.save
-      redirect_to movie_path(movie)
+    redirect_if_not_admin
+    @movie = current_user.movies.build(movie_params)
+    if @movie.save
+      redirect_to movie_path(@movie)
     else
       render :new
     end
