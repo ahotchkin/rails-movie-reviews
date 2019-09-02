@@ -27,8 +27,8 @@ class MoviesController < ApplicationController
   end
 
   def show
+    # flash message if actor or genre is deleted?
     @movie = Movie.find_by_id(params[:id])
-    # @movie_actor_id =
   end
 
   def edit
@@ -38,7 +38,6 @@ class MoviesController < ApplicationController
 
   def update
     @movie = Movie.find_by_id(params[:id])
-    8.times { @movie.actors.build }
     if @movie.update(movie_params)
       redirect_to movie_path(@movie)
       flash[:message] = "Movie sucessfully updated."

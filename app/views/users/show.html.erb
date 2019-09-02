@@ -8,7 +8,6 @@
 <h2>Here are the latest movie reviews:</h2>
 
 <% @reviews.each do |review| %>
-  <%# link to review show page %>
   <%= link_to review.title, review_path(review) %>
   <br>
   <%# change to link to see all reviews by a user %>

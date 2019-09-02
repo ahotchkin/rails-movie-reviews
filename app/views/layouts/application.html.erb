@@ -18,8 +18,10 @@
         <%= link_to "All Reviews", reviews_path %> |
         <%= link_to "Movies", movies_path %> |
         <% if current_user.admin? %>
-          <%= link_to "Add Movie", new_movie_path %> | 
+          <%= link_to "Add Movie", new_movie_path %> |
         <% end %>
+        <%= link_to "Actors", actors_path %> |
+        <%# <%= link_to "Genres", genres_path %> | %>
         <%= link_to "Logout", logout_path, :method => "delete" %>
       <% else %>
         <%= link_to "Sign Up", signup_path %> |

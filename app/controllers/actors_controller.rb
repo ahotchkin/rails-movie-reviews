@@ -1,7 +1,7 @@
 class ActorsController < ApplicationController
 
   def index
-    # update so you can press teh back button after a search and all actors will show up
+    # update so you can press the back button after a search and all actors will show up
 
     if params[:first_name] && params[:last_name] == ""
       @actors = Actor.find_by_first_name(params[:first_name])
