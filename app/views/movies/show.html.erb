@@ -2,9 +2,16 @@
 
 Genre(s):
 <ul>
-  <% @movie.genres.each do |genre| %>
-  <%# add a delete button to remove a genre here instead of updating it in the update form %>
-    <li><%= link_to genre.name, genre_path(genre) %></li>
+  <% if current_user.admin? %>
+    <% @movie.genres.each do |genre| %>
+      <li><%= link_to genre.name, genre_path(genre) %> -
+        <% movie_genre = MovieGenre.find_movie_genre(@movie, genre).last %>
+        <%= link_to "Delete", movie_genre_path(movie_genre), :method => :delete %></li>
+    <% end %>
+  <% else %>
+    <% @movie.genres.each do |genre| %>
+      <li><%= link_to genre.name, genre_path(genre) %></li>
+    <% end %>
   <% end %>
 </ul>
 
