@@ -2,10 +2,14 @@ class ReviewsController < ApplicationController
 
   def index
     # add a feature to filter by your own reviews??
-    if params[:movie_id] && @movie = Movie.find_by_id(params[:movie_id])
+    if params[:user_id] && current_user.id.to_s == params[:user_id]
+      @reviews = current_user.reviews.order({ created_at: :desc })
+    elsif params[:movie_id] && @movie = Movie.find_by_id(params[:movie_id])
       @reviews = @movie.reviews.order({ created_at: :desc })
     else
       # flash[:message] = "That movie does not exist in the database" if params[:movie_id] => needs a redirect to disappear, use @error instead?
+      # params[:user_id].clear if params[:user_id]
+      # params[:movie_id].clear if params[:movie_id]
       @reviews = Review.all.order({ created_at: :desc })
     end
   end

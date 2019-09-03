@@ -1,4 +1,19 @@
-<% if params[:movie_id] %>
+<% if params[:user_id] %>
+  <h1><%= current_user.username %>'s Reviews</h1>
+
+  <% @reviews.each do |review| %>
+    <%= link_to review.title, review_path(review) %>
+    <br>
+    Written by: <%= review.user.username %>
+    <br>
+    <%# add date of review??? %>
+    <%# add a restriction on how much of review is shown here? %>
+    Review: <%= review.content %>
+    <br>
+    Rating: <%= review.rating %>
+    <br><br><br>
+  <% end %>
+<% elsif params[:movie_id] %>
   <h1><%= @movie.title %> Reviews</h1>
 
   <% @reviews.each do |review| %>
