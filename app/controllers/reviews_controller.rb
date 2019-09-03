@@ -11,7 +11,6 @@ class ReviewsController < ApplicationController
   end
 
   def new
-    # add method so reviewer can only leave one review per movie
     if params[:movie_id] && @movie = Movie.find_by_id(params[:movie_id])
       @review = @movie.reviews.build
     else

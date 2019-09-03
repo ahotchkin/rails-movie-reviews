@@ -21,7 +21,6 @@ class UsersController < ApplicationController
     @reviews = Review.all.order({ created_at: :desc }).first(10)
   end
 
-
   private
 
     def user_params
