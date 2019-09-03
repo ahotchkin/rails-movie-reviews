@@ -10,7 +10,10 @@ class Review < ApplicationRecord
     if user_movies.include?(self.movie_id)
       errors.add(:review_id, "can't be created since you've already reviewed this movie.")
     end
-
   end
-  
+
+  def review_date
+    self.created_at.strftime("%B %d, %Y")
+  end
+
 end

@@ -1,31 +1,49 @@
-<% if params[:user_id] %>
-  <h1><%= current_user.username %>'s Reviews</h1>
+<% if params[:user_id] && current_user.id.to_s == params[:user_id] %>
+  <h1>Your Reviews</h1>
 
   <% @reviews.each do |review| %>
     <%= link_to review.title, review_path(review) %>
     <br>
-    Written by: <%= review.user.username %>
+    <%= review.review_date %>
     <br>
-    <%# add date of review??? %>
-    <%# add a restriction on how much of review is shown here? %>
-    Review: <%= review.content %>
+    Movie: <%= link_to review.movie.title, movie_path(review.movie) %>
     <br>
     Rating: <%= review.rating %>
+    <br>
+    Review: <%= review.content.truncate(250) %>
+    <br>
+    <%= link_to "Edit Review", edit_review_path(review) %> |
+    <%= link_to "Delete Review", review_path(review), :method => :delete %>
     <br><br><br>
   <% end %>
-<% elsif params[:movie_id] %>
+<% elsif params[:user_id] && @user %>
+  <h1><%= @user.username %>'s Reviews</h1>
+
+  <% @reviews.each do |review| %>
+    <%= link_to review.title, review_path(review) %>
+    <br>
+    <%= review.review_date %>
+    <br>
+    Movie: <%= link_to review.movie.title, movie_path(review.movie) %>
+    <br>
+    Rating: <%= review.rating %>
+    <br>
+    Review: <%= review.content.truncate(250) %>
+    <br><br><br>
+  <% end %>
+<% elsif params[:movie_id] && @movie %>
   <h1><%= @movie.title %> Reviews</h1>
 
   <% @reviews.each do |review| %>
     <%= link_to review.title, review_path(review) %>
     <br>
-    Written by: <%= review.user.username %>
+    Written by: <%= link_to @review.user.username, user_reviews_path(@review.user) %>
     <br>
-    <%# add date of review??? %>
-    <%# add a restriction on how much of review is shown here? %>
-    Review: <%= review.content %>
+    <%= review.review_date %>
     <br>
     Rating: <%= review.rating %>
+    <br>
+    Review: <%= review.content.truncate(250) %>
     <br><br><br>
   <% end %>
   <%= link_to "Write a Review for #{@movie.title}", new_movie_review_path(@movie) %>
@@ -35,16 +53,15 @@
   <% @reviews.each do |review| %>
     <%= link_to review.title, review_path(review) %>
     <br>
-    Written by: <%= review.user.username %>
+    Written by: <%= link_to @review.user.username, user_reviews_path(@review.user) %>
     <br>
-    <%# add date of review??? %>
-    <%# link to movie show page %>
-    Movie: <%= review.movie.title %>
+    <%= review.review_date %>
     <br>
-    <%# add a restriction on how much of review is shown here? %>
-    Review: <%= review.content %>
+    Movie: <%= link_to review.movie.title, movie_path(review.movie) %>
     <br>
     Rating: <%= review.rating %>
+    <br>
+    Review: <%= review.content.truncate(250) %>
     <br><br><br>
   <% end %>
 <% end %>

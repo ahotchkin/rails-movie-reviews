@@ -2,7 +2,7 @@
 
 <% if current_user.admin %>
   <h3>ADMIN</h3>
-  <br><br>
+  <br>
 <% end %>
 
 <h2>Here are the latest movie reviews:</h2>
@@ -10,16 +10,14 @@
 <% @reviews.each do |review| %>
   <%= link_to review.title, review_path(review) %>
   <br>
-  <%# change to link to see all reviews by a user %>
-  Written by: <%= review.user.username %>
+  Written by: <%= link_to review.user.username, user_reviews_path(review.user) %>
   <br>
-  <%# add date of review??? %>
-  <%# link to movie show page %>
-  Movie: <%= review.movie.title %>
+  <%= review.review_date %>
   <br>
-  <%# add a restriction on how much of review is shown here? %>
-  Review: <%= review.content %>
+  Movie: <%= link_to review.movie.title, movie_path(review.movie) %>
   <br>
   Rating: <%= review.rating %>
+  <br>
+  Review: <%= review.content.truncate(250) %>
   <br><br><br>
 <% end %>
