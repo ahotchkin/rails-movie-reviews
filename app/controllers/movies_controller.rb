@@ -1,5 +1,7 @@
 class MoviesController < ApplicationController
 
+  helper_method :current_movie
+
   def index
     if params[:title]
       @movies = Movie.find_by_title(params[:title])
@@ -27,18 +29,17 @@ class MoviesController < ApplicationController
 
   def show
     # flash message if actor or genre is deleted?
-    @movie = Movie.find_by_id(params[:id])
   end
 
   def edit
     redirect_if_not_admin
-    @movie = Movie.find_by_id(params[:id])
+    # using current_movie is impacting blank genre and actor fields
+    @movie = current_movie
   end
 
   def update
-    @movie = Movie.find_by_id(params[:id])
-    if @movie.update(movie_params)
-      redirect_to movie_path(@movie)
+    if current_movie.update(movie_params)
+      redirect_to movie_path(current_movie)
       flash[:message] = "Movie sucessfully updated."
     else
       render :edit
@@ -51,5 +52,8 @@ class MoviesController < ApplicationController
       params.require(:movie).permit(:title, :synopsis, :year, :genres_attributes => [:name], :actors_attributes => [:first_name, :last_name])
     end
 
+    def current_movie
+      current_movie ||= Movie.find_by_id(params[:id])
+    end
 
 end

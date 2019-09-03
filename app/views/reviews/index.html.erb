@@ -10,7 +10,7 @@
     <br>
     Rating: <%= review.rating %>
     <br>
-    Review: <%= review.content.truncate(250) %>
+    Review: <%= review.content.truncate(350) %>
     <br>
     <%= link_to "Edit Review", edit_review_path(review) %> |
     <%= link_to "Delete Review", review_path(review), :method => :delete %>
@@ -28,7 +28,7 @@
     <br>
     Rating: <%= review.rating %>
     <br>
-    Review: <%= review.content.truncate(250) %>
+    Review: <%= review.content.truncate(350) %>
     <br><br><br>
   <% end %>
 <% elsif params[:movie_id] && @movie %>
@@ -37,13 +37,13 @@
   <% @reviews.each do |review| %>
     <%= link_to review.title, review_path(review) %>
     <br>
-    Written by: <%= link_to @review.user.username, user_reviews_path(@review.user) %>
+    Written by: <%= link_to review.user.username, user_reviews_path(review.user) %>
     <br>
     <%= review.review_date %>
     <br>
     Rating: <%= review.rating %>
     <br>
-    Review: <%= review.content.truncate(250) %>
+    Review: <%= review.content.truncate(350) %>
     <br><br><br>
   <% end %>
   <%= link_to "Write a Review for #{@movie.title}", new_movie_review_path(@movie) %>
@@ -53,7 +53,7 @@
   <% @reviews.each do |review| %>
     <%= link_to review.title, review_path(review) %>
     <br>
-    Written by: <%= link_to @review.user.username, user_reviews_path(@review.user) %>
+    Written by: <%= link_to review.user.username, user_reviews_path(review.user) %>
     <br>
     <%= review.review_date %>
     <br>
@@ -61,7 +61,7 @@
     <br>
     Rating: <%= review.rating %>
     <br>
-    Review: <%= review.content.truncate(250) %>
+    Review: <%= review.content.truncate(350) %>
     <br><br><br>
   <% end %>
 <% end %>

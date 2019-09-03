@@ -4,10 +4,13 @@ class Review < ApplicationRecord
   validates_presence_of :title, :content, :rating
   validate :one_review_per_user_per_movie
 
-  def one_review_per_user_per_movie
-    user_movies = user.reviews.map { |review| review.movie_id }
+  scope :newest_to_oldest, -> { order(:created_at => :desc) }
 
-    if user_movies.include?(self.movie_id)
+  def one_review_per_user_per_movie
+
+    movie_reviews = user.reviews.select { |review| review.movie_id == self.movie_id }
+    binding.pry
+    if movie_reviews.size >= 2
       errors.add(:review_id, "can't be created since you've already reviewed this movie.")
     end
   end

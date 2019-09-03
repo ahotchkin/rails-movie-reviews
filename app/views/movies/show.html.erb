@@ -1,15 +1,15 @@
-<h1><%= @movie.title %></h1>
+<h1><%= current_movie.title %></h1>
 
 Genre(s):
 <ul>
   <% if current_user.admin? %>
-    <% @movie.genres.each do |genre| %>
+    <% current_movie.genres.each do |genre| %>
       <li><%= link_to genre.name, genre_path(genre) %> -
-        <% movie_genre = MovieGenre.find_movie_genre(@movie, genre).last %>
+        <% movie_genre = MovieGenre.find_movie_genre(current_movie, genre).last %>
         <%= link_to "Delete", movie_genre_path(movie_genre), :method => :delete %></li>
     <% end %>
   <% else %>
-    <% @movie.genres.each do |genre| %>
+    <% current_movie.genres.each do |genre| %>
       <li><%= link_to genre.name, genre_path(genre) %></li>
     <% end %>
   <% end %>
@@ -18,27 +18,27 @@ Genre(s):
 Starring:
 <ul>
   <% if current_user.admin? %>
-    <% @movie.actors.each do |actor| %>
+    <% current_movie.actors.each do |actor| %>
       <li><%= link_to actor.full_name, actor_path(actor) %> -
-        <% movie_actor = MovieActor.find_movie_actor(@movie, actor).last %>
+        <% movie_actor = MovieActor.find_movie_actor(current_movie, actor).last %>
         <%= link_to "Delete", movie_actor_path(movie_actor), :method => :delete %></li>
     <% end %>
   <% else %>
-    <% @movie.actors.each do |actor| %>
+    <% current_movie.actors.each do |actor| %>
       <li><%= link_to actor.full_name, actor_path(actor) %></li>
     <% end %>
   <% end %>
 </ul>
 
 Synopsis:
-<p><%= @movie.synopsis %></p>
+<p><%= current_movie.synopsis %></p>
 
-<%= link_to "Read reviews for #{@movie.title}", movie_reviews_path(@movie) %>
+<%= link_to "Read reviews for #{current_movie.title}", movie_reviews_path(current_movie) %>
 <br><br>
-<%= link_to "Write a Review for #{@movie.title}", new_movie_review_path(@movie) %>
+<%= link_to "Write a Review for #{current_movie.title}", new_movie_review_path(current_movie) %>
 
 <br><br>
 
 <% if current_user.admin? %>
-  <%= link_to "Edit Movie", edit_movie_path(@movie) %>
+  <%= link_to "Edit Movie", edit_movie_path(current_movie) %>
 <% end %>

@@ -2,15 +2,15 @@ class ReviewsController < ApplicationController
 
   def index
     if params[:user_id] && current_user.id.to_s == params[:user_id]
-      @reviews = current_user.reviews.order({ created_at: :desc })
+      @reviews = current_user.reviews.newest_to_oldest
     elsif params[:user_id] && @user = User.find_by_id(params[:user_id])
-      @reviews = @user.reviews.order({ created_at: :desc })
+      @reviews = @user.reviews.newest_to_oldest
     elsif params[:movie_id] && @movie = Movie.find_by_id(params[:movie_id])
-      @reviews = @movie.reviews.order({ created_at: :desc })
+      @reviews = @movie.reviews.newest_to_oldest
     else
       # flash[:message] = "That movie does not exist in the database" if params[:movie_id] => needs a redirect to disappear, use @error instead?
       # if a param is passed that doesn't exist for user or movie, it stays in the url but will render all reviews
-      @reviews = Review.all.order({ created_at: :desc })
+      @reviews = Review.all.newest_to_oldest
     end
   end
 
@@ -18,7 +18,7 @@ class ReviewsController < ApplicationController
     if params[:movie_id] && @movie = Movie.find_by_id(params[:movie_id])
       @review = @movie.reviews.build
     else
-      # @error = "That post doesn't exist" if params[:post_id]
+      @error = "That movie doesn't exist" if params[:movie_id]
       @review = Review.new
     end
   end
@@ -73,6 +73,7 @@ class ReviewsController < ApplicationController
     def current_review
       # @review = Review.find_by_id(params[:id])
       # if !@review
+      #   @error = "That review doesn't exist"
       #   redirect_to reviews_path
       # end
     end
