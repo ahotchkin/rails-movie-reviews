@@ -23,7 +23,7 @@ end
 end
 
 40.times do
-  Actor.create(:first_name => Faker::FunnyName.two_word_name, :last_name => "")
+  Actor.create(:first_name => Faker::Name.first_name, :last_name => Faker::Name.last_name)
 end
 
 60.times do

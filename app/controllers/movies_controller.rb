@@ -1,7 +1,6 @@
 class MoviesController < ApplicationController
 
   def index
-    # update so you can press the back button after a search and all movies will show up
     if params[:title]
       @movies = Movie.find_by_title(params[:title])
     else

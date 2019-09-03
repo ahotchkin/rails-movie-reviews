@@ -8,8 +8,8 @@ class ActorsController < ApplicationController
     elsif params[:first_name] && params[:last_name]
       @actors = Actor.find_by_first_name(params[:first_name]) && Actor.find_by_last_name(params[:last_name])
     else
-      @actors = Actor.all.sort { |a, b| a.first_name <=> b.first_name }
-      # @actors = Actor.sorted_actors
+      # @actors = Actor.all.sort { |a, b| a.first_name <=> b.first_name }
+      @actors = Actor.sorted_actors
     end
   end
 
