@@ -1,28 +1,28 @@
-<h1>Edit Review for <%= @review.movie.title %></h1>
+<h1>Edit Review for <%= current_review.movie.title %></h1>
 
-<% if @review.errors.any? %>
+<% if current_review.errors.any? %>
   <div id="error_explanation">
-    <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
+    <h2><%= pluralize(current_review.errors.count, "error") %> prohibited this review from being saved:</h2>
 
     <ul>
-    <% @review.errors.full_messages.each do |msg| %>
+    <% current_review.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
     <% end %>
     </ul>
   </div>
 <% end %>
 
-<%= form_for @review do |f| %>
+<%= form_for current_review do |f| %>
   <%= f.hidden_field :movie_id %>
   <%= f.label "Rating (1-5):" %>
-  <%= f.number_field :rating, :value => @review.rating %>
+  <%= f.number_field :rating, :value => current_review.rating %>
   <br><br>
   <%= f.label "Title:" %>
-  <%= f.text_field :title, :value => @review.title %>
+  <%= f.text_field :title, :value => current_review.title %>
   <br><br>
   <%= f.label "Review:" %>
   <br>
-  <%= f.text_area :content, :value => @review.content %>
+  <%= f.text_area :content, :value => current_review.content %>
   <br><br>
   <%= f.submit "Update Review" %>
 <% end %>
