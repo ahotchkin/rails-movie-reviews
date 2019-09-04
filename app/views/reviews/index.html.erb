@@ -1,67 +1,13 @@
 <% if params[:user_id] && current_user.id.to_s == params[:user_id] %>
   <h1>Your Reviews</h1>
-
-  <% @reviews.each do |review| %>
-    <%= link_to review.title, review_path(review) %>
-    <br>
-    <%= review.review_date %>
-    <br>
-    Movie: <%= link_to review.movie.title, movie_path(review.movie) %>
-    <br>
-    Rating: <%= review.rating %>
-    <br>
-    Review: <%= review.content.truncate(350) %>
-    <br>
-    <%= link_to "Edit Review", edit_review_path(review) %> |
-    <%= link_to "Delete Review", review_path(review), :method => :delete %>
-    <br><br><br>
-  <% end %>
 <% elsif params[:user_id] && @user %>
   <h1><%= @user.username %>'s Reviews</h1>
-
-  <% @reviews.each do |review| %>
-    <%= link_to review.title, review_path(review) %>
-    <br>
-    <%= review.review_date %>
-    <br>
-    Movie: <%= link_to review.movie.title, movie_path(review.movie) %>
-    <br>
-    Rating: <%= review.rating %>
-    <br>
-    Review: <%= review.content.truncate(350) %>
-    <br><br><br>
-  <% end %>
 <% elsif params[:movie_id] && @movie %>
   <h1><%= @movie.title %> Reviews</h1>
-
-  <% @reviews.each do |review| %>
-    <%= link_to review.title, review_path(review) %>
-    <br>
-    Written by: <%= link_to review.user.username, user_reviews_path(review.user) %>
-    <br>
-    <%= review.review_date %>
-    <br>
-    Rating: <%= review.rating %>
-    <br>
-    Review: <%= review.content.truncate(350) %>
-    <br><br><br>
-  <% end %>
   <%= link_to "Write a Review for #{@movie.title}", new_movie_review_path(@movie) %>
+  <br><br><br>
 <% else %>
   <h1>Movie Reviews</h1>
-
-  <% @reviews.each do |review| %>
-    <%= link_to review.title, review_path(review) %>
-    <br>
-    Written by: <%= link_to review.user.username, user_reviews_path(review.user) %>
-    <br>
-    <%= review.review_date %>
-    <br>
-    Movie: <%= link_to review.movie.title, movie_path(review.movie) %>
-    <br>
-    Rating: <%= review.rating %>
-    <br>
-    Review: <%= review.content.truncate(350) %>
-    <br><br><br>
-  <% end %>
 <% end %>
+
+<%= render partial: "reviews", :locals => {:reviews => @reviews, :movie => @movie} %>

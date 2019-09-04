@@ -1,0 +1,25 @@
+<% reviews.each do |review| %>
+  <% if !params[:review_id] %>
+    <%= link_to review.title, review_path(review) %>
+  <% end %>
+  <br>
+  <% if !params[:user_id] %>
+    Written by: <%= link_to review.user.username, user_reviews_path(review.user) %>
+    <br>
+  <% end %>
+  <%= review.review_date %>
+  <br>
+  <% if !params[:movie_id] %>
+    Movie: <%= link_to review.movie.title, movie_path(review.movie) %>
+    <br>
+  <% end %>
+  Rating: <%= review.rating %>
+  <br>
+  Review: <%= review.content.truncate(350) %>
+  <br>
+  <% if current_user.id.to_s == params[:user_id] || current_user.id == review.user.id %>
+    <%= link_to "Edit Review", edit_review_path(review) %> |
+    <%= link_to "Delete Review", review_path(review), :method => :delete %>
+  <% end %>
+  <br><br>
+<% end %>

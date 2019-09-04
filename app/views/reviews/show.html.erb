@@ -1,17 +1,3 @@
 <h1><%= current_review.title %></h1>
-<br>
-Written by: <%= link_to current_review.user.username, user_reviews_path(current_review.user) %>
-<br>
-<%= current_review.review_date %>
-<br>
-Movie: <%= link_to current_review.movie.title, movie_path(current_review.movie) %>
-<br>
-Rating: <%= current_review.rating %>
-<br>
-Review: <%= current_review.content %>
-<br><br><br>
 
-<% if current_user.id == current_review.user.id %>
-  <%= link_to "Edit Review", edit_review_path(current_review) %> |
-  <%= link_to "Delete Review", review_path(current_review), :method => :delete %>
-<% end %>
+<%= render partial: "reviews", :locals => {:reviews => @reviews, :movie => @movie} %>
