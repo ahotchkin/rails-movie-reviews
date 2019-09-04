@@ -1,8 +1,4 @@
-<% if @review.movie %>
-  <h1>New Review for <%= @review.movie.title %></h1>
-<% else %>
-  <h1>New Review</h1>
-<% end %>
+<h1><%= new_review_header %></h1>
 
 <%= render partial: "layouts/errors", :locals => {:object => @review} %>
 

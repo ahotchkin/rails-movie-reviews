@@ -1,14 +1,22 @@
 module ReviewsHelper
 
+  def new_review_header
+    if @review.movie
+      "New Review for #{@review.movie.title}"
+    else
+      "New Review"
+    end
+  end
+
   def reviews_display_header
     if params[:user_id] && current_user.id.to_s == params[:user_id]
-      content_tag(:h1, "Your Reviews")
+      "Your Reviews"
     elsif params[:user_id] && @user
-      content_tag(:h1, "#{@user.username}'s Reviews")
+      "#{@user.username}'s Reviews"
     elsif params[:movie_id] && @movie
-      content_tag(:h1, "#{@movie.title} Reviews")
+      "#{@movie.title} Reviews"
     else
-      content_tag(:h1, "Movie Reviews")
+      "Movie Reviews"
     end
   end
 

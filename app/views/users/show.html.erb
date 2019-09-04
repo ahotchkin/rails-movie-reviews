@@ -7,17 +7,4 @@
 
 <h2>Here are the latest movie reviews:</h2>
 
-<% @reviews.each do |review| %>
-  <%= link_to review.title, review_path(review) %>
-  <br>
-  Written by: <%= link_to review.user.username, user_reviews_path(review.user) %>
-  <br>
-  <%= review.review_date %>
-  <br>
-  Movie: <%= link_to review.movie.title, movie_path(review.movie) %>
-  <br>
-  Rating: <%= review.rating %>
-  <br>
-  Review: <%= review.content.truncate(350) %>
-  <br><br><br>
-<% end %>
+<%= render partial: "reviews/reviews", :locals => {:reviews => @reviews, :movie => @movie} %>
