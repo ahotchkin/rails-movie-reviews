@@ -34,12 +34,14 @@ class MoviesController < ApplicationController
   def edit
     redirect_if_not_admin
     # using current_movie is impacting blank genre and actor fields
-    @movie = current_movie
+    @movie = Movie.find_by_id(params[:id])
   end
 
   def update
-    if current_movie.update(movie_params)
-      redirect_to movie_path(current_movie)
+    # using current_movie is causing @movie to be nil
+    @movie = Movie.find_by_id(params[:id])
+    if @movie.update(movie_params)
+      redirect_to movie_path(@movie)
       flash[:message] = "Movie sucessfully updated."
     else
       render :edit

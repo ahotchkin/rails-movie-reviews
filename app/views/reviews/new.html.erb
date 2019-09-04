@@ -16,4 +16,6 @@
   </div>
 <% end %>
 
+<%= render partial: "layouts/errors", :locals => {:object => @review} %>
+
 <%= render partial: "form", :locals => {:review => @review} %>
