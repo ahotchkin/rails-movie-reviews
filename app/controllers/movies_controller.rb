@@ -35,6 +35,11 @@ class MoviesController < ApplicationController
     redirect_if_not_admin
     # using current_movie is impacting blank genre and actor fields
     @movie = Movie.find_by_id(params[:id])
+    genre_number = 3 - @movie.genres.size
+    genre_number.times { @movie.genres.build }
+
+    actor_number = 8 - @movie.actors.size
+    actor_number.times { @movie.actors.build }
   end
 
   def update

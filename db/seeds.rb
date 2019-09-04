@@ -31,9 +31,11 @@ end
 end
 
 50.times do
-  MovieActor.create(:movie_id => rand(1...Movie.count), :actor_id => rand(1...Actor.count))
+  # updated to be max of 8 actors
+  MovieActor.create(:movie_id => rand(1...Movie.count), :actor_id => rand(1...8))
 end
 
 50.times do
-  MovieGenre.create(:movie_id => rand(1...Movie.count), :genre_id => rand(1...Genre.count))
+  # updated to be max of 3 genres
+  MovieGenre.create(:movie_id => rand(1...Movie.count), :genre_id => rand(1...3))
 end
