@@ -38,6 +38,8 @@ class ReviewsController < ApplicationController
   end
 
   def edit
+    # tried using @review helper method, but error messages don't show up when I do
+    # @review = Review.find_by_id(params[:id])
     if current_user.id == current_review.user.id
       render :edit
     else
@@ -46,6 +48,8 @@ class ReviewsController < ApplicationController
   end
 
   def update
+    # @review = Review.find_by_id(params[:id])
+
     if current_review.update(review_params)
       redirect_to review_path(current_review)
       flash[:message] = "Review sucessfully updated."
@@ -68,17 +72,12 @@ class ReviewsController < ApplicationController
       params.require(:review).permit(:title, :content, :rating, :movie_id)
     end
 
-    # def current_review
-    #   @review = Review.find_by_id(params[:id])
-    #   if !@review
-    #     @error = "That review doesn't exist"
-    #     redirect_to reviews_path
-    #   end
-    # end
-
     def current_review
-      current_review ||= Review.find_by_id(params[:id])
+      @review = Review.find_by_id(params[:id])
+      # if !@review
+      #   @error = "That review doesn't exist"
+      #   redirect_to reviews_path
+      # end
     end
-
 
 end

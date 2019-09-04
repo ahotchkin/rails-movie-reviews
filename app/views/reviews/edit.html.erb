@@ -1,16 +1,5 @@
 <h1>Edit Review for <%= current_review.movie.title %></h1>
 
-<%# <%= render partial: "layouts/errors", :locals => {:object => current_review} %> %>
-<% if current_review.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(current_review.errors.count, "error") %> prohibited this review from being saved:</h2>
+<%= render partial: "layouts/errors", :locals => {:object => @review} %>
 
-    <ul>
-    <% current_review.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
-
-<%= render partial: "form", :locals => {:review => current_review} %>
+<%= render partial: "form", :locals => {:review => @review} %>

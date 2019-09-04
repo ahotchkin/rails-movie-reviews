@@ -1,7 +1,7 @@
 <%= form_for review do |f| %>
   <% if !review.movie %>
     <%= f.label "Movie:" %>
-    <%# this is causing errors if I try to use the errors partial. It works fine if the error code is in the reviews new view %>
+    <%# this is not working if no movie is selected - causes error undefined method `map' for nil:NilClass - Did you mean?  tap %>
     <%= collection_select :review, :movie_id, @movies, :id, :title, {:include_blank => "Please select a movie to review"} %><br><br>
   <% else %>
     <%= f.hidden_field :movie_id %>
