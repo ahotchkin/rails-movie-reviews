@@ -2,7 +2,7 @@
 
 Genre(s):
 <ul>
-  <% if current_user.admin? %>
+  <% if current_user.admin %>
     <% current_movie.genres.each do |genre| %>
       <li><%= link_to genre.name, genre_path(genre) %> -
         <% movie_genre = MovieGenre.find_movie_genre(current_movie, genre).last %>
@@ -17,7 +17,7 @@ Genre(s):
 
 Starring:
 <ul>
-  <% if current_user.admin? %>
+  <% if current_user.admin %>
     <% current_movie.actors.each do |actor| %>
       <li><%= link_to actor.full_name, actor_path(actor) %> -
         <% movie_actor = MovieActor.find_movie_actor(current_movie, actor).last %>
@@ -39,6 +39,6 @@ Synopsis:
 
 <br><br>
 
-<% if current_user.admin? %>
+<% if current_user.admin %>
   <%= link_to "Edit Movie", edit_movie_path(current_movie) %>
 <% end %>

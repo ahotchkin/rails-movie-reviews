@@ -17,7 +17,7 @@
         <%= link_to "Write a Review", new_review_path %> |
         <%= link_to "All Reviews", reviews_path %> |
         <%= link_to "Movies", movies_path %> |
-        <% if current_user.admin? %>
+        <% if current_user.admin %>
           <%= link_to "Add Movie", new_movie_path %> |
         <% end %>
         <%= link_to "Actors", actors_path %> |
