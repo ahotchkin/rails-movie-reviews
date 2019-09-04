@@ -8,12 +8,13 @@ class Review < ApplicationRecord
 
   def one_review_per_user_per_movie
     movie_reviews = user.reviews.select { |review| review.movie_id == self.movie_id }
-    
+
     if movie_reviews.size >= 2
       errors.add(:review_id, "can't be created since you've already reviewed this movie.")
     end
   end
 
+  # move to helper
   def review_date
     self.created_at.strftime("%B %d, %Y")
   end

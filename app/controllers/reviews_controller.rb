@@ -21,6 +21,7 @@ class ReviewsController < ApplicationController
     else
       @error = "That movie doesn't exist" if params[:movie_id]
       @review = Review.new
+      @movies = Movie.alpha
     end
   end
 

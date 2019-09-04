@@ -12,17 +12,4 @@
   </div>
 <% end %>
 
-<%= form_for current_review do |f| %>
-  <%= f.hidden_field :movie_id %>
-  <%= f.label "Rating (1-5):" %>
-  <%= f.number_field :rating, :value => current_review.rating %>
-  <br><br>
-  <%= f.label "Title:" %>
-  <%= f.text_field :title, :value => current_review.title %>
-  <br><br>
-  <%= f.label "Review:" %>
-  <br>
-  <%= f.text_area :content, :value => current_review.content %>
-  <br><br>
-  <%= f.submit "Update Review" %>
-<% end %>
+<%= render partial: "form", :locals => {:review => current_review} %>
