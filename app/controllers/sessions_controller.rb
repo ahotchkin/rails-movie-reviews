@@ -21,6 +21,7 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       redirect_to user_path(@user)
     else
+      flash[:message] = "Google login didn't work. Please create an account."
       redirect_to root_path
     end
   end
