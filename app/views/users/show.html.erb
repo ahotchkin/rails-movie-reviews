@@ -5,7 +5,7 @@
 <h2>Here are the latest movie reviews:</h2>
 
 <% @reviews.each do |review| %>
-  <%= link_to review.title, review_path(review) %>
+  <%= display_review_title_link(review) %>
   <br>
   <%= render partial: "reviews/reviews", :locals => {:review => review} %>
 <% end %>

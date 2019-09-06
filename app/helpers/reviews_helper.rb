@@ -20,6 +20,10 @@ module ReviewsHelper
     end
   end
 
+  def display_review_title_link(review)
+    link_to "#{review.title}", review_path(review)
+  end
+
   def write_review_for_movie_link
     link_to "Write a Review for #{@movie.title}", new_movie_review_path(@movie) if params[:movie_id] && @movie
   end

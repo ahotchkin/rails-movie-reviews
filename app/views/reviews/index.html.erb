@@ -1,7 +1,7 @@
 <h1><%= reviews_display_header %></h1>
 
 <% @reviews.each do |review| %>
-  <%= link_to review.title, review_path(review) %>
+  <%= display_review_title_link(review) %>
   <br>
   <%= render partial: "reviews", :locals => {:review => review} %>
 <% end %>
