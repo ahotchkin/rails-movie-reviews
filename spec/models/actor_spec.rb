@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+
 RSpec.describe Actor, :type => :model do
   let(:emma_stone) {
     Actor.create(

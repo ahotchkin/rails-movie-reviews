@@ -10,6 +10,7 @@
   <%= f.text_area :synopsis %>
   <br><br>
   <%= f.label "Year:" %>
+  <%# trying to have year default to Time.current.year when movie is created so I can use @movie year here and use a partial %>
   <%= f.select :year, (Date.today.year-100)..(Date.today.year), :selected => Time.current.year %>
   <br><br>
 
