@@ -1,6 +1,6 @@
 class MoviesController < ApplicationController
 
-  helper_method :current_movie
+  before_action :redirect_if_not_admin, only: [:new, :create, :edit, :update]
 
   def index
     if params[:title]
@@ -11,14 +11,12 @@ class MoviesController < ApplicationController
   end
 
   def new
-    redirect_if_not_admin
     @movie = Movie.new
     3.times { @movie.genres.build }
     8.times { @movie.actors.build }
   end
 
   def create
-    redirect_if_not_admin
     @movie = current_user.movies.build(movie_params)
     if @movie.save
       redirect_to movie_path(@movie)
@@ -32,7 +30,6 @@ class MoviesController < ApplicationController
   end
 
   def edit
-    redirect_if_not_admin
     # using current_movie is impacting blank genre and actor fields
     @movie = Movie.find_by_id(params[:id])
     genre_number = 3 - @movie.genres.size
@@ -58,6 +55,5 @@ class MoviesController < ApplicationController
     def movie_params
       params.require(:movie).permit(:title, :synopsis, :year, :genres_attributes => [:name], :actors_attributes => [:first_name, :last_name])
     end
-
 
 end

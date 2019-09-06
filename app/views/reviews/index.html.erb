@@ -1,5 +1,7 @@
 <h1><%= reviews_display_header %></h1>
 
-<%= render partial: "reviews", :locals => {:reviews => @reviews, :movie => @movie} %>
+<% @reviews.each do |review| %>
+  <%= render partial: "reviews", :locals => {:review => review} %>
+<% end %>
 
 <%= write_review_for_movie_link %>
