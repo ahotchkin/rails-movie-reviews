@@ -1,7 +1,3 @@
-<% if !params[:review_id] %>
-  <%= link_to review.title, review_path(review) %>
-<% end %>
-<br>
 <% if !params[:user_id] %>
   Written by: <%= link_to review.user.username, user_reviews_path(review.user) %>
   <br>
