@@ -1,15 +1,7 @@
 class ActorsController < ApplicationController
 
   def index
-    if params[:first_name] && params[:last_name] == ""
-      @actors = Actor.find_by_first_name(params[:first_name])
-    elsif params[:first_name] == "" && params[:last_name]
-      @actors = Actor.find_by_last_name(params[:last_name])
-    elsif params[:first_name] && params[:last_name]
-      @actors = Actor.find_by_first_name(params[:first_name]) && Actor.find_by_last_name(params[:last_name])
-    else
-      @actors = Actor.sorted_actors
-    end
+    set_actors_array
   end
 
   def show
@@ -20,6 +12,18 @@ class ActorsController < ApplicationController
 
     def actor_params
       params.require(:actor).permit(:first_name, :last_name)
+    end
+
+    def set_actors_array
+      if params[:first_name] && params[:last_name] == ""
+        @actors = Actor.find_by_first_name(params[:first_name])
+      elsif params[:first_name] == "" && params[:last_name]
+        @actors = Actor.find_by_last_name(params[:last_name])
+      elsif params[:first_name] && params[:last_name]
+        @actors = Actor.find_by_first_name(params[:first_name]) && Actor.find_by_last_name(params[:last_name])
+      else
+        @actors = Actor.sorted_actors
+      end
     end
 
 end
