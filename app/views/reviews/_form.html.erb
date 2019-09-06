@@ -18,5 +18,5 @@
   <br>
   <%= f.text_area :content %>
   <br><br>
-  <%= f.submit "Publish Review" %>
+  <%= f.submit review.persisted? ? "Update Review" : "Publish Review" %>
 <% end %>

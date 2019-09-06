@@ -2,36 +2,4 @@
 
 <%= render partial: "layouts/errors", :locals => {:object => @movie} %>
 
-<%= form_for @movie do |f| %>
-  <%= f.label "Title:" %>
-  <%= f.text_field :title %>
-  <br><br>
-  <%= f.label "Synopsis:" %>
-  <%= f.text_area :synopsis %>
-  <br><br>
-  <%= f.label "Year:" %>
-  <%= f.select :year, (Date.today.year-100)..(Date.today.year), :selected => @movie.year %>
-  <br><br>
-
-  <%= f.label "Genre(s):" %>
-  <br>
-  <%= f.fields_for :genres do |genre| %>
-    <%= genre.text_field :name %>
-    <br>
-  <% end %>
-  <br><br>
-
-  <%= f.label "Starring:" %>
-  <br>
-  <%= f.fields_for :actors do |actor| %>
-      <%= actor.label "First Name:" %>
-      <%= actor.text_field :first_name %>
-
-      <%= actor.label "Last Name:" %>
-      <%= actor.text_field :last_name %>
-      <br>
-    <% end %>
-  <br><br>
-
-  <%= f.submit "Update Movie" %>
-<% end %>
+<%= render partial: "form", :locals => {:movie => @movie} %>
