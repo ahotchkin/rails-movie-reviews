@@ -1,0 +1,38 @@
+Genre(s):
+<ul>
+  <% current_movie.genres.each do |genre| %>
+    <% if current_user.admin %>
+      <li><%= link_to genre.name, genre_path(genre) %> -
+      <% movie_genre = MovieGenre.find_movie_genre(current_movie, genre).last %>
+      <%= link_to "Delete", movie_genre_path(movie_genre), :method => :delete %></li>
+    <% else %>
+      <li><%= link_to genre.name, genre_path(genre) %></li>
+    <% end %>
+  <% end %>
+</ul>
+
+Starring:
+<ul>
+  <% current_movie.actors.each do |actor| %>
+    <% if current_user.admin %>
+      <li><%= link_to actor.full_name, actor_path(actor) %> -
+      <% movie_actor = MovieActor.find_movie_actor(current_movie, actor).last %>
+      <%= link_to "Delete", movie_actor_path(movie_actor), :method => :delete %></li>
+    <% else %>
+      <li><%= link_to actor.full_name, actor_path(actor) %></li>
+    <% end %>
+  <% end %>
+</ul>
+
+Synopsis:
+<p><%= current_movie.synopsis %></p>
+
+<%= link_to "Read reviews for #{current_movie.title}", movie_reviews_path(current_movie) %>
+<br><br>
+<%= link_to "Write a Review for #{current_movie.title}", new_movie_review_path(current_movie) %>
+
+<br><br>
+
+<% if current_user.admin %>
+  <%= link_to "Edit Movie", edit_movie_path(current_movie) %>
+<% end %>
