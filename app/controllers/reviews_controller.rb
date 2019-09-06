@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
 
   helper_method :current_review
+  before_action :set_movies_array, only: [:new, :create]
 
   def index
     if params[:user_id] && current_user.id.to_s == params[:user_id]
@@ -21,7 +22,6 @@ class ReviewsController < ApplicationController
     else
       @error = "That movie doesn't exist" if params[:movie_id]
       @review = Review.new
-      @movies = Movie.alpha
     end
   end
 
@@ -78,6 +78,10 @@ class ReviewsController < ApplicationController
       #   @error = "That review doesn't exist"
       #   redirect_to reviews_path
       # end
+    end
+
+    def set_movies_array
+      @movies = Movie.alpha
     end
 
 end

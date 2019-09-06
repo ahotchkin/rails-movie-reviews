@@ -1,9 +1,6 @@
 <%= form_for review do |f| %>
   <% if !review.movie %>
     <%= f.label "Movie:" %>
-    <%# this is not working if no movie is selected - causes error undefined method `map' for nil:NilClass - Did you mean?  tap %>
-    <%# simplest solution - default would be first movie in the list so a movie is always selected %>
-    <%# check myblog part 5, about 30 min in %>
     <%= collection_select :review, :movie_id, @movies, :id, :title, {:include_blank => "Please select a movie to review"} %><br><br>
   <% else %>
     <%= f.hidden_field :movie_id %>
