@@ -26,7 +26,7 @@ class MoviesController < ApplicationController
   end
 
   def show
-    # flash message if actor or genre is deleted?
+    current_movie
   end
 
   def edit

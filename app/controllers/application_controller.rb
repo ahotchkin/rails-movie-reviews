@@ -24,7 +24,12 @@ class ApplicationController < ActionController::Base
     end
 
     def current_movie
-      Movie.find_by_id(params[:id])
+      if params[:movie_id]
+        movie = Movie.find_by_id(params[:movie_id])
+      else
+        movie = Movie.find_by_id(params[:id])
+      end
+      redirect_to movies_path if !movie
     end
 
 end

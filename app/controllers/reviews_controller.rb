@@ -4,21 +4,12 @@ class ReviewsController < ApplicationController
   before_action :set_movies_array, only: [:new, :create]
 
   def index
-    if params[:user_id] && current_user.id.to_s == params[:user_id]
-      @reviews = current_user.reviews.newest_to_oldest
-    elsif params[:user_id] && @user = User.find_by_id(params[:user_id])
-      @reviews = @user.reviews.newest_to_oldest
-    elsif params[:movie_id] && @movie = Movie.find_by_id(params[:movie_id])
-      @reviews = @movie.reviews.newest_to_oldest
-    else
-      @reviews = Review.all.newest_to_oldest
-    end
+    set_reviews_array
   end
 
   def new
-    # is there a way to user current_movie helper method here?
-    if params[:movie_id] && @movie = Movie.find_by_id(params[:movie_id])
-      @review = @movie.reviews.build
+    if params[:movie_id] && current_movie
+      @review = current_movie.reviews.build
     else
       @error = "That movie doesn't exist" if params[:movie_id]
       @review = Review.new
@@ -35,21 +26,18 @@ class ReviewsController < ApplicationController
   end
 
   def show
+    current_review
   end
 
   def edit
-    # tried using @review helper method, but error messages don't show up when I do
-    # @review = Review.find_by_id(params[:id])
     if current_user.id == current_review.user.id
       render :edit
     else
-      redirect_to review_path(current_review)
+      redirect_to reviews_path
     end
   end
 
   def update
-    # @review = Review.find_by_id(params[:id])
-
     if current_review.update(review_params)
       redirect_to review_path(current_review)
       flash[:message] = "Review sucessfully updated."
@@ -59,8 +47,10 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
-    if current_user.id == current_review.user.id
-      current_review.delete
+    # #current_review not working here
+    @review = Review.find_by_id(params[:id])
+    if current_user.id == @review.user.id
+      @review.delete
     else
       flash[:message] = "You do not have the authority to delete this review. Shame on you."
     end
@@ -74,14 +64,23 @@ class ReviewsController < ApplicationController
 
     def current_review
       @review = Review.find_by_id(params[:id])
-      # if !@review
-      #   @error = "That review doesn't exist"
-      #   redirect_to reviews_path
-      # end
+      redirect_to reviews_path if !@review
     end
 
     def set_movies_array
       @movies = Movie.alpha
+    end
+
+    def set_reviews_array
+      if params[:user_id] && current_user.id.to_s == params[:user_id]
+        @reviews = current_user.reviews.newest_to_oldest
+      elsif params[:user_id] && @user = User.find_by_id(params[:user_id])
+        @reviews = @user.reviews.newest_to_oldest
+      elsif params[:movie_id] && @movie = Movie.find_by_id(params[:movie_id])
+        @reviews = @movie.reviews.newest_to_oldest
+      else
+        @reviews = Review.all.newest_to_oldest
+      end
     end
 
 end
