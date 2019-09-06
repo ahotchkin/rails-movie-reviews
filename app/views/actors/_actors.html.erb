@@ -1,0 +1,8 @@
+<% actors.each do |actor| %>
+  <% if current_movie && current_user.admin %>
+    <% movie_actor = MovieActor.find_movie_actor(current_movie, actor).last %>
+    <li><%= link_to actor.full_name, actor_path(actor) %> - <%= link_to "Delete", movie_actor_path(movie_actor), :method => :delete %></li>
+  <% else %>
+    <li><%= link_to actor.full_name, actor_path(actor) %></li>
+  <% end %>
+<% end %>

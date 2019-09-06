@@ -1,7 +1,5 @@
 <h1>Genres</h1>
 
 <ul>
-  <% @genres.each do |genre| %>
-    <li><%= link_to genre.name, genre_path(genre) %></li>
-  <% end %>
+  <%= render partial: "genres", :locals => {:genres => @genres} %>
 </ul>

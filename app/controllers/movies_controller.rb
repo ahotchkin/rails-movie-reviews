@@ -59,8 +59,5 @@ class MoviesController < ApplicationController
       params.require(:movie).permit(:title, :synopsis, :year, :genres_attributes => [:name], :actors_attributes => [:first_name, :last_name])
     end
 
-    def current_movie
-      current_movie ||= Movie.find_by_id(params[:id])
-    end
 
 end

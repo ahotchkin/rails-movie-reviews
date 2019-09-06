@@ -2,28 +2,12 @@
 
 Genre(s):
 <ul>
-  <% current_movie.genres.each do |genre| %>
-    <% if current_user.admin %>
-      <li><%= link_to genre.name, genre_path(genre) %> -
-      <% movie_genre = MovieGenre.find_movie_genre(current_movie, genre).last %>
-      <%= link_to "Delete", movie_genre_path(movie_genre), :method => :delete %></li>
-    <% else %>
-      <li><%= link_to genre.name, genre_path(genre) %></li>
-    <% end %>
-  <% end %>
+  <%= render partial: "genres/genres", :locals => {:genres => current_movie.genres} %>
 </ul>
 
 Starring:
 <ul>
-  <% current_movie.actors.each do |actor| %>
-    <% if current_user.admin %>
-      <li><%= link_to actor.full_name, actor_path(actor) %> -
-      <% movie_actor = MovieActor.find_movie_actor(current_movie, actor).last %>
-      <%= link_to "Delete", movie_actor_path(movie_actor), :method => :delete %></li>
-    <% else %>
-      <li><%= link_to actor.full_name, actor_path(actor) %></li>
-    <% end %>
-  <% end %>
+  <%= render partial: "actors/actors", :locals => {:actors => current_movie.actors} %>
 </ul>
 
 Synopsis:
