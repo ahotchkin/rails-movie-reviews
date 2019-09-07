@@ -2,6 +2,7 @@ class ActorsController < ApplicationController
 
   def index
     set_actors_array
+    @movie = Movie.find_by_id(params[:id])
   end
 
   def show
