@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-
 RSpec.describe MoviesController, :type => :controller do
-  # 
+  
+
   # # let(:admin) {
   # #   User.create(
   # #     :username => "Walt",

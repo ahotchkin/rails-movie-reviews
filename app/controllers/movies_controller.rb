@@ -1,6 +1,6 @@
 class MoviesController < ApplicationController
 
-  helper_method :current_movie
+  # helper_method :current_movie
   before_action :redirect_if_not_admin, only: [:new, :create, :edit, :update]
 
   def index
