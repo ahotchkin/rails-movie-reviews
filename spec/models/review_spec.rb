@@ -18,12 +18,6 @@ RSpec.describe Review, :type => :model do
     )
   }
 
-  let(:comedy) {
-    Genre.create(
-      :name => "Comedy"
-    )
-  }
-
   let(:easy_a) {
     Movie.create(
       :title => "Easy A",
@@ -43,7 +37,6 @@ RSpec.describe Review, :type => :model do
     )
   }
 
-
   describe "validations" do
     it "is valid with a title, content, and rating" do
       expect(easy_a_review).to be_valid
@@ -60,17 +53,6 @@ RSpec.describe Review, :type => :model do
     it "is not valid without a rating" do
       expect(Review.new(:user_id => user.id, :movie_id => easy_a.id, :title => "Great Movie!", :content => "Easy A is a great movie. Emma Stone steals the show.")).to_not be_valid
     end
-
-    # ***how do I test custom validation???***
-    # it "is not valid if user has already written a review for the movie" do
-    #   review_1 = Review.create(:user_id => user.id, :movie_id => easy_a.id, :title => "Great Movie!", :content => "Easy A is a great movie. Emma Stone steals the show.", :rating => 4)
-    #   review_1.valid?
-    #   review_1.errors.should_not include("can't be created since you've already reviewed this movie.")
-    #   review_2 = Review.create(:user_id => user.id, :movie_id => easy_a.id, :title => "Best Movie Ever!", :content => "Easy A is the best movie I've ever seen.", :rating => 5)
-    #   review_2.valid?
-    #
-    #   review_2.errors.should include("can't be created since you've already reviewed this movie.")
-    # end
   end
 
   describe "associations" do
