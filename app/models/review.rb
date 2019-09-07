@@ -14,9 +14,4 @@ class Review < ApplicationRecord
     end
   end
 
-  # move to helper
-  def review_date
-    self.created_at.strftime("%B %d, %Y")
-  end
-
 end

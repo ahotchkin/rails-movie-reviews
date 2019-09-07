@@ -28,4 +28,8 @@ module ReviewsHelper
     link_to "Write a Review for #{@movie.title}", new_movie_review_path(@movie) if params[:movie_id] && @movie
   end
 
+  def review_date(review)
+    review.created_at.strftime("%B %d, %Y")
+  end
+
 end

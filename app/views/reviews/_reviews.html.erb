@@ -2,7 +2,7 @@
   Written by: <%= link_to review.user.username, user_reviews_path(review.user) %>
   <br>
 <% end %>
-<%= review.review_date %>
+<%= review_date(review) %>
 <br>
 <% if !params[:movie_id] %>
   Movie: <%= link_to review.movie.title, movie_path(review.movie) %>
