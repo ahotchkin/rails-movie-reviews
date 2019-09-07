@@ -26,11 +26,12 @@ class ReviewsController < ApplicationController
   end
 
   def show
-    current_review
+    @review = Review.find_by_id(params[:id])
   end
 
   def edit
-    if current_user.id == current_review.user.id
+    @review = Review.find_by_id(params[:id])
+    if current_user.id == @review.user.id
       render :edit
     else
       redirect_to reviews_path
@@ -38,8 +39,9 @@ class ReviewsController < ApplicationController
   end
 
   def update
-    if current_review.update(review_params)
-      redirect_to review_path(current_review)
+    @review = Review.find_by_id(params[:id])
+    if @reviewreview.update(review_params)
+      redirect_to review_path(@reviewreview)
       flash[:message] = "Review sucessfully updated."
     else
       render :edit
@@ -62,6 +64,9 @@ class ReviewsController < ApplicationController
       params.require(:review).permit(:title, :content, :rating, :movie_id)
     end
 
+
+
+    # *** is this no longer working???? => Add tests for controllers and routes
     def current_review
       @review = Review.find_by_id(params[:id])
       redirect_to reviews_path if !@review

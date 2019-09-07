@@ -1,3 +1,3 @@
-<h1><%= current_review.title %></h1>
+<h1><%= @review.title %></h1>
 
-<%= render partial: "reviews", :locals => {:review => current_review} %>
+<%= render partial: "reviews", :locals => {:review => @review} %>

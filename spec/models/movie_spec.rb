@@ -1,6 +1,22 @@
 require 'rails_helper'
 
 RSpec.describe Movie, :type => :model do
+
+  describe "validations" do
+    it { should validate_presence_of(:title) }
+    it { should validate_presence_of(:synopsis) }
+    it { should validate_presence_of(:year) }
+  end
+
+  describe "associations" do
+    it { should have_many(:movie_genres) }
+    it { should have_many(:genres).through(:movie_genres) }
+    it { should have_many(:movie_actors) }
+    it { should have_many(:actors).through(:movie_actors) }
+    it { should have_many(:reviews) }
+    it { should have_many(:users).through(:reviews) }
+  end
+
   # let(:user) {
   #   User.create(
   #     :username => "Mindy",
@@ -76,20 +92,4 @@ RSpec.describe Movie, :type => :model do
   # it "is valid with a title, synopsis, and year" do
   #   expect(easy_a).to be_valid
   # end
-
-  describe "validations" do
-    it { should validate_presence_of(:title) }
-    it { should validate_presence_of(:synopsis) }
-    it { should validate_presence_of(:year) }
-  end
-
-  describe "associations" do
-    it { should have_many(:movie_genres) }
-    it { should have_many(:genres).through(:movie_genres) }
-    it { should have_many(:movie_actors) }
-    it { should have_many(:actors).through(:movie_actors) }
-    it { should have_many(:reviews) }
-    it { should have_many(:users).through(:reviews) }
-  end
-
 end

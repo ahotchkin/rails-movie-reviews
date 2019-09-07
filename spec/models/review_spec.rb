@@ -43,24 +43,56 @@ RSpec.describe Review, :type => :model do
     )
   }
 
-  it "is valid with a title, content, and rating" do
-    expect(easy_a_review).to be_valid
+
+  describe "validations" do
+    it "is valid with a title, content, and rating" do
+      expect(easy_a_review).to be_valid
+    end
+
+    it "is not valid without a title" do
+      expect(Review.new(:user_id => user.id, :movie_id => easy_a.id, :content => "Easy A is a great movie. Emma Stone steals the show.", :rating => 4)).to_not be_valid
+    end
+
+    it "is not valid without content" do
+      expect(Review.new(:user_id => user.id, :movie_id => easy_a.id, :title => "Great Movie!", :rating => 4)).to_not be_valid
+    end
+
+    it "is not valid without a rating" do
+      expect(Review.new(:user_id => user.id, :movie_id => easy_a.id, :title => "Great Movie!", :content => "Easy A is a great movie. Emma Stone steals the show.")).to_not be_valid
+    end
+
+    # ***how do I test custom validation???***
+    # it "is not valid if user has already written a review for the movie" do
+    #   review_1 = Review.create(:user_id => user.id, :movie_id => easy_a.id, :title => "Great Movie!", :content => "Easy A is a great movie. Emma Stone steals the show.", :rating => 4)
+    #   review_1.valid?
+    #   review_1.errors.should_not include("can't be created since you've already reviewed this movie.")
+    #   review_2 = Review.create(:user_id => user.id, :movie_id => easy_a.id, :title => "Best Movie Ever!", :content => "Easy A is the best movie I've ever seen.", :rating => 5)
+    #   review_2.valid?
+    #
+    #   review_2.errors.should include("can't be created since you've already reviewed this movie.")
+    # end
   end
 
-  # it "is not valid without a title" do
-  #   expect(Review.new(:user_id => user.id, :movie_id => easy_a.id, :content => "Easy A is a great movie. Emma Stone steals the show.", :rating => 4)).to_not be_valid
-  # end
-  it { should validate_presence_of(:title) }
+  describe "associations" do
+    it "belongs to one user" do
+      expect(easy_a_review.user).to eq(user)
+    end
 
-  # it "is not valid without content" do
-  #   expect(Review.new(:user_id => user.id, :movie_id => easy_a.id, :title => "Great Movie!", :rating => 4)).to_not be_valid
-  # end
-  it { should validate_presence_of(:content) }
-
-  # it "is not valid without a rating" do
-  #   expect(Review.new(:user_id => user.id, :movie_id => easy_a.id, :title => "Great Movie!", :content => "Easy A is a great movie. Emma Stone steals the show.")).to_not be_valid
-  # end
-  it { should validate_presence_of(:rating) }
-
+    it "belongs to one movie" do
+      expect(easy_a_review.movie).to eq(easy_a)
+    end
+  end
 
 end
+
+  # shoulda tests aren't working because of customer validation - one_review_per_user_per_movie
+  # describe "validations" do
+  #   it { should validate_presence_of(:title) }
+  #   it { should validate_presence_of(:content) }
+  #   it { should validate_presence_of(:rating) }
+  # end
+
+  # describe "associations" do
+  #   it { should belong_to(:user) }
+  #   it { should belong_to(:movie) }
+  # end

@@ -2,12 +2,23 @@ require 'rails_helper'
 
 
 RSpec.describe Actor, :type => :model do
-  let(:emma_stone) {
-    Actor.create(
-      :first_name => "Emma",
-      :last_name => "Stone",
-    )
-  }
+
+  describe "validations" do
+    it { should validate_presence_of(:first_name) }
+  end
+
+  describe "associations" do
+    it { should have_many(:movie_actors) }
+    it { should have_many(:movies).through(:movie_actors) }
+  end
+
+
+  # let(:emma_stone) {
+  #   Actor.create(
+  #     :first_name => "Emma",
+  #     :last_name => "Stone",
+  #   )
+  # }
 
   # let(:easy_a) {
   #   Movie.create(
@@ -25,14 +36,13 @@ RSpec.describe Actor, :type => :model do
   #   )
   # }
 
-  it "is valid with a first name and last name" do
-    expect(emma_stone).to be_valid
-  end
+  # it "is valid with a first name and last name" do
+  #   expect(emma_stone).to be_valid
+  # end
 
   # it "is not valid without a first name" do
   #   expect(Actor.new(:last_name => "last")).to_not be_valid
   # end
-  it { should validate_presence_of(:first_name) }
 
   # it "is valid without a last name" do
   #   expect(Actor.new(:first_name => "Cher")).to be_valid
@@ -44,7 +54,6 @@ RSpec.describe Actor, :type => :model do
   #   expect(emma_stone.movie_actors).to include(emma_easy_a)
   #   expect(emma_stone.movie_actors).to include(emma_la_la_land)
   # end
-  it { should have_many(:movie_actors) }
 
   # it "has many movies through movie_actors" do
   #   MovieActor.create(:movie_id => easy_a.id, :actor_id => emma_stone.id)
@@ -52,6 +61,6 @@ RSpec.describe Actor, :type => :model do
   #   expect(emma_stone.movies).to include(easy_a)
   #   expect(emma_stone.movies).to include(la_la_land)
   # end
-  it { should have_many(:movies).through(:movie_actors) }
+
 
 end
