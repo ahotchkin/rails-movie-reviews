@@ -1,6 +1,6 @@
 <% genres.each do |genre| %>
-  <% if current_movie && current_user.admin %>
-    <% movie_genre = MovieGenre.find_movie_genre(current_movie, genre).last %>
+  <% if movie && current_user.admin %>
+    <% movie_genre = MovieGenre.find_movie_genre(movie, genre).last %>
     <li><%= link_to genre.name, genre_path(genre) %> - <%= link_to "Delete", movie_genre_path(movie_genre), :method => :delete %></li>
   <% else %>
     <li><%= link_to genre.name, genre_path(genre) %></li>

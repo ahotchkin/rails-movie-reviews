@@ -8,8 +8,8 @@ class ReviewsController < ApplicationController
   end
 
   def new
-    if params[:movie_id] && current_movie
-      @review = current_movie.reviews.build
+    if params[:movie_id] && @movie = Movie.find_by_id(params[:movie_id])
+      @review = @movie.reviews.build
     else
       @error = "That movie doesn't exist" if params[:movie_id]
       @review = Review.new

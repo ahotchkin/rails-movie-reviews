@@ -1,21 +1,21 @@
-<h1><%= current_movie.title %></h1>
+<h1><%= @movie.title %></h1>
 
 Genre(s):
 <ul>
-  <%= render partial: "genres/genres", :locals => {:genres => current_movie.genres} %>
+  <%= render partial: "genres/genres", :locals => {:genres => @movie.genres, :movie => @movie} %>
 </ul>
 
 Starring:
 <ul>
-  <%= render partial: "actors/actors", :locals => {:actors => current_movie.actors} %>
+  <%= render partial: "actors/actors", :locals => {:actors => @movie.actors, :movie => @movie} %>
 </ul>
 
 Synopsis:
-<p><%= current_movie.synopsis %></p>
+<p><%= @movie.synopsis %></p>
 
 <br><br>
 
-<%= link_to "Read Reviews", movie_reviews_path(current_movie) %> | <%= link_to "Write a Review for #{current_movie.title}", new_movie_review_path(current_movie) %>
+<%= link_to "Read Reviews", movie_reviews_path(@movie) %> | <%= link_to "Write a Review for #{@movie.title}", new_movie_review_path(@movie) %>
 
 <br><br>
 

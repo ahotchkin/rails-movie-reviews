@@ -1,5 +1,6 @@
 class MoviesController < ApplicationController
 
+  helper_method :current_movie
   before_action :redirect_if_not_admin, only: [:new, :create, :edit, :update]
 
   def index
@@ -26,7 +27,8 @@ class MoviesController < ApplicationController
   end
 
   def show
-    current_movie
+    # current_movie is nil in view
+    @movie = Movie.find_by_id(params[:id])
   end
 
   def edit
@@ -55,5 +57,10 @@ class MoviesController < ApplicationController
     def movie_params
       params.require(:movie).permit(:title, :synopsis, :year, :genres_attributes => [:name], :actors_attributes => [:first_name, :last_name])
     end
+
+    # def current_movie
+    #   movie = Movie.find_by_id(params[:id])
+    #   redirect_to movies_path if !movie
+    # end
 
 end

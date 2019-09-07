@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+
   before_action :redirect_if_logged_in, except: :destroy
 
   def new
@@ -21,7 +22,7 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       redirect_to user_path(@user)
     else
-      flash[:message] = "Google login didn't work. Please create an account."
+      flash[:message] = "That email already exists in our database. Please login or sign up with a different email address."
       redirect_to root_path
     end
   end
