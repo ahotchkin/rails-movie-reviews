@@ -2,7 +2,11 @@ require_relative "../rails_helper.rb"
 
 RSpec.configure do |c|
   c.include LoginHelper
+  c.include OmniauthHelper
+
 end
+
+OmniAuth.config.test_mode = true
 
 describe 'Feature Test: User Signup', :type => :feature do
 
@@ -32,7 +36,18 @@ describe 'Feature Test: User Signup', :type => :feature do
     expect(current_path).to eq("/users/1")
     expect(page).to have_content("Mindy")
     # review content - once review & movie forms are completed
+  end
 
+  # test is failing - acting as though user[:email] already exists in the database
+  describe "login page" do
+    it "can log in user with Google account" do
+      visit root_path
+      page.should have_content("Log in with Google")
+      mock_auth_hash
+      click_link "Log in with Google"
+      page.should have_content("Hello, mockuser")  # user name
+      page.should have_content("Logout")
+    end
   end
 #
 #   it "on log in, successfully adds a session hash" do

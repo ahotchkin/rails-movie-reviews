@@ -17,5 +17,9 @@ RSpec.describe Movie, :type => :model do
     it { should have_many(:reviews) }
     it { should have_many(:users).through(:reviews) }
   end
-  
+
+  it "defaults to year => #{Time.now.year.to_s}" do
+    expect(Movie.new.year).to eq("2019")
+  end
+
 end
