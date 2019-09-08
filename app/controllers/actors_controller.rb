@@ -11,10 +11,6 @@ class ActorsController < ApplicationController
 
   private
 
-    # def actor_params
-    #   params.require(:actor).permit(:first_name, :last_name)
-    # end
-
     def set_actors_array
       if params[:first_name] && params[:last_name] == ""
         @actors = Actor.find_by_first_name(params[:first_name])

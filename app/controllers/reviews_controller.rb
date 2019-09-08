@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
 
-  helper_method :current_review
+  # helper_method :current_review
   before_action :set_movies_array, only: [:new, :create]
 
   def index
@@ -67,10 +67,10 @@ class ReviewsController < ApplicationController
 
 
     # *** is this no longer working???? => Add tests for controllers and routes
-    def current_review
-      @review = Review.find_by_id(params[:id])
-      redirect_to reviews_path if !@review
-    end
+    # def current_review
+    #   @review = Review.find_by_id(params[:id])
+    #   redirect_to reviews_path if !@review
+    # end
 
     def set_movies_array
       @movies = Movie.alpha
