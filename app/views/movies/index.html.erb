@@ -4,11 +4,32 @@
 <%= form_tag(movies_path, :method => :get) do %>
   <%= text_field_tag :title, params[:title] %>
 
-  <%= submit_tag "Search", :name => nil %>
+  <%= submit_tag "Search", :name => nil, :class => "btn btn-outline" %>
 <% end %>
 
-<ul>
-  <% @movies.each do |movie| %>
-    <li><%= link_to movie.title, movie_path(movie) %></li>
+<br>
+
+<table class="table">
+  <thead>
+    <tr>
+      <td>
+        <strong>Title</strong>
+      </td>
+      <td>
+        <strong>Year</strong>
+      </td>
+      <td>
+        <strong>Average Rating</strong>
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @movies.each do |movie| %>
+    <tr>
+      <td><%= link_to movie.title, movie_path(movie) %></td>
+      <td><%= movie.year %></td>
+      <td><%= display_average_rating(movie) %></td>
+    </tr>
   <% end %>
-</ul>
+  </tbody>
+</table>

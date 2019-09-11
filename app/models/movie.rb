@@ -33,4 +33,11 @@ class Movie < ApplicationRecord
     end
   end
 
+  def average_rating
+    all_ratings = self.reviews.map do |review|
+      review.rating
+    end
+
+    all_ratings.sum / self.reviews.count
+  end
 end
