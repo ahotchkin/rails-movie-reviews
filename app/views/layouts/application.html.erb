@@ -17,6 +17,10 @@
     <div>
 
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <% if logged_in? && current_user.admin %>
+          <a class="navbar-brand" href="#">ADMIN</a>
+        <% end %>
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -27,6 +31,8 @@
               <li class="nav-item">
                 <%= link_to "Home", user_path(current_user), :class => "nav-link" %>
               </li>
+              <%= link_to "Write a Review", new_review_path, :class => "dropdown-item" %>
+
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Reviews
@@ -79,7 +85,7 @@
 
     </div>
 
-    <div class="container">
+    <div class="container-fluid">
       <% if flash[:message] %>
         <div><%= flash[:message] %></div>
       <% end %>

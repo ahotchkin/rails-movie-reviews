@@ -1,18 +1,18 @@
-<%= form_for movie do |f| %>
+<%= form_for movie, :class => "form-group" do |f| %>
   <%= f.label "Title:" %>
-  <%= f.text_field :title %>
+  <%= f.text_field :title, :class => "form-control" %>
   <br><br>
   <%= f.label "Synopsis:" %>
-  <%= f.text_area :synopsis %>
+  <%= f.text_area :synopsis, :class => "form-control" %>
   <br><br>
   <%= f.label "Year:" %>
-  <%= f.select :year, (Date.today.year-100)..(Date.today.year), :selected => movie.year %>
+  <%= f.select :year, (Date.today.year-100)..(Date.today.year), :selected => movie.year, :class => "form-control" %>
   <br><br>
 
   <%= f.label "Genre(s):" %>
   <br>
   <%= f.fields_for :genres do |genre| %>
-    <%= genre.text_field :name %>
+    <%= genre.text_field :name, :class => "form-group col-md-4" %>
     <br>
   <% end %>
   <br><br>
@@ -20,13 +20,16 @@
   <%= f.label "Starring:" %>
   <br>
   <%= f.fields_for :actors do |actor| %>
-      <%= actor.label "First Name:" %>
-      <%= actor.text_field :first_name %>
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <%= actor.text_field :first_name, :class => "form-control", :placeholder => "First name" %>
+      </div>
 
-      <%= actor.label "Last Name:" %>
-      <%= actor.text_field :last_name %>
+      <div class="form-group col-md-4">
+        <%= actor.text_field :last_name, :class => "form-control", :placeholder => "Last name" %>
+      </div>
+    </div>
       <br>
     <% end %>
-  <br><br>
   <%= f.submit movie.persisted? ? "Update Movie" : "Add Movie" %>
 <% end %>
