@@ -1,9 +1,9 @@
 <h1>Actors</h1>
 
-<h3>Search for an actor:</h3>
-<%= form_tag(actors_path, :method => :get) do %>
-  First Name: <%= text_field_tag :first_name, params[:first_name] %>
-  Last Name: <%= text_field_tag :last_name, params[:last_name] %>
+<%= form_tag actors_path, :method => :get, :class => "search-form" do %>
+  <%= label_tag "Search for an actor:", nil, :class => "col-form-label" %>
+  <%= text_field_tag :first_name, params[:first_name], :placeholder => "First Name" %>
+  <%= text_field_tag :last_name, params[:last_name], :placeholder => "Last Name" %>
 
   <%= submit_tag "Search", :name => nil %>
 <% end %>
