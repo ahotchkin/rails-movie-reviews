@@ -1,5 +1,12 @@
 <h1>Genres</h1>
 
-<ul>
-  <%= render partial: "genres", :locals => {:genres => @genres, :movie => @movie} %>
-</ul>
+<%= form_tag genres_path, :method => :get, :class => "search-form" do %>
+  <%= label_tag "Search for a genre:", nil, :class => "col-form-label" %>
+  <%= text_field_tag :name, params[:name] %>
+
+  <%= submit_tag "Search", :name => nil, :class => "btn btn-outline" %>
+<% end %>
+
+<br>
+
+<%= render partial: "genres", :locals => {:genres => @genres, :movie => @movie} %>

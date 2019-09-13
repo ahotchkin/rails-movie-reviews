@@ -1,7 +1,7 @@
 class Review < ApplicationRecord
   belongs_to :movie
   belongs_to :user
-  validates_presence_of :title, :content, :rating
+  validates_presence_of :rating, :title, :content
   validate :one_review_per_user_per_movie
 
   scope :newest_to_oldest, -> { order(:created_at => :desc) }

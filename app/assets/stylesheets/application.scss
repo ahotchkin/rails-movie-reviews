@@ -25,6 +25,7 @@ h1 {
 }
 
 h2 {
+  text-align: center;
   margin-top: 25px;
   margin-bottom: 25px;
   font-weight: 300;
@@ -39,7 +40,9 @@ form {
   margin-left: 25%;
 }
 
-
+// a {
+//   color: red;
+// }
 
 .container-fluid {
   width: 100%;
@@ -71,8 +74,6 @@ form {
   margin-left: 10px;
 }
 
-
-/* .field_with_errors {
-  border: 1px solid;
-  color: red;
-} */
+.error-list {
+  margin-left: 25%;
+}

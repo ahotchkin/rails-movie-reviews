@@ -28,6 +28,7 @@ class Actor < ApplicationRecord
     end
   end
 
+  # refactor - used in actor and genre
   def number_of_movies
     self.movies.count
   end

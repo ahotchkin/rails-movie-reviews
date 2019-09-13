@@ -1,8 +1,22 @@
-<% genres.each do |genre| %>
-  <% if movie && current_user.admin %>
-    <% movie_genre = MovieGenre.find_movie_genre(movie, genre).last %>
-    <li><%= link_to genre.name, genre_path(genre) %> - <%= link_to "Delete", movie_genre_path(movie_genre), :method => :delete %></li>
-  <% else %>
-    <li><%= link_to genre.name, genre_path(genre) %></li>
-  <% end %>
-<% end %>
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Genre</th>
+      <th scope="col">Number of Movies</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% genres.each do |genre| %>
+      <% if movie && current_user.admin %>
+        <% movie_genre = MovieGenre.find_movie_genre(movie, genre).last %>
+        <tr>
+        <td><%= link_to genre.name, genre_path(genre) %> - <%= link_to "Delete", movie_genre_path(movie_genre), :method => :delete %></td>
+      <% else %>
+        <tr>
+        <td><%= link_to genre.name, genre_path(genre) %></td>
+      <% end %>
+      <td><%= genre.number_of_movies %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

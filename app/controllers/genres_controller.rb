@@ -1,7 +1,11 @@
 class GenresController < ApplicationController
 
   def index
-    @genres = Genre.alpha
+    if params[:name]
+      @genres = Genre.find_by_name(params[:name])
+    else
+      @genres = Genre.alpha
+    end
     @movie = Movie.find_by_id(params[:id])
   end
 
