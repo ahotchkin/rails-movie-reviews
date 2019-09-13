@@ -1,8 +1,22 @@
-<% actors.each do |actor| %>
-  <% if movie && current_user.admin %>
-    <% movie_actor = MovieActor.find_movie_actor(movie, actor).last %>
-    <li><%= link_to actor.full_name, actor_path(actor) %> - <%= link_to "Delete", movie_actor_path(movie_actor), :method => :delete %></li>
-  <% else %>
-    <li><%= link_to actor.full_name, actor_path(actor) %></li>
-  <% end %>
-<% end %>
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Number of Movies</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% actors.each do |actor| %>
+      <% if movie && current_user.admin %>
+        <% movie_actor = MovieActor.find_movie_actor(movie, actor).last %>
+        <tr>
+        <td><%= link_to actor.full_name, actor_path(actor) %> - <%= link_to "Delete", movie_actor_path(movie_actor), :method => :delete %></td>
+      <% else %>
+        <tr>
+        <td><%= link_to actor.full_name, actor_path(actor) %></td>
+      <% end %>
+      <td><%= actor.number_of_movies %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

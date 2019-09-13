@@ -28,4 +28,8 @@ class Actor < ApplicationRecord
     end
   end
 
+  def number_of_movies
+    self.movies.count
+  end
+
 end
