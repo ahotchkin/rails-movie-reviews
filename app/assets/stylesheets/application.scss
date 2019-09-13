@@ -18,6 +18,7 @@
 @import "bootstrap";
 
 h1 {
+  text-align: center;
   margin-top: 25px;
   margin-bottom: 25px;
   font-weight: 300;
@@ -34,6 +35,10 @@ h3 {
   font-size: 1.5em;
 }
 
+form {
+  margin-left: 25%;
+}
+
 
 
 .container-fluid {
@@ -45,8 +50,13 @@ h3 {
   margin-left: auto;
 }
 
-.form-row .form-group {
-  margin: 0px;
+.form-row {
+  margin: 5px;
+  padding-right: 5px;
+}
+
+.form-group {
+  margin: 5px;
   padding-right: 5px;
 }
 

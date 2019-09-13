@@ -13,10 +13,8 @@ class MoviesController < ApplicationController
 
   def new
     @movie = Movie.new
-
-    # *****refactor******
-    3.times { @movie.genres.build }
-    8.times { @movie.actors.build }
+    @movie.actor_number
+    @movie.genre_number
   end
 
   def create
@@ -24,12 +22,8 @@ class MoviesController < ApplicationController
     if @movie.save
       redirect_to movie_path(@movie)
     else
-
-      # *****refactor******
-
-      3.times { @movie.genres.build }
-      8.times { @movie.actors.build }
-
+      @movie.actor_number
+      @movie.genre_number
       render :new
     end
   end
@@ -42,31 +36,19 @@ class MoviesController < ApplicationController
   def edit
     # using current_movie is impacting blank genre and actor fields
     @movie = Movie.find_by_id(params[:id])
-
-    # *****refactor******
-
-    genre_number = 3 - @movie.genres.size
-    genre_number.times { @movie.genres.build }
-
-    actor_number = 8 - @movie.actors.size
-    actor_number.times { @movie.actors.build }
+    @movie.actor_number
+    @movie.genre_number
   end
 
   def update
     # using current_movie is causing @movie to be nil
     @movie = Movie.find_by_id(params[:id])
     if @movie.update(movie_params)
-      redirect_to movie_path(@movie)
+      redirect_to movie_path(c@movie)
       flash[:message] = "Movie sucessfully updated."
     else
-      
-      # *****refactor******
-
-      genre_number = 3 - @movie.genres.size
-      genre_number.times { @movie.genres.build }
-
-      actor_number = 8 - @movie.actors.size
-      actor_number.times { @movie.actors.build }
+      @movie.actor_number
+      @movie.genre_number
       render :edit
     end
   end
@@ -78,8 +60,8 @@ class MoviesController < ApplicationController
     end
 
     # def current_movie
-    #   movie = Movie.find_by_id(params[:id])
-    #   redirect_to movies_path if !movie
+    #   current_movie ||= Movie.find_by_id(params[:id])
+    #   redirect_to movies_path if !current_movie
     # end
 
 end

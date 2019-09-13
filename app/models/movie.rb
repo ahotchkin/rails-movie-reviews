@@ -40,4 +40,15 @@ class Movie < ApplicationRecord
 
     all_ratings.sum / self.reviews.count
   end
+
+  def actor_number
+    actor_number = 8 - self.actors.size
+    actor_number.times { self.actors.build }
+  end
+
+  def genre_number
+    genre_number = 3 - self.genres.size
+    genre_number.times { self.genres.build }
+  end
+
 end
