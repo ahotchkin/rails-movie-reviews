@@ -1,11 +1,14 @@
 class MoviesController < ApplicationController
 
   # helper_method :current_movie
+  helper_method :sort_column, :sort_direction
   before_action :redirect_if_not_admin, only: [:new, :create, :edit, :update]
 
   def index
     if params[:title]
       @movies = Movie.find_by_title(params[:title])
+    elsif sort_column && sort_direction
+      @movies = Movie.order(sort_column + " " + sort_direction)
     else
       @movies = Movie.alpha
     end
@@ -63,5 +66,17 @@ class MoviesController < ApplicationController
     #   current_movie ||= Movie.find_by_id(params[:id])
     #   redirect_to movies_path if !current_movie
     # end
+
+    def sort_column
+      if Movie.column_names.include?(params[:sort])
+        params[:sort]
+      end
+    end
+
+    def sort_direction
+      if %w[asc desc].include?(params[:direction])
+        params[:direction]
+      end
+    end
 
 end
