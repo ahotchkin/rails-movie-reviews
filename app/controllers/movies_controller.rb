@@ -7,10 +7,8 @@ class MoviesController < ApplicationController
   def index
     if params[:title]
       @movies = Movie.find_by_title(params[:title])
-    elsif sort_column && sort_direction
-      @movies = Movie.order(sort_column + " " + sort_direction)
     else
-      @movies = Movie.alpha
+      @movies = Movie.order(sort_column + " " + sort_direction)
     end
   end
 
@@ -68,15 +66,11 @@ class MoviesController < ApplicationController
     # end
 
     def sort_column
-      if Movie.column_names.include?(params[:sort])
-        params[:sort]
-      end
+      Movie.column_names.include?(params[:sort]) ? params[:sort] : "title"
     end
 
     def sort_direction
-      if %w[asc desc].include?(params[:direction])
-        params[:direction]
-      end
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 
 end
