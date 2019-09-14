@@ -1,22 +1,20 @@
-<h1><%= @movie.title %></h1>
+<div class="info">
+  <h1><%= @movie.title %></h1>
 
-Genre(s):
-<ul>
-  <%= render partial: "genres/genres", :locals => {:genres => @movie.genres, :movie => @movie} %>
-</ul>
+  Genre(s):
+  <ul>
+    <%= render partial: "genres/genres", :locals => {:genres => @movie.genres, :movie => @movie} %>
+  </ul>
 
-Starring:
-<ul>
-  <%= render partial: "actors/actors", :locals => {:actors => @movie.actors, :movie => @movie} %>
-</ul>
+  Starring:
+  <ul>
+    <%= render partial: "actors/actors", :locals => {:actors => @movie.actors, :movie => @movie} %>
+  </ul>
 
-Synopsis:
-<p><%= @movie.synopsis %></p>
+  Synopsis:
+  <p><%= @movie.synopsis %></p>
+</div>
 
-<br><br>
-
-<%= link_to "Read Reviews", movie_reviews_path(@movie) %> | <%= link_to "Write a Review for #{@movie.title}", new_movie_review_path(@movie) %>
-
-<br><br>
-
-<%= edit_movie_link %>
+  <%= link_to "Read Reviews", movie_reviews_path(@movie), :class => "btn btn-secondary" %>
+  <%= link_to "Write a Review", new_movie_review_path(@movie), :class => "btn btn-secondary" %>
+  <%= edit_movie_link %>

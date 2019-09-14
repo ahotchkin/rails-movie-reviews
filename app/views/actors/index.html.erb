@@ -10,4 +10,19 @@
 
 <br>
 
-<%= render partial: "actors", :locals => {:actors => @actors, :movie => @movie} %>
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col"><%= sortable("last_name", "Name") %></th>
+      <th scope="col"><%= sortable("number of movies") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @actors.each do |actor| %>
+      <tr>
+      <td><%= link_to actor.full_name, actor_path(actor) %></td>
+      <td><%= actor.number_of_movies %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

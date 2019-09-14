@@ -9,4 +9,19 @@
 
 <br>
 
-<%= render partial: "genres", :locals => {:genres => @genres, :movie => @movie} %>
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col"><%= sortable("name", "Genre") %></th>
+      <th scope="col"><%= sortable("Number of Movies") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @genres.each do |genre| %>
+      <tr>
+      <td><%= link_to genre.name, genre_path(genre) %></td>
+      <td><%= genre.number_of_movies %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

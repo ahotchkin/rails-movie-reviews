@@ -9,6 +9,7 @@ class Movie < ApplicationRecord
   validates_presence_of :title, :synopsis, :year
 
   scope :find_by_title, -> (title) { where("title LIKE ?", title) }
+  scope :alpha, -> { order(:title) } 
 
   def actors_attributes=(actors_attributes)
     actors_attributes.values.each do |actor_attributes|
