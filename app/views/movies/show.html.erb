@@ -1,6 +1,8 @@
-<div class="info">
+<div class="info-header">
   <h1><%= @movie.title %></h1>
+</div>
 
+<div class="info">
   Genre(s):
   <ul>
     <%= render partial: "genres/genres", :locals => {:genres => @movie.genres, :movie => @movie} %>

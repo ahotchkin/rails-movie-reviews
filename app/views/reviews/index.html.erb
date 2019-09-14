@@ -1,9 +1,14 @@
-<h1><%= reviews_display_header %></h1>
+<div class="info-header">
+  <h1><%= reviews_display_header %></h1>
+</div>
 
-<% @reviews.each do |review| %>
-  <%= display_review_title_link(review) %>
-  <br>
-  <%= render partial: "reviews", :locals => {:review => review} %>
-<% end %>
+<div class="info">
+  <% @reviews.each do |review| %>
+    <%= display_review_title_link(review) %>
+    <br>
+    <%= render partial: "reviews", :locals => {:review => review} %>
+    <br><br>
+  <% end %>
+</div>
 
 <%= write_review_for_movie_link %>

@@ -1,9 +1,13 @@
-<h1>Hello, <%= current_user.username %></h1>
+<div class="info-header">
+  <h1>Hello, <%= current_user.username %>!</h1>
+  <h2>Check out the latest movie reviews...</h2>
+</div>
 
-<h2>Here are the latest movie reviews:</h2>
-
-<% @reviews.each do |review| %>
-  <%= display_review_title_link(review) %>
-  <br>
-  <%= render partial: "reviews/reviews", :locals => {:review => review} %>
-<% end %>
+<div class="info">
+  <% @reviews.each do |review| %>
+    <%= display_review_title_link(review) %>
+    <br>
+    <%= render partial: "reviews/reviews", :locals => {:review => review} %>
+    <br><br>
+  <% end %>
+</div>

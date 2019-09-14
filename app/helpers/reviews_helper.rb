@@ -16,7 +16,7 @@ module ReviewsHelper
     elsif params[:movie_id] && @movie
       "#{@movie.title} Reviews"
     else
-      "Movie Reviews"
+      "All Movie Reviews"
     end
   end
 
@@ -25,7 +25,7 @@ module ReviewsHelper
   end
 
   def write_review_for_movie_link
-    link_to "Write a Review for #{@movie.title}", new_movie_review_path(@movie) if params[:movie_id] && @movie
+    link_to "Write a Review", new_movie_review_path(@movie), :class => "btn btn-secondary" if params[:movie_id] && @movie
   end
 
   def review_date(review)
