@@ -1,7 +1,20 @@
-<h1><%= @actor.full_name %></h1>
+<h1><%= @actor.full_name %>'s Movies</h1>
 
-<ul>
-  <% @actor.movies.each do |movie| %>
-    <li><%= link_to movie.title, movie_path(movie) %></li>
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col"><%= sortable("title") %></th>
+      <th scope="col"><%= sortable("year") %></th>
+      <th scope="col"><%= sortable("average_rating") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @actor.movies.each do |movie| %>
+    <tr>
+      <td><%= link_to movie.title, movie_path(movie) %></td>
+      <td><%= movie.year %></td>
+      <td><%= display_average_rating(movie) %></td>
+    </tr>
   <% end %>
-</ul>
+  </tbody>
+</table>
