@@ -1,7 +1,7 @@
 class MoviesController < ApplicationController
 
   # helper_method :current_movie
-  helper_method :sort_column, :sort_direction
+  helper_method :sort_column
   before_action :redirect_if_not_admin, only: [:new, :create, :edit, :update]
 
   def index
@@ -67,10 +67,6 @@ class MoviesController < ApplicationController
 
     def sort_column
       Movie.column_names.include?(params[:sort]) ? params[:sort] : "title"
-    end
-
-    def sort_direction
-      %w[asc, desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 
 end
