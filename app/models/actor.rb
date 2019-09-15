@@ -14,15 +14,15 @@ class Actor < ApplicationRecord
     end
   end
 
-  # refactor - used in actor and genre
+  # # refactor - used in actor and genre
   def number_of_movies
     self.movies.size
   end
-
-  def self.sort_by_number_of_movies
-    self.all.sort do |a, b|
-      a.number_of_movies <=> b.number_of_movies
-    end
-  end
+  #
+  # def self.sort_by_number_of_movies
+  #   self.all.sort do |a, b|
+  #     a.number_of_movies <=> b.number_of_movies
+  #   end
+  # end
 
 end

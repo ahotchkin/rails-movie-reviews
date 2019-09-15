@@ -14,7 +14,6 @@
   <thead class="thead-light">
     <tr>
       <th scope="col"><%= sortable("last_name", "Name") %></th>
-      <!-- I want to sort by number of movies, but this isn't a column in the table. Clicking on the link needs to call self.sort_by_number_of_movies, and if you click again it needs to reverse. -->
       <th scope="col"><%= sortable("movie_count", "Number of Movies") %></th>
     </tr>
   </thead>

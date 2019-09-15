@@ -6,7 +6,7 @@ class Genre < ApplicationRecord
   scope :alpha, -> { order(:name) }
   scope :find_by_name, -> (name) { where("name LIKE ?", name) }
 
-  # refactor - used in actor and genre
+  # # refactor - used in actor and genre
   def number_of_movies
     self.movies.size
   end
