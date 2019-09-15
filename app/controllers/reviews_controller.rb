@@ -11,7 +11,7 @@ class ReviewsController < ApplicationController
     if params[:movie_id] && @movie = Movie.find_by_id(params[:movie_id])
       @review = @movie.reviews.build
     else
-      @error = "That movie doesn't exist" if params[:movie_id]
+      @error = "That movie doesn't exist." if params[:movie_id]
       @review = Review.new
     end
   end
@@ -53,6 +53,7 @@ class ReviewsController < ApplicationController
     @review = Review.find_by_id(params[:id])
     if current_user.id == @review.user.id
       @review.delete
+      flash[:message] = "Review sucessfully deleted."
     else
       flash[:message] = "You do not have the authority to delete this review. Shame on you."
     end
@@ -63,8 +64,6 @@ class ReviewsController < ApplicationController
     def review_params
       params.require(:review).permit(:title, :content, :rating, :movie_id)
     end
-
-
 
     # *** is this no longer working???? => Add tests for controllers and routes
     # def current_review
@@ -84,6 +83,8 @@ class ReviewsController < ApplicationController
       elsif params[:movie_id] && @movie = Movie.find_by_id(params[:movie_id])
         @reviews = @movie.reviews.newest_to_oldest
       else
+        @error = "That movie doesn't exist." if params[:movie_id]
+        @error = "That user doesn't exist." if params[:user_id]
         @reviews = Review.all.newest_to_oldest
       end
     end

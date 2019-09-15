@@ -80,10 +80,10 @@
 
     <div class="container-fluid">
       <% if flash[:message] %>
-        <div><%= flash[:message] %></div>
+        <div class="message"><%= flash[:message] %></div>
       <% end %>
 
-      <%= @error %>
+      <div class="message"><%= @error %></div>
 
       <%= yield %>
     </div>
