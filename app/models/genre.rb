@@ -8,7 +8,7 @@ class Genre < ApplicationRecord
 
   # refactor - used in actor and genre
   def number_of_movies
-    self.movies.count
+    self.movies.size
   end
 
 end

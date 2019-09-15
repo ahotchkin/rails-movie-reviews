@@ -29,6 +29,4 @@ class ActorsController < ApplicationController
       Actor.column_names.include?(params[:sort]) ? params[:sort] : "last_name"
     end
 
-
-
 end

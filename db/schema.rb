@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_06_152714) do
+ActiveRecord::Schema.define(version: 2019_09_15_154250) do
 
   create_table "actors", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "movie_count"
   end
 
   create_table "genres", force: :cascade do |t|

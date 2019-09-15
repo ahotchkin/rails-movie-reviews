@@ -9,7 +9,7 @@ class Movie < ApplicationRecord
   validates_presence_of :title, :synopsis, :year
 
   scope :find_by_title, -> (title) { where("title LIKE ?", title) }
-  scope :alpha, -> { order(:title) } 
+  scope :alpha, -> { order(:title) }
 
   def actors_attributes=(actors_attributes)
     actors_attributes.values.each do |actor_attributes|
@@ -38,7 +38,7 @@ class Movie < ApplicationRecord
       review.rating
     end
 
-    all_ratings.sum / self.reviews.count
+    all_ratings.sum / self.reviews.size
   end
 
   def actor_number

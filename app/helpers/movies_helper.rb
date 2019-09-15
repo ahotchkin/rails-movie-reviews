@@ -7,7 +7,7 @@ module MoviesHelper
   end
 
   def display_average_rating(movie)
-    if movie.reviews.count >= 1
+    if movie.reviews.size >= 1
       movie.average_rating
     else
       "N/A"
