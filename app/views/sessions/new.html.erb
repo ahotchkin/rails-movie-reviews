@@ -1,11 +1,13 @@
 <h1>Log In</h1>
 
-<%= form_for :user, url: "/login" do |f| %>
-  <%= f.label "Username:" %>
-  <%= f.text_field :username %>
-  <br><br>
-  <%= f.label "Password:" %>
-  <%= f.password_field :password %>
-  <br><br>
-  <%= f.submit "Log In" %>
-<% end %>
+<div class="login">
+  <%= form_for :user, url: "/login" do |f| %>
+    <%= f.label "Username:" %>
+    <%= f.text_field :username, :class => "form-control" %>
+    <br>
+    <%= f.label "Password:" %>
+    <%= f.password_field :password, :class => "form-control" %>
+    <br>
+    <%= f.submit "Log In", :class => "btn btn-secondary" %>
+  <% end %>
+</div>

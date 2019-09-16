@@ -2,18 +2,18 @@
 
 <%= render partial: "layouts/errors", :locals => {:object => @user} %>
 
-<%= form_for @user, url: "/signup" do |f| %>
+<%= form_for @user, url: "/signup", :class => "form-group" do |f| %>
   <%= f.label "Username:" %>
-  <%= f.text_field :username %>
-  <br><br>
+  <%= f.text_field :username, :class => "form-control" %>
+  <br>
   <%= f.label "Email:" %>
-  <%= f.email_field :email %>
-  <br><br>
+  <%= f.email_field :email, :class => "form-control" %>
+  <br>
   <%= f.label "Password:" %>
-  <%= f.password_field :password %>
-  <br><br>
+  <%= f.password_field :password, :class => "form-control" %>
+  <br>
   <%= f.label "Check box if you're a site administrator:" %>
   <%= f.check_box :admin %>
   <br><br>
-  <%= f.submit "Sign Up" %>
+  <%= f.submit "Sign Up", :class => "btn btn-secondary" %>
 <% end %>
