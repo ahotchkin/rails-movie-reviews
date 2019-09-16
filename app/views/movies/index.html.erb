@@ -1,10 +1,12 @@
 <h1><%= movies_display_header %></h1>
 
-<%= form_tag movies_path, :method => :get, :class => "search-form" do %>
-  <%= label_tag "Search for a movie:", nil, :class => "col-form-label" %>
-  <%= text_field_tag :title, params[:title] %>
+<% if !params[:actor_id] && !params[:genre_id] %>
+  <%= form_tag movies_path, :method => :get, :class => "search-form" do %>
+    <%= label_tag "Search for a movie:", nil, :class => "col-form-label" %>
+    <%= text_field_tag :title, params[:title] %>
 
-  <%= submit_tag "Search", :name => nil, :class => "btn btn-outline-secondary" %>
+    <%= submit_tag "Search", :name => nil, :class => "btn btn-outline-secondary" %>
+  <% end %>
 <% end %>
 
 <br>

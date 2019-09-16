@@ -41,7 +41,18 @@ describe 'Feature Test: User Signup', :type => :feature do
   # test is failing - acting as though user[:email] already exists in the database
   describe "login page" do
     it "can log in user with Google account" do
-      visit root_path
+      visit "/login"
+      page.should have_content("Log in with Google")
+      mock_auth_hash
+      click_link "Log in with Google"
+      page.should have_content("Hello, mockuser")  # user name
+      page.should have_content("Logout")
+    end
+  end
+
+  describe "signup page" do
+    it "can log in user with Google account" do
+      visit "/signup"
       page.should have_content("Log in with Google")
       mock_auth_hash
       click_link "Log in with Google"

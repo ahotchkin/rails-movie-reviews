@@ -17,11 +17,4 @@ RSpec.describe Actor, :type => :model do
     expect(emma_stone.full_name).to eq("Emma Stone")
   end
 
-  it "has a class method 'sorted_actors' that sorts by last name, if present, and first name if last name is blank" do
-    emma_stone = Actor.create(:first_name => "Emma", :last_name => "Stone")
-    penn_badgley = Actor.create(:first_name => "Penn", :last_name => "Badgley")
-    cher = Actor.create(:first_name => "Cher", :last_name => "")
-    expect(Actor.sorted_actors).to eq([penn_badgley, cher, emma_stone])
-  end
-
 end

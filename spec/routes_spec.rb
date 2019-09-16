@@ -43,6 +43,12 @@ RSpec.describe "Routing", :type => :routing do
     it { should route(:patch, "/movies/1").to(:controller => :movies, :action => :update, :id => 1) }
     it { should route(:put, "/movies/1").to(:controller => :movies, :action => :update, :id => 1) }
     it { should route(:delete, "/movies/1").to(:controller => :movies, :action => :destroy, :id => 1) }
+    describe "Nested Movie Routes under Actors" do
+      it { should route(:get, "/actors/1/movies").to(:controller => :movies, :action => :index, :actor_id => 1) }
+    end
+    describe "Nested Movie Routes under Genres" do
+      it { should route(:get, "/genres/1/movies").to(:controller => :movies, :action => :index, :genre_id => 1) }
+    end
   end
 
   describe "Review Routes" do
