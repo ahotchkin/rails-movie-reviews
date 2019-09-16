@@ -9,22 +9,4 @@
 
 <br>
 
-<table class="table">
-  <thead class="thead-light">
-    <tr>
-      <th scope="col"><%= sortable("title") %></th>
-      <th scope="col"><%= sortable("year") %></th>
-      <!-- I want to be able to sort by the average rating, even though this is not a column in the table.  -->
-      <th scope="col"><%= sortable("average_rating") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @movies.each do |movie| %>
-    <tr>
-      <td><%= link_to movie.title, movie_path(movie) %></td>
-      <td><%= movie.year %></td>
-      <td><%= display_average_rating(movie) %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+<%= render partial: "movies", :locals => {:movies => @movies} %>

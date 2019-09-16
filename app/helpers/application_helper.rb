@@ -13,8 +13,4 @@ module ApplicationHelper
 
   end
 
-  # def sortable_by_movie_number()
-  #
-  # end
-
 end
