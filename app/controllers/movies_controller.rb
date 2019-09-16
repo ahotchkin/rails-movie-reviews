@@ -69,9 +69,9 @@ class MoviesController < ApplicationController
       if params[:title]
         @movies = Movie.find_by_title(params[:title])
       elsif params[:actor_id] && @actor = Actor.find_by_id(params[:actor_id])
-        @movies = @actor.movies.alpha
+        @movies = @actor.movies.order(sort_column + " " + sort_direction)
       elsif params[:genre_id] && @genre = Genre.find_by_id(params[:genre_id])
-        @movies = @genre.movies.alpha
+        @movies = @genre.movies.order(sort_column + " " + sort_direction)
       else
         @movies = Movie.order(sort_column + " " + sort_direction)
       end
