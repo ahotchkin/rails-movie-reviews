@@ -1,9 +1,9 @@
-<%= form_for movie, :class => "form-group col-md-8" do |f| %>
+<%= form_for movie, :class => "form-group" do |f| %>
   <%= f.label "Title:" %>
-  <%= f.text_field :title, :class => "form-control col-md-8" %>
+  <%= f.text_field :title, :class => "form-control" %>
   <br>
   <%= f.label "Synopsis:" %>
-  <%= f.text_area :synopsis, :class => "form-control col-md-8" %>
+  <%= f.text_area :synopsis, :class => "form-control" %>
   <br>
   <%= f.label "Year:" %>
   <%= f.select :year, (Date.today.year-100)..(Date.today.year), :selected => movie.year, :class => "form-control" %>
@@ -13,7 +13,7 @@
   <br>
   <%= f.fields_for :genres do |genre| %>
     <div class="form-row">
-      <%= genre.text_field :name, :class => "form-control col-md-4" %>
+      <%= genre.text_field :name, :class => "form-control col-md-6" %>
     </div>
   <% end %>
   <br>
@@ -22,11 +22,10 @@
 
   <%= f.fields_for :actors do |actor| %>
     <div class="form-row">
-      <div class="form-group col-md-4">
+      <div class="col">
         <%= actor.text_field :first_name, :class => "form-control", :placeholder => "First name" %>
       </div>
-
-      <div class="form-group col-md-4">
+      <div class="col">
         <%= actor.text_field :last_name, :class => "form-control", :placeholder => "Last name" %>
       </div>
     </div>

@@ -1,18 +1,18 @@
-<%= form_for review, :class => "form-group col-md-8" do |f| %>
+<%= form_for review, :class => "form-group" do |f| %>
   <% if !review.movie %>
     <%= f.label "Movie:" %>
-    <%= collection_select :review, :movie_id, @movies, :id, :title, {:include_blank => "Please select a movie to review"}, :class => "form-control col-md-8" %><br>
+    <%= collection_select :review, :movie_id, @movies, :id, :title, {:include_blank => "Please select a movie to review"}, :class => "form-control" %><br>
   <% else %>
     <%= f.hidden_field :movie_id %>
   <% end %>
   <%= f.label "Rating (1-5):" %>
-  <%= f.number_field :rating, :class => "form-control col-md-8" %>
+  <%= f.number_field :rating, :class => "form-control" %>
   <br>
   <%= f.label "Title:" %>
-  <%= f.text_field :title, :class => "form-control col-md-8" %>
+  <%= f.text_field :title, :class => "form-control" %>
   <br>
   <%= f.label "Review:" %>
-  <%= f.text_area :content, :class => "form-control col-md-8" %>
+  <%= f.text_area :content, :class => "form-control" %>
   <br>
   <%= f.submit review.persisted? ? "Update Review" : "Publish Review", :class => "btn btn-secondary" %>
 <% end %>
