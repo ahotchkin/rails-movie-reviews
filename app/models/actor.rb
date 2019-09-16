@@ -1,6 +1,6 @@
 class Actor < ApplicationRecord
   has_many :movie_actors
-  has_many :movies, through: :movie_actors
+  has_many :movies, through: :movie_actors, :dependent => :destroy
   validates_presence_of :first_name
 
   scope :find_by_first_name, -> (first_name) { where("first_name LIKE ?", first_name) }
@@ -13,16 +13,5 @@ class Actor < ApplicationRecord
       self.first_name
     end
   end
-
-  # # refactor - used in actor and genre
-  def number_of_movies
-    self.movies.size
-  end
-  #
-  # def self.sort_by_number_of_movies
-  #   self.all.sort do |a, b|
-  #     a.number_of_movies <=> b.number_of_movies
-  #   end
-  # end
 
 end
