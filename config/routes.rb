@@ -17,10 +17,13 @@ Rails.application.routes.draw do
 
   resources :reviews, :movies
   resources :movie_actors, :movie_genres, only: [:destroy]
-  resources :actors, :genres, only: [:index, :show]
+  resources :actors, :genres, only: [:index]
   resources :users, only: [:show]
   resources :movies, :users, only: [:show] do
     resources :reviews, shallow: true
+  end
+  resources :actors, :genres, only: [:show] do
+    resources :movies, only: [:index]
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

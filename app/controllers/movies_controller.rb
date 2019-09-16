@@ -5,11 +5,7 @@ class MoviesController < ApplicationController
   before_action :redirect_if_not_admin, only: [:new, :create, :edit, :update]
 
   def index
-    if params[:title]
-      @movies = Movie.find_by_title(params[:title])
-    else
-      @movies = Movie.order(sort_column + " " + sort_direction)
-    end
+    set_movies_array
   end
 
   def new
@@ -67,6 +63,18 @@ class MoviesController < ApplicationController
 
     def sort_column
       Movie.column_names.include?(params[:sort]) ? params[:sort] : "title"
+    end
+
+    def set_movies_array
+      if params[:title]
+        @movies = Movie.find_by_title(params[:title])
+      elsif params[:actor_id] && @actor = Actor.find_by_id(params[:actor_id])
+        @movies = @actor.movies.alpha
+      elsif params[:genre_id] && @genre = Genre.find_by_id(params[:genre_id])
+        @movies = @genre.movies.alpha
+      else
+        @movies = Movie.order(sort_column + " " + sort_direction)
+      end
     end
 
 end
