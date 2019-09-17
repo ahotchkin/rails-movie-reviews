@@ -33,15 +33,18 @@ module MoviesHelper
   #
   # end
 
-  def sort_rating_column
-    Movie.sort_by_average_rating
-  end
+  # def sort_rating_column
+  #   Movie.sort_by_average_rating
+  # end
 
   # move to movies_helper
   def sort_average_rating
-    direction = sort_direction == "asc" ? "desc" : "asc"
-
-    link_to "Average Rating", movies_path, :direction => direction
+    # direction = sort_direction == "asc" ? "desc" : "asc"
+    # direction = sort_rating_column
+    # link_to "Average Rating", average_rating_asc_path, :onclick => remote_fuction(:controller => "movies_controller", :action => "sort_rating_column")
+    link_to "Average Rating", sort_rating_column_movies_path
+    # radio_button :model, :method, :onclick =>
+    # remote_function(:controller => ‘some’, :action => ‘action’)
   end
 
 end

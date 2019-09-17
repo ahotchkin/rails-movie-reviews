@@ -2,15 +2,16 @@ module ApplicationHelper
 
   def sortable(column, title = nil)
     title ||= column.titleize
-    css_class = column == sort_column ? "current #{sort_direction}" :nil
     direction = column == sort_column && sort_direction == "asc" ? "desc" : "asc"
+    link_to title, {:sort => column, :direction => direction}
+  end
 
-
-
-    # ***** forget about arrow class??? *****
-    # link_to title, :sort => column, :direction => direction, :class => css_class
-    link_to title, {:sort => column, :direction => direction}, {:class => css_class}
-
+  def sort_image(column)
+    if sort_direction == "asc" && column == sort_column
+      " ▲"
+    elsif sort_direction == "desc" && column == sort_column
+      " ▼"
+    end
   end
 
 end

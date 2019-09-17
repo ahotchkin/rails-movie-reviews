@@ -1,7 +1,7 @@
 class MoviesController < ApplicationController
 
   # helper_method :current_movie
-  helper_method :sort_column
+  helper_method :sort_column, :sort_rating_column
   before_action :redirect_if_not_admin, only: [:new, :create, :edit, :update]
 
   def index
@@ -49,6 +49,11 @@ class MoviesController < ApplicationController
       render :edit
     end
   end
+
+  def sort_rating_column
+    Movie.sort_by_average_rating
+  end
+
 
   private
 

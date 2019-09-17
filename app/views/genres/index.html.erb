@@ -12,8 +12,8 @@
 <table class="table">
   <thead class="thead-light">
     <tr>
-      <th scope="col"><%= sortable("name", "Genre") %></th>
-      <th scope="col"><%= sortable("movie_count", "Number of Movies") %></th>
+      <th style="width: 50%"><%= sortable("name", "Genre") %><%= sort_image("name") %></th>
+      <th style="width: 50%"><%= sortable("movie_count", "Number of Movies") %><%= sort_image("movie_count") %></th>
     </tr>
   </thead>
   <tbody>

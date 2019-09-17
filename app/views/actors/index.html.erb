@@ -13,8 +13,8 @@
 <table class="table">
   <thead class="thead-light">
     <tr>
-      <th scope="col"><%= sortable("last_name", "Name") %></th>
-      <th scope="col"><%= sortable("movie_count", "Number of Movies") %></th>
+      <th style="width: 50%"><%= sortable("last_name", "Name") %><%= sort_image("last_name") %></th>
+      <th style="width: 50%"><%= sortable("movie_count", "Number of Movies") %><%= sort_image("movie_count") %></th>
     </tr>
   </thead>
   <tbody>

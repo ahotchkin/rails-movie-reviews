@@ -65,7 +65,6 @@ class ReviewsController < ApplicationController
       params.require(:review).permit(:title, :content, :rating, :movie_id)
     end
 
-    # *** is this no longer working???? => Add tests for controllers and routes
     # def current_review
     #   @review = Review.find_by_id(params[:id])
     #   redirect_to reviews_path if !@review
