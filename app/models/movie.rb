@@ -10,6 +10,7 @@ class Movie < ApplicationRecord
 
   scope :find_by_title, -> (title) { where("title LIKE ?", title) }
   scope :alpha, -> { order(:title) }
+  # scope :has_reviews, -> { where(reviews.size > 0) }
 
   def actors_attributes=(actors_attributes)
     actors_attributes.values.each do |actor_attributes|
@@ -33,12 +34,20 @@ class Movie < ApplicationRecord
     end
   end
 
-  def average_rating
-    all_ratings = self.reviews.map do |review|
-      review.rating
-    end
+  def self.reviewed_movies
+    reviewed_movies = self.all.select { |movie| movie.reviews.size > 0 }
+  end
 
-    all_ratings.sum / self.reviews.size
+  def average_rating
+    self.reviews.average(:rating).round(1) if self.reviews.size >=1
+  end
+
+  def self.sort_by_average_rating
+    self.reviewed_movies.sort do |a, b|
+      if a.reviews.size >= 1 && b.reviews.size >= 1
+        a.average_rating <=> b.average_rating
+      end
+    end
   end
 
   def actor_number

@@ -4,7 +4,8 @@
       <th scope="col"><%= sortable("title") %></th>
       <th scope="col"><%= sortable("year") %></th>
       <!-- I want to be able to sort by the average rating, even though this is not a column in the table.  -->
-      <th scope="col"><%= sortable("average_rating") %></th>
+      <th scope="col"><%= sort_average_rating %></th>
+
     </tr>
   </thead>
   <tbody>

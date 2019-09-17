@@ -32,4 +32,10 @@ module ReviewsHelper
     review.created_at.strftime("%B %d, %Y")
   end
 
+  def no_reviews_message
+    if @reviews.empty?
+      content_tag :span, "Be the first to review #{@movie.title}.".html_safe + tag(:br) + tag(:br)
+    end
+  end
+
 end
