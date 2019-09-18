@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 
   def show
     redirect_if_not_logged_in
-    @reviews = Review.all.order({ created_at: :desc }).first(10)
+    @reviews = Review.newest_to_oldest.first(10)
   end
 
   private

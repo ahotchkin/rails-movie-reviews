@@ -5,7 +5,7 @@
 
 <div class="info">
   <% @reviews.each do |review| %>
-    <%= display_review_title_link(review) %>
+    <%= link_to "#{review.title}", review_path(review) %>
     <br>
     <%= render partial: "reviews/reviews", :locals => {:review => review} %>
     <br>
