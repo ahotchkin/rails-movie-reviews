@@ -20,16 +20,37 @@ module ReviewsHelper
     end
   end
 
-  def display_review_title_link(review)
-    link_to "#{review.title}", review_path(review)
+  def display_movie_link_in_review(review)
+    if !params[:movie_id]
+      "Movie: #{link_to review.movie.title, movie_path(review.movie)}".html_safe + tag(:br)
+    end
   end
 
-  def write_review_for_movie_link
-    link_to "Write a Review", new_movie_review_path(@movie), :class => "btn btn-secondary" if params[:movie_id] && @movie
+  def display_review_title_link(review)
+    if !params[:id]
+      (link_to "#{review.title}", review_path(review)).html_safe + tag(:br)
+    end
+  end
+
+  def display_user_link_in_review(review)
+    if !params[:user_id]
+      "Written by: #{link_to review.user.username, user_reviews_path(review.user)}".html_safe + tag(:br)
+    end
   end
 
   def review_date(review)
     review.created_at.strftime("%B %d, %Y")
+  end
+
+  def display_edit_and_delete_links(review)
+    if current_user.id.to_s == params[:user_id] || current_user.id == review.user.id
+      "#{link_to "Edit Review", edit_review_path(review)} |
+      #{link_to "Delete Review", review_path(review), :method => :delete}".html_safe + tag(:br)
+    end
+  end
+
+  def write_review_for_movie_link
+    link_to "Write a Review", new_movie_review_path(@movie), :class => "btn btn-secondary" if params[:movie_id] && @movie
   end
 
   def no_reviews_message

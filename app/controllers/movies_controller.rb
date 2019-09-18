@@ -1,7 +1,7 @@
 class MoviesController < ApplicationController
 
   # helper_method :current_movie
-  helper_method :sort_column, :sort_rating_column
+  helper_method :sort_column
   before_action :redirect_if_not_admin, only: [:new, :create, :edit, :update]
 
   def index

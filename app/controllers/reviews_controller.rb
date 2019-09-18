@@ -42,7 +42,7 @@ class ReviewsController < ApplicationController
     @review = Review.find_by_id(params[:id])
     if @review.update(review_params)
       redirect_to review_path(@review)
-      flash[:message] = "Review sucessfully updated."
+      flash[:message] = "Review successfully updated."
     else
       render :edit
     end
@@ -53,9 +53,7 @@ class ReviewsController < ApplicationController
     @review = Review.find_by_id(params[:id])
     if current_user.id == @review.user.id
       @review.delete
-      flash[:message] = "Review sucessfully deleted."
-    else
-      flash[:message] = "You do not have the authority to delete this review. Shame on you."
+      flash[:message] = "Review successfully deleted."
     end
     redirect_to reviews_path
   end

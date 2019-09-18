@@ -31,8 +31,8 @@ h2 {
 
 h3 {
   text-align: center;
-  font-weight: 300;
   font-size: 1.5em;
+  font-weight: 300;
 }
 
 a {
@@ -57,14 +57,9 @@ body {
   margin-left: auto;
 }
 
-.new_user {
-  margin-left: 33%;
-  margin-right: 33%;
-}
-
 .form-row {
-  margin: 5px;
   padding-right: 5px;
+  margin: 5px;
 }
 
 .search-form {
@@ -72,12 +67,11 @@ body {
 }
 
 .error-list {
-  margin-left: 12%;
+  text-indent: 75px;
 }
 
 #error_explanation {
   background-color: #eeeeee;
-  text-align: left;
   padding-top: 20px;
   padding-bottom: 3px;
   margin-bottom: 25px;
@@ -104,18 +98,19 @@ body {
 }
 
 .btn-outline-secondary {
-  padding: 0.175rem 1rem;
   border-color: #6c757d;
+  padding: 0.175rem 1rem;
   font-family: sans-serif;
   margin-right: 10px;
 }
 
 .message {
-  margin-bottom: 25px;
-  text-align: center;
   color: #aa00e3;
+  text-align: center;
   font-weight: 300;
   font-size: 1.5em;
+  margin-top: 10px;
+  margin-bottom: 25px;
 }
 
 .img-responsive {
