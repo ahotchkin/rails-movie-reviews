@@ -25,14 +25,18 @@ h1 {
 
 h2 {
   text-align: center;
-  margin-top: 25px;
-  margin-bottom: 25px;
+  margin: 25px 0px;
   font-weight: 300;
 }
 
 h3 {
+  text-align: center;
   font-weight: 300;
   font-size: 1.5em;
+}
+
+a {
+  color: #325aa8;
 }
 
 form {
@@ -40,26 +44,17 @@ form {
   margin-right: 22%;
 }
 
-a {
-  color: #325aa8;
-}
-
 body {
-  padding-top: 75px;
+  padding-top: 60px;
 }
 
 .container-fluid {
   width: 100%;
   padding-right: 25px;
   padding-left: 25px;
-  padding-bottom: 30px;
+  padding-bottom: 25px;
   margin-right: auto;
   margin-left: auto;
-}
-
-.form-row {
-  margin: 5px;
-  padding-right: 5px;
 }
 
 .new_user {
@@ -67,37 +62,31 @@ body {
   margin-right: 33%;
 }
 
-.login {
-  margin-left: 19.75%;
-  margin-right: 19.75%;
-}
-
-.btn-outline-secondary {
-  padding: 0.175rem 1rem;
-  border-color: #6c757d;
-  font-family: sans-serif;
-  margin-right: 10px;
+.form-row {
+  margin: 5px;
+  padding-right: 5px;
 }
 
 .search-form {
   margin-left: 10px;
 }
 
+.error-list {
+  margin-left: 12%;
+}
+
 #error_explanation {
   background-color: #eeeeee;
   text-align: left;
   padding-top: 20px;
+  padding-bottom: 3px;
   margin-bottom: 25px;
   margin-left: 22%;
   margin-right: 22%;
   border-radius: 7px;
 }
 
-.error-list {
-  margin-left: 9%;
-}
-
-.info-header {
+.info {
   background-color: #eeeeee;
   text-align: left;
   padding-top: 25px;
@@ -108,24 +97,15 @@ body {
   border-radius: 7px;
 }
 
-.info-header h1 {
-  margin-top: -5px;
-  text-align: center;
-  font-weight: 300;
-}
-
-.info {
-  background-color: #eeeeee;
-  text-align: left;
-  padding-top: 25px;
-  padding-right: 25px;
-  padding-left: 25px;
-  margin-bottom: 25px;
-  border-radius: 7px;
-}
-
 .btn-secondary {
   padding: 0.175rem 1rem;
+  font-family: sans-serif;
+  margin-right: 10px;
+}
+
+.btn-outline-secondary {
+  padding: 0.175rem 1rem;
+  border-color: #6c757d;
   font-family: sans-serif;
   margin-right: 10px;
 }
