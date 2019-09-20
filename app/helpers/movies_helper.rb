@@ -24,17 +24,17 @@ module MoviesHelper
     end
   end
 
-  # def sort_rating_column
-  #   Movie.sort_by_average_rating
-  # end
-
-  # def sort_average_rating
-  #   # direction = sort_direction == "asc" ? "desc" : "asc"
-  #   # direction = sort_rating_column
-  #   # link_to "Average Rating", average_rating_asc_path, :onclick => remote_fuction(:controller => "movies_controller", :action => "sort_rating_column")
-  #   link_to "Average Rating", sort_rating_column_movies_path
-  #   # radio_button :model, :method, :onclick =>
-  #   # remote_function(:controller => ‘some’, :action => ‘action’)
+  # def display_movie_genres(movie)
+  #   movie.genres.each do |genre|
+  #     movie_genre = MovieGenre.find_movie_genre(movie, genre).last
+  #
+  #     if movie && current_user.admin
+  #       content_tag :li, "#{link_to "#{genre.name}", genre_movies_path(genre)} - #{link_to "delete", movie_genre_path(movie_genre), :method => :delete}"
+  #     else
+  #       content_tag :li, "#{link_to genre.name, genre_movies_path(genre)}"
+  #     end
+  #     "hello"
+  #   end
   # end
 
 end

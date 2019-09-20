@@ -33,17 +33,17 @@ class Movie < ApplicationRecord
     end
   end
 
-  def self.reviewed_movies
-    reviewed_movies = self.all.select { |movie| movie.reviews.size > 0 }
-  end
-
   def average_rating
     self.reviews.average(:rating).round(1) if self.reviews.size > 0
   end
 
-  def self.sort_by_average_rating
-    self.reviewed_movies.sort_by(&:average_rating)
-  end
+  # def self.reviewed_movies
+  #   reviewed_movies = self.all.select { |movie| movie.reviews.size > 0 }
+  # end
+
+  # def self.sort_by_average_rating
+  #   self.reviewed_movies.sort_by(&:average_rating)
+  # end
 
   def actor_number
     actor_number = 8 - self.actors.size

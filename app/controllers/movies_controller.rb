@@ -50,11 +50,6 @@ class MoviesController < ApplicationController
     end
   end
 
-  def sort_rating_column
-    Movie.sort_by_average_rating
-  end
-
-
   private
 
     def movie_params

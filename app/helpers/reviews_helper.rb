@@ -21,25 +21,23 @@ module ReviewsHelper
   end
 
   def display_movie_link_in_review(review)
-    if !params[:movie_id]
-      "Movie: #{link_to review.movie.title, movie_path(review.movie)}".html_safe + tag(:br)
-    end
+    "Movie: #{link_to review.movie.title, movie_path(review.movie)}".html_safe + tag(:br) if !params[:movie_id]
   end
 
   def display_review_title_link(review)
-    if !params[:id]
-      (link_to "#{review.title}", review_path(review)).html_safe + tag(:br)
-    end
+    (link_to "#{review.title}", review_path(review)).html_safe + tag(:br) if !params[:id]
   end
 
   def display_user_link_in_review(review)
-    if !params[:user_id]
-      "Written by: #{link_to review.user.username, user_reviews_path(review.user)}".html_safe + tag(:br)
-    end
+    "Written by: #{link_to review.user.username, user_reviews_path(review.user)}".html_safe + tag(:br) if !params[:user_id]
   end
 
   def review_date(review)
     review.created_at.strftime("%B %d, %Y")
+  end
+
+  def display_review_content(review)
+    params[:id] ? review.content : review.content.truncate(350)
   end
 
   def display_edit_and_delete_links(review)
@@ -54,9 +52,7 @@ module ReviewsHelper
   end
 
   def no_reviews_message
-    if @reviews.empty?
-      content_tag :span, "Be the first to review #{@movie.title}.".html_safe + tag(:br) + tag(:br)
-    end
+    content_tag :span, "Be the first to review #{@movie.title}.".html_safe + tag(:br) + tag(:br) if @reviews.empty?
   end
 
 end

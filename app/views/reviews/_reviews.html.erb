@@ -5,7 +5,7 @@ Rating: <%= review.rating %>
 <%= display_user_link_in_review(review) %>
 <%= review_date(review) %>
 <br>
-<%= review.content.truncate(350) %>
+<%= display_review_content(review) %>
 <br>
 <%= display_edit_and_delete_links(review) %>
 <br>

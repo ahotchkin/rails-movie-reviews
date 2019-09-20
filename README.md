@@ -7,6 +7,7 @@ This Rails app allows a user to write movie reviews and read reviews written by 
 - Clone this repo
 - Execute bundle install
 - Run rails db:migrate
+- Run rails db:seed to seed the database
 - Start the server with rails s
 - Run rspec to run the test suite
 
