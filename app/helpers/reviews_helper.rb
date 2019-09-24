@@ -20,14 +20,14 @@ module ReviewsHelper
     end
   end
 
-  def display_movie_link_in_review(review)
-    "Movie: #{link_to review.movie.title, movie_path(review.movie)}".html_safe + tag(:br) if !params[:movie_id]
-  end
-
   def display_review_title_link(review)
     (link_to "#{review.title}", review_path(review)).html_safe + tag(:br) if !params[:id]
   end
 
+  def display_movie_link_in_review(review)
+    "Movie: #{link_to review.movie.title, movie_path(review.movie)}".html_safe + tag(:br) if !params[:movie_id]
+  end
+  
   def display_user_link_in_review(review)
     "Written by: #{link_to review.user.username, user_reviews_path(review.user)}".html_safe + tag(:br) if !params[:user_id]
   end

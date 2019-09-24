@@ -7,7 +7,15 @@
   <% @reviews.each do |review| %>
     <%= link_to "#{review.title}", review_path(review) %>
     <br>
-    <%= render partial: "reviews/reviews", :locals => {:review => review} %>
+    <%= display_movie_link_in_review(review) %>
+    Rating: <%= review.rating %>
+    <br>
+    <%= display_user_link_in_review(review) %>
+    <%= review_date(review) %>
+    <br>
+    <%= review.content.truncate(350) %>
+    <br>
+    <%= display_edit_and_delete_links(review) %>
     <br>
   <% end %>
 </div>
