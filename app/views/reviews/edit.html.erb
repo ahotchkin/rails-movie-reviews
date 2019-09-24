@@ -1,5 +1,5 @@
-<h1>Edit Review for <%= @review.movie.title %></h1>
+<h1>Edit Review for <%= current_review.movie.title %></h1>
 
-<%= render partial: "layouts/errors", :locals => {:object => @review} %>
+<%= render partial: "layouts/errors", :locals => {:object => current_review} %>
 
-<%= render partial: "form", :locals => {:review => @review} %>
+<%= render partial: "form", :locals => {:review => current_review} %>

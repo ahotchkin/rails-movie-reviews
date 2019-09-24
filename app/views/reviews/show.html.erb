@@ -1,7 +1,7 @@
 <div class="info">
-  <h1><%= @review.title %></h1>
+  <h1><%= current_review.title %></h1>
 </div>
 
 <div class="info">
-  <%= render partial: "reviews", :locals => {:review => @review} %>
+  <%= render partial: "reviews", :locals => {:review => current_review} %>
 </div>

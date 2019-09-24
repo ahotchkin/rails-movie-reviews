@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
 
-  # helper_method :current_review
+  helper_method :current_review
+  before_action :current_review, only: [:show, :edit, :update, :destroy]
   before_action :set_movies_array, only: [:new, :create]
 
   def index
@@ -26,12 +27,10 @@ class ReviewsController < ApplicationController
   end
 
   def show
-    @review = Review.find_by_id(params[:id])
   end
 
   def edit
-    @review = Review.find_by_id(params[:id])
-    if current_user.id == @review.user.id
+    if current_user.id == current_review.user.id
       render :edit
     else
       redirect_to reviews_path
@@ -39,9 +38,8 @@ class ReviewsController < ApplicationController
   end
 
   def update
-    @review = Review.find_by_id(params[:id])
-    if @review.update(review_params)
-      redirect_to review_path(@review)
+    if current_review.update(review_params)
+      redirect_to review_path(current_review)
       flash[:message] = "Review successfully updated."
     else
       render :edit
@@ -49,10 +47,8 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
-    # #current_review not working here
-    @review = Review.find_by_id(params[:id])
-    if current_user.id == @review.user.id
-      @review.delete
+    if current_user.id == current_review.user.id
+      current_review.delete
       flash[:message] = "Review successfully deleted."
     end
     redirect_to reviews_path
@@ -63,10 +59,9 @@ class ReviewsController < ApplicationController
       params.require(:review).permit(:title, :content, :rating, :movie_id)
     end
 
-    # def current_review
-    #   @review = Review.find_by_id(params[:id])
-    #   redirect_to reviews_path if !@review
-    # end
+    def current_review
+      review = Review.find_by_id(params[:id])
+    end
 
     def set_movies_array
       @movies = Movie.alpha
