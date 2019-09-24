@@ -24,17 +24,28 @@ module MoviesHelper
     end
   end
 
-  # def display_movie_genres(movie)
-  #   movie.genres.each do |genre|
-  #     movie_genre = MovieGenre.find_movie_genre(movie, genre).last
-  #
-  #     if movie && current_user.admin
-  #       content_tag :li, "#{link_to "#{genre.name}", genre_movies_path(genre)} - #{link_to "delete", movie_genre_path(movie_genre), :method => :delete}"
-  #     else
-  #       content_tag :li, "#{link_to genre.name, genre_movies_path(genre)}"
-  #     end
-  #     "hello"
-  #   end
-  # end
+  def display_genre(movie, genre)
+    movie_genre = MovieGenre.find_movie_genre(movie, genre).last
+
+    content_tag :li do
+      if movie && current_user.admin
+        (link_to genre.name, genre_movies_path(genre)) + " - " + (link_to "delete", movie_genre_path(movie_genre), :method => :delete)
+      else
+        link_to genre.name, genre_movies_path(genre)
+      end
+    end
+  end
+
+  def display_actor(movie, actor)
+    movie_actor = MovieActor.find_movie_actor(movie, actor).last
+
+    content_tag :li do
+      if movie && current_user.admin
+        (link_to actor.full_name, actor_movies_path(actor)) + " - " + (link_to "delete", movie_actor_path(movie_actor), :method => :delete)
+      else
+        link_to actor.full_name, actor_movies_path(actor)
+      end
+    end
+  end
 
 end

@@ -6,24 +6,14 @@
   Genre(s):
   <ul>
     <% @movie.genres.each do |genre| %>
-      <% if @movie && current_user.admin %>
-        <% movie_genre = MovieGenre.find_movie_genre(@movie, genre).last %>
-        <li><%= link_to genre.name, genre_movies_path(genre) %> - <%= link_to "delete", movie_genre_path(movie_genre), :method => :delete %></li>
-      <% else %>
-        <li><%= link_to genre.name, genre_movies_path(genre) %></li>
-      <% end %>
+      <%= display_genre(@movie, genre) %>
     <% end %>
   </ul>
 
   Starring:
   <ul>
     <% @movie.actors.each do |actor| %>
-      <% if @movie && current_user.admin %>
-        <% movie_actor = MovieActor.find_movie_actor(@movie, actor).last %>
-        <li><%= link_to actor.full_name, actor_movies_path(actor) %> - <%= link_to "delete", movie_actor_path(movie_actor), :method => :delete %></li>
-      <% else %>
-        <li><%= link_to actor.full_name, actor_movies_path(actor) %></li>
-      <% end %>
+      <%= display_actor(@movie, actor) %>
     <% end %>
   </ul>
 
