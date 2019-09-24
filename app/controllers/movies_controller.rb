@@ -26,19 +26,17 @@ class MoviesController < ApplicationController
   end
 
   def show
-    # current_movie is nil in view
     @movie = Movie.find_by_id(params[:id])
   end
 
   def edit
-    # using current_movie is impacting blank genre and actor fields
+    # current_movie is impacting blank genre and actor fields
     @movie = Movie.find_by_id(params[:id])
     @movie.actor_number
     @movie.genre_number
   end
 
   def update
-    # using current_movie is causing @movie to be nil
     @movie = Movie.find_by_id(params[:id])
     if @movie.update(movie_params)
       redirect_to movie_path(@movie)
@@ -57,8 +55,7 @@ class MoviesController < ApplicationController
     end
 
     # def current_movie
-    #   current_movie ||= Movie.find_by_id(params[:id])
-    #   redirect_to movies_path if !current_movie
+    #   movie = Movie.find_by_id(params[:id])
     # end
 
     def sort_column

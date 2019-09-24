@@ -14,28 +14,21 @@ Genre.create(:name => "Horror")
 Genre.create(:name => "Psychological Thriller")
 Genre.create(:name => "Romantic Comedy")
 
-10.times do
-  User.create(:username => Faker::Name.unique.name, :email => Faker::Internet.unique.email, :password => "password", :admin => Faker::Boolean.boolean)
-end
-
-20.times do
-  Movie.create(:title => Faker::Book.unique.title, :synopsis => Faker::Lorem.paragraph(sentence_count: 4, supplemental: false, random_sentences_to_add: 2), :year => Faker::Number.between(from: 1950, to: 2019), :user_id => rand(1...User.count))
-end
-
 40.times do
   Actor.create(:first_name => Faker::Name.first_name, :last_name => Faker::Name.last_name)
 end
 
+10.times do
+  User.create(:username => Faker::Name.unique.name, :email => Faker::Internet.unique.email, :password => "password")
+end
+
+20.times do
+  movie = Movie.create(:title => Faker::Book.unique.title, :synopsis => Faker::Lorem.paragraph(sentence_count: 4, supplemental: false, random_sentences_to_add: 2), :year => Faker::Number.between(from: 1950, to: 2019), :user_id => rand(1...User.count))
+
+  2.times { movie.genres << Genre.find(Faker::Number.between(from: 1, to: 7)) }
+  5.times { movie.actors << Actor.find(Faker::Number.between(from: 1, to: 40)) }
+end
+
 60.times do
   Review.create(:user_id => rand(1...User.count), :movie_id => rand(1...Movie.count), :title => Faker::Movies::HarryPotter.quote, :content => Faker::Lorem.paragraph(sentence_count: 10, supplemental: false, random_sentences_to_add: 4), :rating => rand(1...5))
-end
-
-50.times do
-  # updated to be max of 8 actors
-  MovieActor.create(:movie_id => rand(1...Movie.count), :actor_id => rand(1...8))
-end
-
-50.times do
-  # updated to be max of 3 genres
-  MovieGenre.create(:movie_id => rand(1...Movie.count), :genre_id => rand(1...3))
 end
