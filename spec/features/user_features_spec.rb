@@ -15,12 +15,19 @@ describe 'Feature Test: User Signup', :type => :feature do
     expect(current_path).to eq("/signup")
     # user_signup method is defined in login_helper.rb
     user_signup
-    expect(current_path).to eq('/users/1')
+    expect(current_path).to eq("/users/1")
     expect(page).to have_content("Amy Poehler")
     # review content - once review & movie forms are completed
   end
 
-  it 'successfully logs in as non-admin' do
+  it "on sign up, successfully adds a session hash" do
+    visit "/signup"
+    # user_signup method is defined in login_helper.rb
+    user_signup
+    expect(page.get_rack_session_key("user_id")).to_not be_nil
+  end
+
+  it "successfully logs in as non-admin" do
     # user_login method is defined in login_helper.rb
     create_standard_user
     visit "/login"

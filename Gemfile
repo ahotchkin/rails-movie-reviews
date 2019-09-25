@@ -45,7 +45,14 @@ gem 'jquery-rails'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
+  gem 'selenium-webdriver'
+  gem 'webdrivers', '~> 3.0'
+  gem 'database_cleaner'
+  gem 'rspec-rails'
+  gem 'rack_session_access'
+  gem 'shoulda-matchers'
   gem 'pry'
 end
 
@@ -60,13 +67,8 @@ group :development do
 end
 
 group :test do
-  # Adds support for Capybara system testing and selenium driver
-  gem 'selenium-webdriver'
-  gem 'webdrivers', '~> 3.0'
   # Easy installation and use of chromedriver to run system tests with Chrome
   # gem 'chromedriver-helper'
-  gem 'rspec-rails'
-  gem 'shoulda-matchers'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
