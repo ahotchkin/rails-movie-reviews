@@ -23,7 +23,7 @@ class SessionsController < ApplicationController
       redirect_to user_path(@user)
     else
       flash[:message] = "That email already exists in our database. Please login or sign up with a different email address."
-      redirect_to root_path
+      redirect_to login_path
     end
   end
 
