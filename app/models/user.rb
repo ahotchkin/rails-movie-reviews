@@ -7,7 +7,6 @@ class User < ApplicationRecord
   validates_presence_of :username, :email
   validates :username, :email, :uniqueness => true
 
-
   def self.from_omniauth(auth)
     @user = User.find_or_create_by(:uid => auth[:uid]) do |user|
       if !User.find_by(:username => auth[:info][:first_name])
@@ -19,4 +18,5 @@ class User < ApplicationRecord
       user.password = SecureRandom.hex
     end
   end
+  
 end

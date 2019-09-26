@@ -5,5 +5,5 @@ class Genre < ApplicationRecord
 
   scope :alpha, -> { order(:name) }
   scope :find_by_name, -> (name) { where("name LIKE ?", name) }
-
+  
 end

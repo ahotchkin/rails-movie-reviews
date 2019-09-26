@@ -1,10 +1,12 @@
 module OmniauthHelper
+  
   def mock_auth_hash
+    OmniAuth.config.test_mode = true
     OmniAuth.config.mock_auth[:google] = {
       :provider => "google",
       :uid => "123545",
-      :user => {
-        :username => "mockuser",
+      :info => {
+        :first_name => "mockuser",
         :email => "mockuser@gmail.com"
       },
       :credentials => {
@@ -13,4 +15,5 @@ module OmniauthHelper
       }
     }
   end
+
 end

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root "sessions#home"
 
+  # signup
   get "/signup" => "users#new"
   # if a user signs up incorrectly the url re-renders as /signup
   post "/signup" => "users#create"

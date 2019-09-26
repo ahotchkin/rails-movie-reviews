@@ -50,8 +50,8 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'webdrivers', '~> 3.0'
   gem 'database_cleaner'
-  gem 'rspec-rails'
   gem 'rack_session_access'
+  gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'pry'
 end

@@ -1,7 +1,7 @@
 class GenresController < ApplicationController
 
   helper_method :sort_column
-  
+
   def index
     if params[:name]
       @genres = Genre.find_by_name(params[:name])
@@ -20,6 +20,5 @@ class GenresController < ApplicationController
     def sort_column
       Genre.column_names.include?(params[:sort]) ? params[:sort] : "name"
     end
-
 
 end
