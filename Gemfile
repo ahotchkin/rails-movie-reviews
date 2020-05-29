@@ -8,7 +8,7 @@ gem 'rails', '~> 5.2.3'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
-gem 'puma', '>= 3.12.2'
+gem 'puma', '>= 4.3.5'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -47,6 +47,12 @@ gem 'jquery-rails'
 gem 'rubyzip', '>= 1.3.0'
 
 gem 'actionview', '>= 5.2.4.2'
+
+gem 'activesupport', '>= 5.2.4.3'
+
+gem 'actionpack', '>= 5.2.4.3'
+
+gem 'activestorage', '>= 5.2.4.3'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
