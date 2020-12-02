@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 2019_09_15_155346) do
   create_table "movies", force: :cascade do |t|
     t.string "title"
     t.text "synopsis"
-    t.string "year", default: "2019"
+    t.string "year", default: "2020"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
