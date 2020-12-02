@@ -39,6 +39,7 @@ gem 'loofah', '>= 2.3.1'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'nokogiri', '>= 1.10.8'
 gem 'omniauth'
+gem 'omniauth-rails_csrf_protection', '~> 0.1'
 gem 'dotenv-rails'
 gem 'omniauth-google-oauth2'
 gem 'bootstrap', '~> 4.3', '>= 4.3.1'
