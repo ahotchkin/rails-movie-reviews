@@ -8,7 +8,7 @@ class User < ApplicationRecord
   validates :username, :email, :uniqueness => true
 
   def self.from_omniauth(auth)
-    @user = User.find_or_create_by(:uid => auth[:uid]) do |user|
+    user = User.find_or_create_by(:uid => auth[:uid]) do |user|
       if !User.find_by(:username => auth[:info][:first_name])
         user.username = auth[:info][:first_name]
       else
@@ -17,6 +17,7 @@ class User < ApplicationRecord
       user.email = auth[:info][:email]
       user.password = SecureRandom.hex
     end
+    user
   end
   
 end

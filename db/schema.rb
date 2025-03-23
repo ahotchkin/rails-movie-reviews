@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2019_09_15_155346) do
+ActiveRecord::Schema[7.0].define(version: 2025_03_15_201730) do
   create_table "actors", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -75,6 +75,7 @@ ActiveRecord::Schema[7.0].define(version: 2019_09_15_155346) do
     t.boolean "admin", default: false, null: false
     t.string "uid"
     t.string "provider"
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
   add_foreign_key "movie_actors", "actors"

@@ -17,10 +17,10 @@ class SessionsController < ApplicationController
   end
 
   def omnilogin
-    @user = User.from_omniauth(auth)
-    if @user.save
-      session[:user_id] = @user.id
-      redirect_to user_path(@user)
+    user = User.from_omniauth(auth)
+    if user.save
+      session[:user_id] = user.id
+      redirect_to user_path(user)
     else
       flash[:message] = "That email already exists in our database. Please login or sign up with a different email address."
       redirect_to login_path
