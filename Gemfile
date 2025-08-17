@@ -49,7 +49,7 @@ gem 'rexml'
 
 gem 'rubyzip', '>= 1.3.0'
 
-gem 'activesupport', '7.0.8.7'
+gem 'activesupport', '~> 7.0.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -60,7 +60,7 @@ group :development, :test do
   gem 'webdrivers', '~> 3.0'
   gem 'database_cleaner'
   gem 'rack_session_access'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 7.1.1'
   gem 'shoulda-matchers'
   gem 'pry'
 end
