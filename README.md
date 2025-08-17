@@ -14,9 +14,9 @@ This Rails app allows a user to write movie reviews and read reviews written by 
 
 ## Screenshots
 
-<img width="1510" height="730" alt="Screenshot 2025-08-17 at 6 20 37 PM" src="https://github.com/user-attachments/assets/b7f77664-e2cc-496a-9b73-6a48bccd9c5f" />
-<img width="1510" height="730" alt="Screenshot 2025-08-17 at 6 20 59 PM" src="https://github.com/user-attachments/assets/ff2cf2ce-4170-4fb9-9040-cfd67664dc45" />
-<img width="1510" height="730" alt="Screenshot 2025-08-17 at 6 24 50 PM" src="https://github.com/user-attachments/assets/74bcbc60-049d-49c3-ba69-64474e96c97e" />
+<img width="1293" height="730" alt="Screenshot 2025-08-17 at 6 29 30 PM" src="https://github.com/user-attachments/assets/5de049bc-f197-4082-b72e-7f056dab5213" />
+<img width="1293" height="730" alt="Screenshot 2025-08-17 at 6 30 06 PM" src="https://github.com/user-attachments/assets/790eec6a-f0bf-43d6-a621-ce53df67bb55" />
+<img width="1293" height="730" alt="Screenshot 2025-08-17 at 6 30 21 PM" src="https://github.com/user-attachments/assets/6d55613d-301c-40ca-a543-44cd158d8916" />
 
 
 ## Demo Video
