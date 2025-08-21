@@ -1,6 +1,6 @@
 # Rails Movie Reviews
 
-This Rails app allows a user to write movie reviews and read reviews written by other users. While running the app, a user is able to create an account/log in, read all reviews, and write reviews for any movies currently in the database. A user has the ability to edit or delete any reviews they have written. Admin users have the ability to add and edit movies in the database.
+Are you a certified cinephile? Have you ever had a brilliant "hot take" on a classic film or the latest blockbuster? Then Rails Movie Reviews is your new home — a community where film lovers and critics unite.<br /><br />Dive into a sea of opinions, read reviews from fellow film buffs, and share your own thoughts on your favorite films. And for those with a truly dedicated eye for cinema, special access allows you to add and update movies for everyone to review.
 
 ## Installation & Usage
 
